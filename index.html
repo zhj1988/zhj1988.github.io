@@ -152,6 +152,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-程序经典算法个人体会总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##简介：本次博客总结一下网上现存的经典算法，结合个人之前一些不理解的地方进行汇总，如果有错误的地方，欢迎指正。<br>首先是关于稳定性解释：假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些记录的相对次序保持不变，即在原序列中，r[i]=r[j]，且r[i]在r[j]之前，而在排序后的序列中，r[i]仍在r[j]之前，则称这种排序算法是稳定的；否则称为不稳定的。—–来自百度百科（十分好理解）  </p>
+<ol>
+<li><p>冒泡排序法（Bubble Sort）<br>冒泡排序是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。<br>时间复杂度：最优 O（n），最坏O（n^2）<br>怎么最优解：第一层循环设定一个标志为true，在第二层循环，if判断是否交换数组元素时候，若交换则修改标志为false，第二层循环结束，若无交换，则标志任为false，此时写一个if判断，若为false，则break跳出循环，或者return退出方法。<br>稳定性：稳定  </p>
+</li>
+<li><p>选择排序法(Selection-sort)<br>选择排序是一种简单直观的排序算法。它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。<br>时间复杂度：最优O（n^2）最坏O（n^2）<br>解释：选择排序法，每次固定两层循环，将未排序的剩余元素一一进行比较，排序得出该序列上位置的最优解，所以时间复杂度固定不变。<br>稳定性：不稳定<br>解释：举个例子，序列5 8 5 2 9， 我们知道第一遍选择第1个元素5会和2交换，那么原序列中2个5的相对前后顺序就被破坏了，所以选择排序不是一个稳定的排序算法。</p>
+</li>
+<li><p>插入排序（Insertion Sort）<br>插入排序的算法描述是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。<br>贴一段代码<br>function insertionSort(arr) {<br> var len = arr.length;<br> var preIndex, current;<br> for (var i = 1; i &lt; len; i++) {  </p>
+<pre><code>preIndex = i - 1;  
+current = arr[i];  
+while (preIndex &gt;= 0 &amp;&amp; arr[preIndex] &gt; current) {  
+    arr[preIndex + 1] = arr[preIndex];  
+    preIndex--;  
+}  
+arr[preIndex + 1] = current;  </code></pre><p> }<br> return arr;<br>}  
+注意点:插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。<br>时间复杂度：最优 O（n），最坏O（n^2）<br>解释：若为已排序数组，第二层循环每次仅执行一次，最优时间复杂度O(n)<br>稳定性：稳定</p>
+</li>
+<li><p>希尔排序（Shell Sort）<br>1959年Shell发明，第一个突破O(n2)的排序算法，是简单插入排序的改进版。它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序。比较相隔较远距离（称为增量）的数，使得数移动时能跨过多个元素，则进行一次比较就可能消除多个元素交换。<br>希尔排序的核心在于间隔序列的设定。既可以提前设定好间隔序列，也可以动态的定义间隔序列。<br>列出java程序<br>int d=a.length;  </p>
+<pre><code>while(true)  
+{  
+    d=d/2;  
+    for(int x=0;x&lt;d;x++)  
+    {  
+        for(int i=x+d;i&lt;a.length;i=i+d)  
+        {  
+            int temp=a[i];  
+            int j;  
+            for(j=i-d;j&gt;=0&amp;&amp;a[j]&gt;temp;j=j-d)  
+            {  
+                a[j+d]=a[j];  
+            }  
+            a[j+d]=temp;  
+        }  
+    }  
+    if(d==1)  
+    {  
+        break;  
+    }  
+}  
+System.out.println();  
+System.out.println(&quot;排序之后：&quot;);  </code></pre><p>时间复杂度：最优 O（n），最坏O（n^2）<br>稳定性：不稳定</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/30/程序经典算法个人体会总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-使用hexo与GitHub仓库初步搭建博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -160,19 +249,19 @@
         <h1 id="使用hexo与GitHub仓库初步搭建博客"><a href="#使用hexo与GitHub仓库初步搭建博客" class="headerlink" title="使用hexo与GitHub仓库初步搭建博客"></a>使用hexo与GitHub仓库初步搭建博客</h1><p>date: 2019-06-29 01:37:10</p>
 <p>##简介：<br>本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。</p>
 <p>###本次搭建过程可分为三部分</p>
-<ul>
+<ol>
 <li>第一部分 环境配置  </li>
 <li>第二部分 hexo与github仓库连接  </li>
 <li>第三部分 更换博客主题  </li>
-</ul>
+</ol>
 <p>###第一部分 环境配置</p>
 <ol>
-<li>安装Git<br>windows：到git官网上下载,Download git,下载后会有一个Git Bash的命令行工具，以后就用这个工具来使用git。<br>linux：需要一行代码。<br><strong>sudo apt-get install git</strong><br>git –version 查看版本<ul>
+<li>安装Git<br>windows：到git官网上下载,Download git,下载后会有一个Git Bash的命令行工具，以后就用这个工具来使用git。<br>linux：需要一行代码。<br><strong>sudo apt-get install git</strong><br>git –version 查看版本<ol start="2">
 <li>安装nodejs<br>Hexo是基于nodeJS编写的，所以需要安装一下nodeJs和里面的npm工具。<br>windows：nodejs选择LTS版本<br>linux：  </li>
-</ul>
-<strong>sudo apt-get install nodejs</strong><br><strong>sudo apt-get install npm</strong><br>使用node -v npm -v查看版本<ul>
+</ol>
+<strong>sudo apt-get install nodejs</strong><br><strong>sudo apt-get install npm</strong><br>使用node -v npm -v查看版本<ol start="3">
 <li>安装hexo<br>前面git和nodejs安装好后，就可以安装hexo了，先创建一个文件夹blog，在终端cd到这个文件夹下  。<br>输入命令：  </li>
-</ul>
+</ol>
 <strong>npm install -g hexo-cli</strong><br>依旧用hexo -v查看一下版本<br>接下来初始化一下hexo<br><strong>hexo init</strong><br>看到“Start blogging with Hexo！”即初始化成功<br>接下来 输入<strong>npm install</strong>，安装所需要的组件<br>输入<strong>hexo g</strong>，首次体验Hexo<br>输入<strong>hexo s</strong>，开启服务器，访问该网址localhost:4000，看到生成的博客了。第一部分到此结束整体没有什么问题，按着教程顺序，window只需安装软件跟在命令行输入命令即可。</li>
 </ol>
 <p>###第二部分 hexo与github仓库连接</p>
