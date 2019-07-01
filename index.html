@@ -172,15 +172,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a> 
-<p>#线性表</p>
-<ol>
-<li>顺序存储结构（在内存中是一段连续的存储空间）<br>优点：方便查找，时间复杂度O（1）<br>缺点：不方便删除，插入。平均时间复杂度O（N）<br>删除或插入时候，第一判断插入位置是否正确，第二将插入位置后面的元素整体往后移动，若为删除则往前移动。<br>主要通过数组来实现顺序存储结构。  </li>
-<li>链式存储结构（在内存中存储位置随意，每个存储数据的地方为一个节点，其包括数据与指针）<br>（1）单链表<br>特点：插入或者删除大量数据时候非常方便，首先花费平均时间复杂度O(n)查找到插入位置，其次修改插入数据的指针，指向插入位置后一个元素，修改插入位置的前一个元素的指针，指向插入的数据节点。删除也类似操作。<br>（2）静态链表<br>特点：古老的语言，无指针时代，形式为数组。其由坐标，游标，数据三部分组成。第一，头结点游标指向第一个空闲位置的坐标。第二， 数组最大长度-1，的坐标结点其游标指向第一个结点的坐标。第三， 数组中，存放数据的最后一个结点，其游标值为0。<br>（3）循环链表<br>特点：最后一个结点的指针指向头结点，若是两个两个循环链表拼接成一个时候，需要删除一个头结点（补充内容，链表结构，有一个头结点，其数据可能为空，也可能为链表存放数据个数或者长度，其指针指向第一个结点位置）<br>（4）双向链表（prior，next）<br>特点：每一个结点有一个前驱指针，一个后驱指针，在遍历链表时候比较方便。<br>ex：插入数据时候，需要按顺序进行四种操作，插入元素a，插入位置为p，p—&gt;next,之间。第一步，修改a前驱指针为p，第二步修改a后驱指针为p-&gt;next,第三步，修改p—&gt;next的前驱指针为a，第四步，修改p—&gt;next为a。以上四步，个人认为前三步位置可以任意变动，第四步位置不变即可。  </li>
-</ol>
-<p>以上为最基础的线性表</p>
-<p>#栈与队列</p>
-
+        <p>##简介：本篇博客用于个人学习的总结，基于大话数据结构这本书，做一些个人的笔记以及查缺补漏，可能会有些乱，如果有什么错误 ，欢迎指正。</p>
+        
+          <a class="article-more-a" href="/2019/07/01/数据结构与算法个人总结/#more">more >></a>
+        
       
 
       
@@ -188,17 +183,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">本篇博客用于个人学习的总结，基于大话数据结构这本书，做一些个人的笔记以及查缺补漏，可能会有些乱，如果有什么错误 ，欢迎指正。</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -326,143 +310,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/06/29/使用hexo与GitHub仓库初步搭建博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-nihao" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/28/nihao/">nihao</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/28/nihao/" class="archive-article-date">
-  	<time datetime="2019-06-28T15:18:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/28/nihao/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/28/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/28/hello-world/" class="archive-article-date">
-  	<time datetime="2019-06-28T05:09:32.098Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/28/hello-world/">展开全文 >></a>
         </p>
       
 
