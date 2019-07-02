@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>使用hexo与GitHub仓库初步搭建博客 | Hexo——blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
+  <meta name="description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。 本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用hexo与GitHub仓库初步搭建博客">
 <meta property="og:url" content="http://yoursite.com/2019/06/29/使用hexo与GitHub仓库初步搭建博客/index.html">
 <meta property="og:site_name" content="Hexo——blog">
-<meta property="og:description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
+<meta property="og:description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。 本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-02T06:15:56.985Z">
+<meta property="og:updated_time" content="2019-07-02T06:19:26.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用hexo与GitHub仓库初步搭建博客">
-<meta name="twitter:description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
+<meta name="twitter:description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。 本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
   
     <link rel="alternative" href="/atom.xml" title="Hexo——blog" type="application/atom+xml">
   
@@ -174,37 +174,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。"><a href="#简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。" class="headerlink" title="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。"></a>简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。</h1><h1 id="本次搭建过程可分为三部分"><a href="#本次搭建过程可分为三部分" class="headerlink" title="本次搭建过程可分为三部分"></a>本次搭建过程可分为三部分</h1><ol>
+        <p>简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。</p>
+<h1 id="本次搭建过程可分为三部分"><a href="#本次搭建过程可分为三部分" class="headerlink" title="本次搭建过程可分为三部分"></a>本次搭建过程可分为三部分</h1><ol>
 <li>第一部分 环境配置  </li>
 <li>第二部分 hexo与github仓库连接  </li>
 <li>第三部分 更换博客主题  </li>
 </ol>
 <a id="more"></a> 
 <h2 id="第一部分-环境配置"><a href="#第一部分-环境配置" class="headerlink" title="第一部分 环境配置"></a>第一部分 环境配置</h2><ol>
-<li>安装Git<br>windows：到git官网上下载,Download git,下载后会有一个Git Bash的命令行工具，以后就用这个工具来使用git。<br>linux：需要一行代码。<br><strong>sudo apt-get install git</strong><br>git –version 查看版本<ol start="2">
+<li>安装Git<br>windows：到git官网上下载,Download git,下载后会有一个Git Bash的命令行工具，以后就用这个工具来使用git。<br>linux：需要一行代码。<br><code>**sudo apt-get install git**</code><br>git –version 查看版本<ol start="2">
 <li>安装nodejs<br>Hexo是基于nodeJS编写的，所以需要安装一下nodeJs和里面的npm工具。<br>windows：nodejs选择LTS版本<br>linux：  </li>
 </ol>
 <strong>sudo apt-get install nodejs</strong><br><strong>sudo apt-get install npm</strong><br>使用node -v npm -v查看版本<ol start="3">
-<li>安装hexo<br>前面git和nodejs安装好后，就可以安装hexo了，先创建一个文件夹blog，在终端cd到这个文件夹下  。<br>输入命令：  </li>
+<li>安装hexo<br>前面git和nodejs安装好后，就可以安装hexo了，先创建一个文件夹blog，在终端cd到这个文件夹下  。<br>输入命令：<br><code>**npm install -g hexo-cli**</code><br>依旧用hexo -v查看一下版本<br>接下来初始化一下hexo  </li>
 </ol>
-<strong>npm install -g hexo-cli</strong><br>依旧用hexo -v查看一下版本<br>接下来初始化一下hexo<br><strong>hexo init</strong><br>看到“Start blogging with Hexo！”即初始化成功<br>接下来 输入<strong>npm install</strong>，安装所需要的组件<br>输入<strong>hexo g</strong>，首次体验Hexo<br>输入<strong>hexo s</strong>，开启服务器，访问该网址localhost:4000，看到生成的博客了。第一部分到此结束整体没有什么问题，按着教程顺序，window只需安装软件跟在命令行输入命令即可。</li>
+<strong>hexo init</strong><br>看到“Start blogging with Hexo！”即初始化成功<br>接下来 输入<strong>npm install</strong>，安装所需要的组件<br>输入<strong>hexo g</strong>，首次体验Hexo<br>输入<strong>hexo s</strong>，开启服务器，访问该网址localhost:4000，看到生成的博客了。第一部分到此结束整体没有什么问题，按着教程顺序，window只需安装软件跟在命令行输入命令即可。</li>
 </ol>
 <h2 id="第二部分-hexo与github仓库连接"><a href="#第二部分-hexo与github仓库连接" class="headerlink" title="第二部分 hexo与github仓库连接"></a>第二部分 hexo与github仓库连接</h2><ol>
 <li>在github自己GitHub账号中创建一个项目<br>项目必须要遵守格式：账户名.github.io（这个非常重要！！！）  </li>
 </ol>
 <ul>
-<li>生成ssh添加到github<br>回到你的git bash中，或者继续用命令行cd到blog的文件夹  </li>
-<li><em>git config –global user.name “yourname”*</em></li>
-<li><em>git config –global user.email “youremail”*</em><br>这里的yourname输入你的GitHub用户名，youremail输入你GitHub的邮箱。这样GitHub才能知道你是不是对应它的账户。<br>可以用以下两条，检查一下你有没有输对  </li>
-<li><em>git config user.name*</em></li>
-<li><em>git config user.email*</em><br>然后创建SSH,一路回车  </li>
-<li><em>ssh-keygen -t rsa -C “youremail”*</em><br>这个时候它会告诉你已经生成了.ssh的文件夹。在你的电脑中找到这个文件夹.<br>而后在GitHub的setting中（鼠标移到右上角头像），找到SSH keys的设置选项，点击New SSH key<br>把你的id_rsa.pub里面的信息复制进去。<br>在gitbash中，查看是否成功  </li>
-<li><em>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>*</em></li>
+<li>生成ssh添加到github<br>回到你的git bash中，或者继续用命令行cd到blog的文件夹<br>  <strong>git config –global user.name “yourname”</strong><br>  <strong>git config –global user.email “youremail”</strong><br>这里的yourname输入你的GitHub用户名，youremail输入你GitHub的邮箱。这样GitHub才能知道你是不是对应它的账户。<br>可以用以下两条，检查一下你有没有输对<br>  <strong>git config user.name</strong><br>  <strong>git config user.email</strong><br>然后创建SSH,一路回车<br><code>**ssh-keygen -t rsa -C &quot;youremail&quot;**</code><br>这个时候它会告诉你已经生成了.ssh的文件夹。在你的电脑中找到这个文件夹.<br>而后在GitHub的setting中（鼠标移到右上角头像），找到SSH keys的设置选项，点击New SSH key<br>把你的id_rsa.pub里面的信息复制进去。<br>在gitbash中，查看是否成功<br>  <strong>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></strong></li>
 </ul>
 <ol start="3">
 <li>将hexo部署到GitHub<br>在你的blog文件夹中找到配置文件 _config.yml，翻到最后，修改为  </li>
 </ol>
-<p><strong>deploy:<br>  type: git<br>  repo: <a href="https://github.com/YourgithubName/YourgithubName.github.io.git" target="_blank" rel="noopener">https://github.com/YourgithubName/YourgithubName.github.io.git</a><br>  branch: master</strong><br>注意没有repo，brach可以直接复制，后边type / repo / branch，冒号后面一定要加一个空格，我使用的Notepad++修改，修改后记得保存。<br>然后安装deploy-git ，也就是部署的命令,这样你才能用命令部署到GitHub，在命令行中执行：<br><strong>npm install hexo-deployer-git –save</strong><br>安装完成后启动hexo：<br><strong>hexo clean<br>hexo generate<br>hexo deploy</strong><br>在浏览器打开 <a href="https://YourgithubName.github.io/" target="_blank" rel="noopener">https://YourgithubName.github.io/</a> 后看到hexo就代表成功了。<br>运行：<br><strong>hexo new “第一篇博客”<br>hexo clean<br>hexo g<br>hexo d</strong><br>就可以看到更新的博客了，第二部分也到此结束。</p>
+<p><strong>deploy:<br>  type: git<br>  repo: <a href="https://github.com/YourgithubName/YourgithubName.github.io.git" target="_blank" rel="noopener">https://github.com/YourgithubName/YourgithubName.github.io.git</a><br>  branch: master</strong><br>注意没有repo，brach可以直接复制，后边type / repo / branch，冒号后面一定要加一个空格，我使用的Notepad++修改，修改后记得保存。<br>然后安装deploy-git ，也就是部署的命令,这样你才能用命令部署到GitHub，在命令行中执行：<br>    <strong>npm install hexo-deployer-git –save</strong><br>安装完成后启动hexo：<br>    <strong>hexo clean<br>    hexo generate<br>    hexo deploy</strong><br>在浏览器打开 <a href="https://YourgithubName.github.io/" target="_blank" rel="noopener">https://YourgithubName.github.io/</a> 后看到hexo就代表成功了。<br>运行：<br>    <strong>hexo new “第一篇博客”<br>    hexo clean<br>    hexo g<br>    hexo d</strong><br>就可以看到更新的博客了，第二部分也到此结束。</p>
 <h2 id="第三部分-更换博客主题"><a href="#第三部分-更换博客主题" class="headerlink" title="第三部分 更换博客主题"></a>第三部分 更换博客主题</h2><p>##参考博客来源：  </p>
 <ol>
 <li><a href="https://blog.csdn.net/sinat_37781304/article/details/82729029" target="_blank" rel="noopener">https://blog.csdn.net/sinat_37781304/article/details/82729029</a> </li>
