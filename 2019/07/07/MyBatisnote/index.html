@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>note | hexo——blog</title>
+  <title>MyBatisNotebook | hexo——blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="note">
+<meta property="og:title" content="MyBatisNotebook">
 <meta property="og:url" content="http://yoursite.com/2019/07/07/MyBatisnote/index.html">
 <meta property="og:site_name" content="hexo——blog">
 <meta property="og:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-07T13:38:54.598Z">
+<meta property="og:updated_time" content="2019-07-07T18:11:18.255Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="note">
+<meta name="twitter:title" content="MyBatisNotebook">
 <meta name="twitter:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
   
     <link rel="alternative" href="/atom.xml" title="hexo——blog" type="application/atom+xml">
@@ -161,7 +161,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      note
+      MyBatisNotebook
     </h1>
   
 
@@ -179,11 +179,11 @@
 
 
 <h2 id="第一部分源代码目录"><a href="#第一部分源代码目录" class="headerlink" title="第一部分源代码目录"></a>第一部分源代码目录</h2><ol>
-<li><p>数据库连接（datasource）<br>通过Resource资源加载类加载SqlMapConfig.xml配置文件，获得SQL会话工厂SqlSessionFactory，使用工厂创建可以与数据库交互的sqlSession类的实例对象。<br>Resource -&gt; SqlSessionFactory -&gt; sqlSession类</p>
+<li><p>数据库连接（datasource）<br>创建DataConnection类，通过Resource资源加载类加载SqlMapConfig.xml配置文件，获得SQL会话工厂SqlSessionFactory，使用工厂创建可以与数据库交互的sqlSession类的实例对象。<br>Resource -&gt; SqlSessionFactory -&gt; sqlSession类</p>
 </li>
 <li><p>持久层对象（po）<br>持久化实体类是一个类中的成员变量与数据库表中字段一一相对应的java类，也有封装一些间接数据的实体类<br>在老框架EJB中也有这种get/set方法，总而言之，将这种类称为JavaBean</p>
 </li>
-<li><p>测试主程序（test） </p>
+<li><p>测试主程序（test）<br>通过DataConnection类获取sqlSession会话对象，然后是由sqlSession对象的SelectOne（返回多个使用SelectList），该方法有两个参数，第一个是sql映射文件UserMapper.xml中的namespace加上statement配置的id；第二个参数是sql映射文件中所匹配的parameterType类型参数，执行selectOne之后返回结果为sql映射文件中所匹配的resultType类型。</p>
 </li>
 </ol>
 <h2 id="第二部分配置文件目录"><a href="#第二部分配置文件目录" class="headerlink" title="第二部分配置文件目录"></a>第二部分配置文件目录</h2><ol>
@@ -202,7 +202,14 @@
 <p>1）log4j.rootLogger= DEBUG , stdout<br>一共    七个级别：OFF, FATAL,ERROR( 错误级别，不影响程序运行的错误事件),WARN（异常级别，潜在的错误情形）,INFO（标准信息级别，用于日常运行在控制台打印程序运行的主要步骤）,DEBUG（调试级别，用于开发过程查看程序运行的详细步骤）,ALL<br>stdout：将等级为DEBUG的日志信息输出到stdout参数所制定的输出载体中  </p>
 <p>2）log4j.appender.stdout = org.apache.log4j.ConsoleAppender<br>设置stdout输出端载体类型：ConsoleAppender(控制台)，FileAppender（文件），DailyRollingFileAppender（每天产生一个新的文件），RollingFileAppender（文件大小达到指定大小时产生的一个新文件）WriterAppender(将日志信息以流的格式发送指定地方)  </p>
 <p>3）log4j.appeder.stdout.layout =org.apache.log4j.PatternLayout<br>名为stdout 的输出载体的layout（局面布局）那种类型。HTMLLayout/PatternLayout(指定布局)/SimpleLayout（包含日志信息级别和inxi字符串）/TTCCLayout（包括日志产生的时间，线程、类别）  </p>
-<p>4）log4j.appeder.stdout.layout.ConversionPattern = %5p[%t]-%m%n<br>PatternLayout格式：%m输出代码指定信息，%p输出优先级，%r输出应用启动到log信息输出时间（ms），%c输出所属类目，%t输出生产该日志事件线程名，%n输出回车符号（windows：rn / UNIX：n），%d输出日志的日期或时间，%l输出日志事件发生位置，包括类目名，发生的线程，以及代码的行数。  </p>
+<p>4）log4j.appeder.stdout.layout.ConversionPattern = %5p[%t]-%m%n<br>PatternLayout格式：%m输出代码指定信息，%p输出优先级，%r输出应用启动到log信息输出时间（ms），%c输出所属类目，%t输出生产该日志事件线程名，%n输出回车符号（windows：rn / UNIX：n），%d输出日志的日期或时间，%l输出日志事件发生位置，包括类目名，发生的线程，以及代码的行数。   </p>
+<hr>
+<p>总结一下遇到错误：  </p>
+<ol>
+<li>config文件夹没有添加到路径，所以 resource=”SqlMapConfig.xml”出错  </li>
+<li>mysql-connector-java-5.0.3-bin.jar版本太老（本人使用的是mysql8.0），在lib上添加 mysql-connector-java-8.0.15-.jar，再添加到路径之后完美解决问题。</li>
+</ol>
+<hr>
 
       
 
