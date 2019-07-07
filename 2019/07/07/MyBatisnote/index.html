@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>KMP算法程序实现与原理解析 | hexo——blog</title>
+  <title>note | hexo——blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：KMP算法于串结构中，查询字符串匹配，应用于字符查询等应用场景，本文介绍其原理，由最简答的朴素模式匹配算法（暴力算法）入手，到KMP算法及其优化算法介绍，如果有错误的地方，欢迎指正。">
+  <meta name="description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KMP算法程序实现与原理解析">
-<meta property="og:url" content="http://yoursite.com/2019/07/06/KMP算法程序实现与原理解析/index.html">
+<meta property="og:title" content="note">
+<meta property="og:url" content="http://yoursite.com/2019/07/07/MyBatisnote/index.html">
 <meta property="og:site_name" content="hexo——blog">
-<meta property="og:description" content="简介：KMP算法于串结构中，查询字符串匹配，应用于字符查询等应用场景，本文介绍其原理，由最简答的朴素模式匹配算法（暴力算法）入手，到KMP算法及其优化算法介绍，如果有错误的地方，欢迎指正。">
+<meta property="og:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-07T09:03:13.529Z">
+<meta property="og:updated_time" content="2019-07-07T13:38:54.598Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KMP算法程序实现与原理解析">
-<meta name="twitter:description" content="简介：KMP算法于串结构中，查询字符串匹配，应用于字符查询等应用场景，本文介绍其原理，由最简答的朴素模式匹配算法（暴力算法）入手，到KMP算法及其优化算法介绍，如果有错误的地方，欢迎指正。">
+<meta name="twitter:title" content="note">
+<meta name="twitter:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
   
     <link rel="alternative" href="/atom.xml" title="hexo——blog" type="application/atom+xml">
   
@@ -154,37 +154,55 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-KMP算法程序实现与原理解析" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MyBatisnote" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      KMP算法程序实现与原理解析
+      note
     </h1>
   
 
         
-        <a href="/2019/07/06/KMP算法程序实现与原理解析/" class="archive-article-date">
-  	<time datetime="2019-07-05T17:43:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-06</time>
+        <a href="/2019/07/07/MyBatisnote/" class="archive-article-date">
+  	<time datetime="2019-07-07T10:51:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：KMP算法于串结构中，查询字符串匹配，应用于字符查询等应用场景，本文介绍其原理，由最简答的朴素模式匹配算法（暴力算法）入手，到KMP算法及其优化算法介绍，如果有错误的地方，欢迎指正。</p>
-<a id="more"></a> 
+        <p>简介：记录学习的MyBatis一些笔记  </p>
+<h2 id="一个MyBatis-web项目包含三个部分"><a href="#一个MyBatis-web项目包含三个部分" class="headerlink" title="一个MyBatis web项目包含三个部分"></a>一个MyBatis web项目包含三个部分</h2><h2 id="1-源代码目录（src）"><a href="#1-源代码目录（src）" class="headerlink" title="1. 源代码目录（src）"></a>1. 源代码目录（src）</h2><h2 id="2-配置文件目录（config）"><a href="#2-配置文件目录（config）" class="headerlink" title="2. 配置文件目录（config）"></a>2. 配置文件目录（config）</h2><h2 id="3-测试目录"><a href="#3-测试目录" class="headerlink" title="3. 测试目录"></a>3. 测试目录</h2><a id="more"></a> 
 
-<h2 id="1-朴素模式匹配算法"><a href="#1-朴素模式匹配算法" class="headerlink" title="1. 朴素模式匹配算法"></a>1. 朴素模式匹配算法</h2><p>原理：原字符数组s 长度n下标i，匹配字符组t 长度m下标j，从s[0]与t[0]开始比较，若相同，则i++，j++继续比较，若i = m，则完全匹配，此时t在s的下标为i-j+1；失配时候j =0 ；循环持续至i = n || j = m；t时间复杂度最坏情况 （n-m）*m ，最优情况 m<br>改良朴素模式匹配算法：可以多次查询，如s = abcabc，t = abc，若没改良则只能输出i= 1 ；改良后i = 1,3；<br>下面为程序实现改良的算法（java）：<br>package demo;<br>import java.util.Scanner;<br>public class test {<br>    static String stringText = “abcabcabcabcabcabcabc”;//原数组<br>    static char num1[]= stringText.toCharArray();<br>    static String stringExample = null;<br>    public static void ViolentMatch() {<br>        int j=0;<br>        int i=0;<br>        int temp = 0;<br>        Scanner input=new Scanner(System.in);<br>        stringExample =input.next();          //输入匹配数组<br>        char num2[]= stringExample .toCharArray();<br>        long startTime = System.nanoTime();  //获取开始时间<br>        while (i&lt;num1.length ) {<br>            if(num1[i] == num2[j]) {<br>                i++;<br>                j++;<br>            }else {<br>                i =  i-j+1;<br>                j = 0;<br>            }<br>            if(j == num2.length) {<br>                System.out.println( i-j+1 );//输出匹配成功的原数组下标<br>                j = 0;<br>                temp++;<br>            }<br>        }<br>        if(temp == 0) {<br>            System.out.println(-1);//没有匹配成功<br>        }<br>        long endTime = System.nanoTime();  //获取结束时间<br>        System.out.println(“程序运行时间：” + (endTime - startTime) + “ns”); //输出程序运行时间<br>    }<br>    public static void main(String arg[]) {<br>        ViolentMatch();<br>        System.out.println(“end”);<br>    }<br>}  </p>
-<h2 id="2-KMP算法"><a href="#2-KMP算法" class="headerlink" title="2.KMP算法"></a>2.KMP算法</h2><p>终于进入正题了，KMP算法相比较朴素模式匹配算法，更加智能化，减少重复的工作，把之前比较的结果都会保留下来，然后呢，其最主要的重点就是next[j]数组的计算方式。<br>原理：原字符数组s 长度n下标i，匹配字符组t 长度m下标j；首先计算next[j],开始匹配，匹配成功退出，匹配失败t相对于s，向右边移动j-next[j]距离。然后继续匹配直到j = m，或者i = n  </p>
-<ol>
-<li>next[j]函数定义<br>next[j]函数三种情况：j=1时候，next[1]=0；p1….pk-1 = pj-k+1….pj-1(1&lt;k&lt;j);1,其他情况。<br>（书本或者其他网上资料，数组s[0],t[0]不存放数据，存放字符数组长度m/n）<br>ex：模式串t:abcdef   next[j]: 011111 ;模式串：abcabc next[j]:011123；模式串：aaaaab next[j]:012345<br>匹配算法程序（java）：  </li>
+
+<h2 id="第一部分源代码目录"><a href="#第一部分源代码目录" class="headerlink" title="第一部分源代码目录"></a>第一部分源代码目录</h2><ol>
+<li><p>数据库连接（datasource）<br>通过Resource资源加载类加载SqlMapConfig.xml配置文件，获得SQL会话工厂SqlSessionFactory，使用工厂创建可以与数据库交互的sqlSession类的实例对象。<br>Resource -&gt; SqlSessionFactory -&gt; sqlSession类</p>
+</li>
+<li><p>持久层对象（po）<br>持久化实体类是一个类中的成员变量与数据库表中字段一一相对应的java类，也有封装一些间接数据的实体类<br>在老框架EJB中也有这种get/set方法，总而言之，将这种类称为JavaBean</p>
+</li>
+<li><p>测试主程序（test） </p>
+</li>
 </ol>
-<p>求next[]程序：<br>`    public static int[] get_next(String T) {<br>        char temp[]=T.toCharArray();<br>        int next[] = new int[temp.length];<br>        next[0] = -1;<br>        int k = -1;<br>        int j = 0;<br>        while (j &lt; temp.length - 1)<br>        {<br>            //p[k]表示前缀，p[j]表示后缀<br>            if (k == -1 || temp[j] ==  temp[k])<br>            {<br>                ++k;<br>                ++j;<br>                next[j] = k;<br>            }<br>            else<br>            {<br>                k = next[k];  //当匹配失败时候，返回next[]数组中k下标的值，如果一直失败将回溯k=-1<br>            }<br>        }<br>        System.out.print(“next[]:”);<br>        for (int i = 0; i &lt; next.length; i++) {<br>            System.out.print(next[i]);<br>            if(!(i == next.length-1)) {<br>                System.out.print(“,”);<br>            }else {<br>                System.out.println();<br>            }<br>        }<br>        return next;  </p>
-<pre><code>}  `</code></pre><p>KMP方法程序：<br>`    public static void KMP() {<br>        int j=0;<br>        int i=0;<br>        int temp = 0;<br>        Scanner input=new Scanner(System.in);<br>        stringExample =input.next();          //输入匹配数组<br>        char num2[]= stringExample .toCharArray();<br>        int next[] = get_next(stringExample);<br>        long startTime = System.nanoTime();  //获取开始时间<br>        while (i&lt;num1.length ) {<br>            if(num1[i] == num2[j]) {<br>                i++;<br>                j++;<br>            }else {<br>                i =  i-j+1;<br>                j = j-next[j]-1;//T字符串匹配失败后下标<br>            }<br>            if(j == num2.length) {<br>                System.out.print( “第”+ temp +”个成功:”);<br>                System.out.println( i-j+1 );//输出匹配成功的原数组下标<br>                j = 0;<br>                temp++;<br>            }<br>        }<br>        if(temp == 0) {<br>            System.out.println(-1);//没有匹配成功<br>        }<br>        long endTime = System.nanoTime();  //获取结束时间<br>        System.out.println(“程序运行时间：” + (endTime - startTime) + “ns”); //输出程序运行时间      </p>
-<pre><code>}`  </code></pre><p>总结：当重复段越多时候，KMP算法比较朴素算法更快  </p>
+<h2 id="第二部分配置文件目录"><a href="#第二部分配置文件目录" class="headerlink" title="第二部分配置文件目录"></a>第二部分配置文件目录</h2><ol>
+<li>数据库连接配置文件<br>SqlMapConfig.xml  <?xml version="1.0" encoding="UTF-8"?>指定xml版本信息和编码格式信息  </li>
+</ol>
+<p><strong>DTD</strong>（document type definition）文档定义类型（信息规范约束）<br><code>&lt;!DOCTYPE mapper</code><br><code>PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</code><br><code>&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</code><br>文档定义类型（信息规范约束）<br>settings标签：logImpl日志输出模式<br>environment标签：MyBatis环境信息，代表一个单独的数据库配置环境（可多个environment）<br>environment.transactionManager：MyBatis事务控制类型<br>environment.datasource：数据库连接信息；其中多个property标签用于配置数据库驱动信息Driver，数据库连接地址url，数据库用户名username，数据库密码password</p>
+<ol start="2">
+<li>处理user数据的SQL映射文件<br>sqlmap/UserMapper.xml<?xml version="1.0" encoding="UTF-8"?>指定xml版本信息和编码格式信息  </li>
+</ol>
+<p><strong>DTD</strong>（document type definition）文档定义类型（信息规范约束）<br><code>&lt;!DOCTYPE mapper</code><br><code>PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</code><br><code>&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</code><br>mapper标签：<br>mapper.namespace属性:对SQL进行分类化管理实现不同业务的SQL隔离<br>每个SQL标签：parameterType（输入参数类型）、parameterMap（输入参数集合，map结果）、resulType（结果类型）、resultClass（结果类，一般为java类）、resultMap （结果集合）<br>ex：<br> <code>&lt;select id=&quot;findUserById&quot; parameterType=&quot;int&quot; resultType=&quot;cn.com.mybatis.po.User&quot;&gt;</code><br>     <code>SELECT * FROM USER WHERE id=#{id}</code><br> <code>&lt;/select&gt;</code><br>在SqlMapConfig.xml中，configuration标签的最后必须配置 mappers<br>   <code>&lt;mappers&gt;</code><br>        <code>&lt;mapper resource=&quot;sqlmap/UserMapper.xml&quot;/&gt;</code><br>        <code>&lt;mapper resource=&quot;sqlmap/CustomerMapper.xml&quot;/&gt;</code><br>    <code>&lt;/mappers&gt;</code>  </p>
+<ol start="3">
+<li>日志输出环境的配置文件<br>log4j.properties<br>日志输出环境配置文件  </li>
+<li>log4j开源工具：将日志信息导出到控制台或文件  </li>
+<li>log4j配置参数文件（log4j。properties） </li>
+</ol>
+<p>1）log4j.rootLogger= DEBUG , stdout<br>一共    七个级别：OFF, FATAL,ERROR( 错误级别，不影响程序运行的错误事件),WARN（异常级别，潜在的错误情形）,INFO（标准信息级别，用于日常运行在控制台打印程序运行的主要步骤）,DEBUG（调试级别，用于开发过程查看程序运行的详细步骤）,ALL<br>stdout：将等级为DEBUG的日志信息输出到stdout参数所制定的输出载体中  </p>
+<p>2）log4j.appender.stdout = org.apache.log4j.ConsoleAppender<br>设置stdout输出端载体类型：ConsoleAppender(控制台)，FileAppender（文件），DailyRollingFileAppender（每天产生一个新的文件），RollingFileAppender（文件大小达到指定大小时产生的一个新文件）WriterAppender(将日志信息以流的格式发送指定地方)  </p>
+<p>3）log4j.appeder.stdout.layout =org.apache.log4j.PatternLayout<br>名为stdout 的输出载体的layout（局面布局）那种类型。HTMLLayout/PatternLayout(指定布局)/SimpleLayout（包含日志信息级别和inxi字符串）/TTCCLayout（包括日志产生的时间，线程、类别）  </p>
+<p>4）log4j.appeder.stdout.layout.ConversionPattern = %5p[%t]-%m%n<br>PatternLayout格式：%m输出代码指定信息，%p输出优先级，%r输出应用启动到log信息输出时间（ms），%c输出所属类目，%t输出生产该日志事件线程名，%n输出回车符号（windows：rn / UNIX：n），%d输出日志的日期或时间，%l输出日志事件发生位置，包括类目名，发生的线程，以及代码的行数。  </p>
 
       
 
@@ -264,7 +282,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/06/KMP算法程序实现与原理解析/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/07/MyBatisnote/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +296,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/07/MyBatisnote/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          note
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/01/数据结构与算法个人总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据结构与算法个人总结</div>
+    <a href="/2019/07/06/KMP算法程序实现与原理解析/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">KMP算法程序实现与原理解析</div>
       <i class="icon-circle-right"></i>
     </a>
   
