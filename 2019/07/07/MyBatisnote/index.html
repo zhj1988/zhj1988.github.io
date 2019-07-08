@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="hexo——blog">
 <meta property="og:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-08T03:24:45.122Z">
+<meta property="og:updated_time" content="2019-07-08T03:26:45.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatisNotebook">
 <meta name="twitter:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
@@ -178,27 +178,15 @@
 <h2 id="一个MyBatis-web项目包含三个部分"><a href="#一个MyBatis-web项目包含三个部分" class="headerlink" title="一个MyBatis web项目包含三个部分"></a>一个MyBatis web项目包含三个部分</h2><h2 id="1-源代码目录（src）"><a href="#1-源代码目录（src）" class="headerlink" title="1. 源代码目录（src）"></a>1. 源代码目录（src）</h2><h2 id="2-配置文件目录（config）"><a href="#2-配置文件目录（config）" class="headerlink" title="2. 配置文件目录（config）"></a>2. 配置文件目录（config）</h2><h2 id="3-测试目录"><a href="#3-测试目录" class="headerlink" title="3. 测试目录"></a>3. 测试目录</h2><a id="more"></a> 
 
 
-<h2 id="第一部分源代码目录"><a href="#第一部分源代码目录" class="headerlink" title="第一部分源代码目录"></a>第一部分源代码目录</h2><ol>
-<li><p>数据库连接（datasource）<br>创建DataConnection类，通过Resource资源加载类加载SqlMapConfig.xml配置文件，获得SQL会话工厂SqlSessionFactory，使用工厂创建可以与数据库交互的sqlSession类的实例对象。<br>Resource -&gt; SqlSessionFactory -&gt; sqlSession类</p>
-</li>
-<li><p>持久层对象（po）<br>持久化实体类是一个类中的成员变量与数据库表中字段一一相对应的java类，也有封装一些间接数据的实体类<br>在老框架EJB中也有这种get/set方法，总而言之，将这种类称为JavaBean</p>
-</li>
-<li><p>测试主程序（test）<br>通过DataConnection类获取sqlSession会话对象，然后是由sqlSession对象的SelectOne（返回多个使用SelectList），该方法有两个参数，第一个是sql映射文件UserMapper.xml中的namespace加上statement配置的id；第二个参数是sql映射文件中所匹配的parameterType类型参数，执行selectOne之后返回结果为sql映射文件中所匹配的resultType类型。</p>
-</li>
-</ol>
-<h2 id="第二部分配置文件目录"><a href="#第二部分配置文件目录" class="headerlink" title="第二部分配置文件目录"></a>第二部分配置文件目录</h2><ol>
-<li>数据库连接配置文件<br>SqlMapConfig.xml  <?xml version="1.0" encoding="UTF-8"?>指定xml版本信息和编码格式信息  </li>
-</ol>
-<p><strong>DTD</strong>（document type definition）文档定义类型（信息规范约束）<br><code>&lt;!DOCTYPE mapper</code><br><code>PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</code><br><code>&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</code><br>文档定义类型（信息规范约束）<br>settings标签：logImpl日志输出模式<br>environment标签：MyBatis环境信息，代表一个单独的数据库配置环境（可多个environment）<br>environment.transactionManager：MyBatis事务控制类型<br>environment.datasource：数据库连接信息；其中多个property标签用于配置数据库驱动信息Driver，数据库连接地址url，数据库用户名username，数据库密码password</p>
-<ol start="2">
-<li>处理user数据的SQL映射文件<br>sqlmap/UserMapper.xml<?xml version="1.0" encoding="UTF-8"?>指定xml版本信息和编码格式信息  </li>
-</ol>
-<p><strong>DTD</strong>（document type definition）文档定义类型（信息规范约束）<br><code>&lt;!DOCTYPE mapper</code><br><code>PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</code><br><code>&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</code><br>mapper标签：<br>mapper.namespace属性:对SQL进行分类化管理实现不同业务的SQL隔离<br>每个SQL标签：parameterType（输入参数类型）、parameterMap（输入参数集合，map结果）、resulType（结果类型）、resultClass（结果类，一般为java类）、resultMap （结果集合）<br>ex：<br> <code>&lt;select id=&quot;findUserById&quot; parameterType=&quot;int&quot; resultType=&quot;cn.com.mybatis.po.User&quot;&gt;</code><br>     <code>SELECT * FROM USER WHERE id=#{id}</code><br> <code>&lt;/select&gt;</code><br>在SqlMapConfig.xml中，configuration标签的最后必须配置 mappers<br>   <code>&lt;mappers&gt;</code><br>        <code>&lt;mapper resource=&quot;sqlmap/UserMapper.xml&quot;/&gt;</code><br>        <code>&lt;mapper resource=&quot;sqlmap/CustomerMapper.xml&quot;/&gt;</code><br>    <code>&lt;/mappers&gt;</code>  </p>
-<ol start="3">
-<li>日志输出环境的配置文件<br>log4j.properties<br>日志输出环境配置文件  </li>
-<li>log4j开源工具：将日志信息导出到控制台或文件  </li>
-<li>log4j配置参数文件（log4j。properties）<br>1）log4j.rootLogger= DEBUG , stdout<br>一共    七个级别：OFF, FATAL,ERROR( 错误级别，不影响程序运行的错误事件),WARN（异常级别，潜在的错误情形）,INFO（标准信息级别，用于日常运行在控制台打印程序运行的主要步骤）,DEBUG（调试级别，用于开发过程查看程序运行的详细步骤）,ALL<br>stdout：将等级为DEBUG的日志信息输出到stdout参数所制定的输出载体中<br>2）log4j.appender.stdout = org.apache.log4j.ConsoleAppender<br>设置stdout输出端载体类型：ConsoleAppender(控制台)，FileAppender（文件），DailyRollingFileAppender（每天产生一个新的文件），RollingFileAppender（文件大小达到指定大小时产生的一个新文件）WriterAppender(将日志信息以流的格式发送指定地方)<br>3）log4j.appeder.stdout.layout =org.apache.log4j.PatternLayout<br>名为stdout 的输出载体的layout（局面布局）那种类型。HTMLLayout/PatternLayout(指定布局)/SimpleLayout（包含日志信息级别和inxi字符串）/TTCCLayout（包括日志产生的时间，线程、类别）<br>4）log4j.appeder.stdout.layout.ConversionPattern = %5p[%t]-%m%n<br>PatternLayout格式：%m输出代码指定信息，%p输出优先级，%r输出应用启动到log信息输出时间（ms），%c输出所属类目，%t输出生产该日志事件线程名，%n输出回车符号（windows：rn / UNIX：n），%d输出日志的日期或时间，%l输出日志事件发生位置，包括类目名，发生的线程，以及代码的行数。  </li>
-</ol>
+<h2 id="第一部分源代码目录"><a href="#第一部分源代码目录" class="headerlink" title="第一部分源代码目录"></a>第一部分源代码目录</h2><p>1.数据库连接（datasource）<br>创建DataConnection类，通过Resource资源加载类加载SqlMapConfig.xml配置文件，获得SQL会话工厂SqlSessionFactory，使用工厂创建可以与数据库交互的sqlSession类的实例对象。<br>Resource -&gt; SqlSessionFactory -&gt; sqlSession类</p>
+<p>2.持久层对象（po）<br>持久化实体类是一个类中的成员变量与数据库表中字段一一相对应的java类，也有封装一些间接数据的实体类<br>在老框架EJB中也有这种get/set方法，总而言之，将这种类称为JavaBean</p>
+<p>3.测试主程序（test）<br>通过DataConnection类获取sqlSession会话对象，然后是由sqlSession对象的SelectOne（返回多个使用SelectList），该方法有两个参数，第一个是sql映射文件UserMapper.xml中的namespace加上statement配置的id；第二个参数是sql映射文件中所匹配的parameterType类型参数，执行selectOne之后返回结果为sql映射文件中所匹配的resultType类型。</p>
+<h2 id="第二部分配置文件目录"><a href="#第二部分配置文件目录" class="headerlink" title="第二部分配置文件目录"></a>第二部分配置文件目录</h2><p>1.数据库连接配置文件<br>SqlMapConfig.xml<br><?xml version="1.0" encoding="UTF-8"?>指定xml版本信息和编码格式信息<br><strong>DTD</strong>（document type definition）文档定义类型（信息规范约束）<br><code>&lt;!DOCTYPE mapper</code><br><code>PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</code><br><code>&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</code><br>文档定义类型（信息规范约束）<br>settings标签：logImpl日志输出模式<br>environment标签：MyBatis环境信息，代表一个单独的数据库配置环境（可多个environment）<br>environment.transactionManager：MyBatis事务控制类型<br>environment.datasource：数据库连接信息；其中多个property标签用于配置数据库驱动信息Driver，数据库连接地址url，数据库用户名username，数据库密码password</p>
+<p>2.处理user数据的SQL映射文件<br>sqlmap/UserMapper.xml<br><?xml version="1.0" encoding="UTF-8"?>指定xml版本信息和编码格式信息<br><strong>DTD</strong>（document type definition）文档定义类型（信息规范约束）<br><code>&lt;!DOCTYPE mapper</code><br><code>PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</code><br><code>&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</code><br>mapper标签：<br>mapper.namespace属性:对SQL进行分类化管理实现不同业务的SQL隔离<br>每个SQL标签：parameterType（输入参数类型）、parameterMap（输入参数集合，map结果）、resulType（结果类型）、resultClass（结果类，一般为java类）、resultMap （结果集合）<br>ex：<br> <code>&lt;select id=&quot;findUserById&quot; parameterType=&quot;int&quot; resultType=&quot;cn.com.mybatis.po.User&quot;&gt;</code><br>     <code>SELECT * FROM USER WHERE id=#{id}</code><br> <code>&lt;/select&gt;</code><br>在SqlMapConfig.xml中，configuration标签的最后必须配置 mappers<br>   <code>&lt;mappers&gt;</code><br>        <code>&lt;mapper resource=&quot;sqlmap/UserMapper.xml&quot;/&gt;</code><br>        <code>&lt;mapper resource=&quot;sqlmap/CustomerMapper.xml&quot;/&gt;</code><br>    <code>&lt;/mappers&gt;</code>  </p>
+<p>3.日志输出环境的配置文件<br>log4j.properties<br>日志输出环境配置文件<br>1）.log4j开源工具：将日志信息导出到控制台或文件<br>2）.log4j配置参数文件（log4j。properties）<br>a）log4j.rootLogger= DEBUG , stdout<br>一共    七个级别：OFF, FATAL,ERROR( 错误级别，不影响程序运行的错误事件),WARN（异常级别，潜在的错误情形）,INFO（标准信息级别，用于日常运行在控制台打印程序运行的主要步骤）,DEBUG（调试级别，用于开发过程查看程序运行的详细步骤）,ALL<br>stdout：将等级为DEBUG的日志信息输出到stdout参数所制定的输出载体中</p>
+<p>b）log4j.appender.stdout = org.apache.log4j.ConsoleAppender<br>设置stdout输出端载体类型：ConsoleAppender(控制台)，FileAppender（文件），DailyRollingFileAppender（每天产生一个新的文件），RollingFileAppender（文件大小达到指定大小时产生的一个新文件）WriterAppender(将日志信息以流的格式发送指定地方)    </p>
+<p>c）log4j.appeder.stdout.layout =org.apache.log4j.PatternLayout<br>名为stdout 的输出载体的layout（局面布局）那种类型。HTMLLayout/PatternLayout(指定布局)/SimpleLayout（包含日志信息级别和inxi字符串）/TTCCLayout（包括日志产生的时间，线程、类别） </p>
+<p>d）log4j.appeder.stdout.layout.ConversionPattern = %5p[%t]-%m%n<br>PatternLayout格式：%m输出代码指定信息，%p输出优先级，%r输出应用启动到log信息输出时间（ms），%c输出所属类目，%t输出生产该日志事件线程名，%n输出回车符号（windows：rn / UNIX：n），%d输出日志的日期或时间，%l输出日志事件发生位置，包括类目名，发生的线程，以及代码的行数。  </p>
 <h2 id="第三部分测试目录"><a href="#第三部分测试目录" class="headerlink" title="第三部分测试目录"></a>第三部分测试目录</h2><p>测试部分综合前面源代码和配置文件，举例说明对数据库的各种操作  </p>
 <ol>
 <li>查询语句select<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br><code>&lt;select id=&quot;findUserById&quot; parameterType=&quot;int&quot; resultType=&quot;mybatis.po.User&quot;&gt;</code><br>   <code>SELECT * FROM USER WHERE id=#{id}</code><br> <code>&lt;/select&gt;</code><br>MybatisTest中调用mappper方法：  <pre><code>   `SqlSession sqlSession=dataConn.getSqlSession();`   
