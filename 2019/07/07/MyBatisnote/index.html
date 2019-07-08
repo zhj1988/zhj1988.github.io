@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="hexo——blog">
 <meta property="og:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-08T03:26:45.969Z">
+<meta property="og:updated_time" content="2019-07-08T03:38:49.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatisNotebook">
 <meta name="twitter:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
@@ -183,25 +183,24 @@
 <p>3.测试主程序（test）<br>通过DataConnection类获取sqlSession会话对象，然后是由sqlSession对象的SelectOne（返回多个使用SelectList），该方法有两个参数，第一个是sql映射文件UserMapper.xml中的namespace加上statement配置的id；第二个参数是sql映射文件中所匹配的parameterType类型参数，执行selectOne之后返回结果为sql映射文件中所匹配的resultType类型。</p>
 <h2 id="第二部分配置文件目录"><a href="#第二部分配置文件目录" class="headerlink" title="第二部分配置文件目录"></a>第二部分配置文件目录</h2><p>1.数据库连接配置文件<br>SqlMapConfig.xml<br><?xml version="1.0" encoding="UTF-8"?>指定xml版本信息和编码格式信息<br><strong>DTD</strong>（document type definition）文档定义类型（信息规范约束）<br><code>&lt;!DOCTYPE mapper</code><br><code>PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</code><br><code>&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</code><br>文档定义类型（信息规范约束）<br>settings标签：logImpl日志输出模式<br>environment标签：MyBatis环境信息，代表一个单独的数据库配置环境（可多个environment）<br>environment.transactionManager：MyBatis事务控制类型<br>environment.datasource：数据库连接信息；其中多个property标签用于配置数据库驱动信息Driver，数据库连接地址url，数据库用户名username，数据库密码password</p>
 <p>2.处理user数据的SQL映射文件<br>sqlmap/UserMapper.xml<br><?xml version="1.0" encoding="UTF-8"?>指定xml版本信息和编码格式信息<br><strong>DTD</strong>（document type definition）文档定义类型（信息规范约束）<br><code>&lt;!DOCTYPE mapper</code><br><code>PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</code><br><code>&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</code><br>mapper标签：<br>mapper.namespace属性:对SQL进行分类化管理实现不同业务的SQL隔离<br>每个SQL标签：parameterType（输入参数类型）、parameterMap（输入参数集合，map结果）、resulType（结果类型）、resultClass（结果类，一般为java类）、resultMap （结果集合）<br>ex：<br> <code>&lt;select id=&quot;findUserById&quot; parameterType=&quot;int&quot; resultType=&quot;cn.com.mybatis.po.User&quot;&gt;</code><br>     <code>SELECT * FROM USER WHERE id=#{id}</code><br> <code>&lt;/select&gt;</code><br>在SqlMapConfig.xml中，configuration标签的最后必须配置 mappers<br>   <code>&lt;mappers&gt;</code><br>        <code>&lt;mapper resource=&quot;sqlmap/UserMapper.xml&quot;/&gt;</code><br>        <code>&lt;mapper resource=&quot;sqlmap/CustomerMapper.xml&quot;/&gt;</code><br>    <code>&lt;/mappers&gt;</code>  </p>
-<p>3.日志输出环境的配置文件<br>log4j.properties<br>日志输出环境配置文件<br>1）.log4j开源工具：将日志信息导出到控制台或文件<br>2）.log4j配置参数文件（log4j。properties）<br>a）log4j.rootLogger= DEBUG , stdout<br>一共    七个级别：OFF, FATAL,ERROR( 错误级别，不影响程序运行的错误事件),WARN（异常级别，潜在的错误情形）,INFO（标准信息级别，用于日常运行在控制台打印程序运行的主要步骤）,DEBUG（调试级别，用于开发过程查看程序运行的详细步骤）,ALL<br>stdout：将等级为DEBUG的日志信息输出到stdout参数所制定的输出载体中</p>
+<p>3.日志输出环境的配置文件<br>log4j.properties<br>日志输出环境配置文件<br>1）.log4j开源工具：将日志信息导出到控制台或文件<br>2）.log4j配置参数文件（log4j.properties）<br>a）log4j.rootLogger= DEBUG , stdout<br>一共    七个级别：OFF, FATAL,ERROR( 错误级别，不影响程序运行的错误事件),WARN（异常级别，潜在的错误情形）,INFO（标准信息级别，用于日常运行在控制台打印程序运行的主要步骤）,DEBUG（调试级别，用于开发过程查看程序运行的详细步骤）,ALL<br>stdout：将等级为DEBUG的日志信息输出到stdout参数所制定的输出载体中</p>
 <p>b）log4j.appender.stdout = org.apache.log4j.ConsoleAppender<br>设置stdout输出端载体类型：ConsoleAppender(控制台)，FileAppender（文件），DailyRollingFileAppender（每天产生一个新的文件），RollingFileAppender（文件大小达到指定大小时产生的一个新文件）WriterAppender(将日志信息以流的格式发送指定地方)    </p>
-<p>c）log4j.appeder.stdout.layout =org.apache.log4j.PatternLayout<br>名为stdout 的输出载体的layout（局面布局）那种类型。HTMLLayout/PatternLayout(指定布局)/SimpleLayout（包含日志信息级别和inxi字符串）/TTCCLayout（包括日志产生的时间，线程、类别） </p>
+<p>c）log4j.appeder.stdout.layout =org.apache.log4j.PatternLayout<br>名为stdout 的输出载体的layout（局面布局）那种类型。HTMLLayout/PatternLayout(指定布局)/SimpleLayout（包含日志信息级别和信息字符串）/TTCCLayout（包括日志产生的时间，线程、类别） </p>
 <p>d）log4j.appeder.stdout.layout.ConversionPattern = %5p[%t]-%m%n<br>PatternLayout格式：%m输出代码指定信息，%p输出优先级，%r输出应用启动到log信息输出时间（ms），%c输出所属类目，%t输出生产该日志事件线程名，%n输出回车符号（windows：rn / UNIX：n），%d输出日志的日期或时间，%l输出日志事件发生位置，包括类目名，发生的线程，以及代码的行数。  </p>
 <h2 id="第三部分测试目录"><a href="#第三部分测试目录" class="headerlink" title="第三部分测试目录"></a>第三部分测试目录</h2><p>测试部分综合前面源代码和配置文件，举例说明对数据库的各种操作  </p>
 <ol>
 <li>查询语句select<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br><code>&lt;select id=&quot;findUserById&quot; parameterType=&quot;int&quot; resultType=&quot;mybatis.po.User&quot;&gt;</code><br>   <code>SELECT * FROM USER WHERE id=#{id}</code><br> <code>&lt;/select&gt;</code><br>MybatisTest中调用mappper方法：  <pre><code>   `SqlSession sqlSession=dataConn.getSqlSession();`   
 `User user=sqlSession.selectOne(&quot;test.findUserById&quot;,1);`   </code></pre>（dataConn对象由 public DataConnection dataConn=new DataConnection() 创建）  </li>
-<li>模糊查询语句 select<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br><code>&lt;select id=&quot;findUserByUsername&quot; parameterType=&quot;java.lang.String&quot;</code>   <pre><code>   `resultType=&quot;cn.com.mybatis.po.User&quot;&gt;`  
-`SELECT * FROM USER WHERE username LIKE &apos;%${value}%&apos;`   </code></pre> <code>&lt;/select&gt;</code><br>MybatisTest中调用mappper方法：  <pre><code>`SqlSession sqlSession=dataConn.getSqlSession();`   
+<li>模糊查询语句 select<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br><code>&lt;select id=&quot;findUserByUsername&quot; parameterType=&quot;java.lang.String&quot;</code><br>   <code>resultType=&quot;cn.com.mybatis.po.User&quot;&gt;</code>  <pre><code>`SELECT * FROM USER WHERE username LIKE &apos;%${value}%&apos;`  </code></pre> <code>&lt;/select&gt;</code><br>MybatisTest中调用mappper方法：  <pre><code>`SqlSession sqlSession=dataConn.getSqlSession();`  
 `List&lt;User&gt; userList=sqlSession.selectList(&quot;test.findUserByUsername&quot;,&quot;张&quot;);`   </code></pre></li>
-<li>更新语句update<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br> <code>&lt;insert id=&quot;insertUser&quot; parameterType=&quot;mybatis.po.User&quot;&gt;</code>   <pre><code>`&lt;selectKey keyProperty=&quot;id&quot; order=&quot;AFTER&quot; resultType=&quot;java.lang.Integer&quot;&gt;`    
-    `SELECT LAST_INSERT_ID()`    
-`&lt;/selectKey&gt;`    
-`insert into user(username,password,gender,birthday,email,province,city)`   
+<li>更新语句update<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br> <code>&lt;insert id=&quot;insertUser&quot; parameterType=&quot;mybatis.po.User&quot;&gt;</code>  <pre><code>`&lt;selectKey keyProperty=&quot;id&quot; order=&quot;AFTER&quot; resultType=&quot;java.lang.Integer&quot;&gt;`  
+    `SELECT LAST_INSERT_ID()`  
+`&lt;/selectKey&gt;`  
+`insert into user(username,password,gender,birthday,email,province,city)`  
     `value(#{username},#{password},#{gender},#{birthday,jdbcType=DATE},`  
-    `#{email},#{province},#{city})`    </code></pre> <code>&lt;/insert&gt;</code><br>MybatisTest中调用mappper方法：<br><code>SqlSession sqlSession=dataConn.getSqlSession();</code><br><code>sqlSession.insert(&quot;test.insertUser&quot;,user);</code><br><code>sqlSession.commit();</code><br><code>sqlSession.close();</code>    </li>
-<li>删除语句delete<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br> <code>&lt;delete id=&quot;deleteUser&quot; parameterType=&quot;java.lang.Integer&quot;&gt;</code>  <pre><code>`delete from user where id=#{id}`  </code></pre> <code>&lt;/delete&gt;</code><br>MybatisTest中调用mappper方法：<br><code>SqlSession sqlSession=dataConn.getSqlSession();</code><br><code>sqlSession.delete(&quot;test.deleteUser&quot;,user);</code><br><code>sqlSession.commit();</code><br><code>sqlSession.close();</code>   </li>
-<li>修改语句update<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br> <code>&lt;update id=&quot;updateUserName&quot; parameterType=&quot;mybatis.po.User&quot;&gt;</code>  <pre><code>`update user set username=#{username} where id=#{id}`  </code></pre> <code>&lt;/update&gt;</code><br>MybatisTest中调用mappper方法：<br><code>SqlSession sqlSession=dataConn.getSqlSession();</code><br><code>sqlSession.update(&quot;test.updateUserName&quot;,user);</code><br><code>sqlSession.commit();</code><br><code>sqlSession.close();</code>   </li>
+    `#{email},#{province},#{city})`  </code></pre> <code>&lt;/insert&gt;</code><br>MybatisTest中调用mappper方法：<br><code>SqlSession sqlSession=dataConn.getSqlSession();</code><br><code>sqlSession.insert(&quot;test.insertUser&quot;,user);</code><br><code>sqlSession.commit();</code><br><code>sqlSession.close();</code>  </li>
+<li>删除语句delete<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br> <code>&lt;delete id=&quot;deleteUser&quot; parameterType=&quot;java.lang.Integer&quot;&gt;</code>  <pre><code>`delete from user where id=#{id}`  </code></pre> <code>&lt;/delete&gt;</code><br>MybatisTest中调用mappper方法：<br><code>SqlSession sqlSession=dataConn.getSqlSession();</code><br><code>sqlSession.delete(&quot;test.deleteUser&quot;,user);</code><br><code>sqlSession.commit();</code><br><code>sqlSession.close();</code>  </li>
+<li>修改语句update<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br> <code>&lt;update id=&quot;updateUserName&quot; parameterType=&quot;mybatis.po.User&quot;&gt;</code>  <pre><code>`update user set username=#{username} where id=#{id}`  </code></pre> <code>&lt;/update&gt;</code><br>MybatisTest中调用mappper方法：<br><code>SqlSession sqlSession=dataConn.getSqlSession();</code><br><code>sqlSession.update(&quot;test.updateUserName&quot;,user);</code><br><code>sqlSession.commit();</code><br><code>sqlSession.close();</code>  </li>
 </ol>
 <p>补充知识点：<br>1）. 使用 <strong>${}</strong>符号拼接sql语句串，如模糊查询中需要在两边拼接%，但是可能会引发sql注入风险，如果接收的简单类型，只能写value，如果接收的是javabean类型，通过OGNL读取对象中的属性值；  <strong>#{}</strong>表示一个占位符，在#{id}其中id表示接收输入参数的名称，如果输入参数为简单类型（基本数据类型），那么#{}中可以是任意数据，如果接受的是JavaBean类型，通过OGNL读取对象中的属性值<br>2）sqlsession，创建dataConn.getSqlSession()；方法:selectoOne，selectList，insert，update，delete（除了select，其他操作更新过后需要使用sqlSession.commit()，以提交更新操作）使用过后关闭sqlSession.close()<br>3)对于 id主键自增设置的数据库表，执行insert不用插入id，如果想同时插入并获得主键，使用MYSQL函数，select LAST_insert_id()获取刚插入记录的自增主键，ex：<br>        <code>&lt;selectKey keyProperty=&quot;id&quot; order=&quot;AFTER&quot; resultType=&quot;java.lang.Integer&quot;&gt;</code><br>            <code>SELECT LAST_INSERT_ID()</code><br>        <code>&lt;/selectKey&gt;</code><br>或者在insert 标签中添加属性“useGenerateKeys”（使用自增主键）和“keyProperty”（java对象的属性），ex：<br>    <code>&lt;insert id=&quot;insertUser&quot; parameterType=&quot;mybatis.po.User&quot;</code><br>     <code>useCGenerateKeys = &quot;True&quot; keyProperty=&quot;id&quot;&gt;</code><br>关于非自增主键的获取：执行sql方法uuid（）和Oracle的序列主键nextval（），ex：<br><code>&lt;selectKey keyProperty=&quot;id&quot; order=&quot;BEFORE&quot; resultType=&quot;java.lang.Integer&quot;&gt;</code><br>            <code>SELECT UUID()</code><br>        <code>&lt;/selectKey&gt;</code><br>或者 ex：<br><code>&lt;selectKey keyProperty=&quot;id&quot; order=&quot;BEFORE&quot; resultType=&quot;java.lang.Integer&quot;&gt;</code><br>            <code>SELECT 序列名.nextval()</code><br>        <code>&lt;/selectKey&gt;</code><br>4）MyBatis使用场景：以sql语句为核心的不完全的ORM（关系型映射）框架；Hibernate，只需要调用相关API即可，sql语句并不需要开发人员完成，缺点是不能对sql进行优化与修改  </p>
 <hr>
@@ -305,6 +304,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/07/08/MyBatis配置文件详细解析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MyBatis配置文件总结
+        
+      </div>
+    </a>
   
   
     <a href="/2019/07/06/KMP算法程序实现与原理解析/" id="article-nav-older" class="article-nav-link-wrap">
