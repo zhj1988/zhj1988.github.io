@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="hexo——blog">
 <meta property="og:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-08T03:15:38.330Z">
+<meta property="og:updated_time" content="2019-07-08T03:22:24.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatisNotebook">
 <meta name="twitter:description" content="简介：记录学习的MyBatis一些笔记   一个MyBatis web项目包含三个部分1. 源代码目录（src）2. 配置文件目录（config）3. 测试目录">
@@ -197,12 +197,8 @@
 <ol start="3">
 <li>日志输出环境的配置文件<br>log4j.properties<br>日志输出环境配置文件  </li>
 <li>log4j开源工具：将日志信息导出到控制台或文件  </li>
-<li>log4j配置参数文件（log4j。properties） </li>
+<li>log4j配置参数文件（log4j。properties）<br>1）log4j.rootLogger= DEBUG , stdout<br>一共    七个级别：OFF, FATAL,ERROR( 错误级别，不影响程序运行的错误事件),WARN（异常级别，潜在的错误情形）,INFO（标准信息级别，用于日常运行在控制台打印程序运行的主要步骤）,DEBUG（调试级别，用于开发过程查看程序运行的详细步骤）,ALL<br>stdout：将等级为DEBUG的日志信息输出到stdout参数所制定的输出载体中<br>2）log4j.appender.stdout = org.apache.log4j.ConsoleAppender<br>设置stdout输出端载体类型：ConsoleAppender(控制台)，FileAppender（文件），DailyRollingFileAppender（每天产生一个新的文件），RollingFileAppender（文件大小达到指定大小时产生的一个新文件）WriterAppender(将日志信息以流的格式发送指定地方)<br>3）log4j.appeder.stdout.layout =org.apache.log4j.PatternLayout<br>名为stdout 的输出载体的layout（局面布局）那种类型。HTMLLayout/PatternLayout(指定布局)/SimpleLayout（包含日志信息级别和inxi字符串）/TTCCLayout（包括日志产生的时间，线程、类别）<br>4）log4j.appeder.stdout.layout.ConversionPattern = %5p[%t]-%m%n<br>PatternLayout格式：%m输出代码指定信息，%p输出优先级，%r输出应用启动到log信息输出时间（ms），%c输出所属类目，%t输出生产该日志事件线程名，%n输出回车符号（windows：rn / UNIX：n），%d输出日志的日期或时间，%l输出日志事件发生位置，包括类目名，发生的线程，以及代码的行数。  </li>
 </ol>
-<p>1）log4j.rootLogger= DEBUG , stdout<br>一共    七个级别：OFF, FATAL,ERROR( 错误级别，不影响程序运行的错误事件),WARN（异常级别，潜在的错误情形）,INFO（标准信息级别，用于日常运行在控制台打印程序运行的主要步骤）,DEBUG（调试级别，用于开发过程查看程序运行的详细步骤）,ALL<br>stdout：将等级为DEBUG的日志信息输出到stdout参数所制定的输出载体中  </p>
-<p>2）log4j.appender.stdout = org.apache.log4j.ConsoleAppender<br>设置stdout输出端载体类型：ConsoleAppender(控制台)，FileAppender（文件），DailyRollingFileAppender（每天产生一个新的文件），RollingFileAppender（文件大小达到指定大小时产生的一个新文件）WriterAppender(将日志信息以流的格式发送指定地方)  </p>
-<p>3）log4j.appeder.stdout.layout =org.apache.log4j.PatternLayout<br>名为stdout 的输出载体的layout（局面布局）那种类型。HTMLLayout/PatternLayout(指定布局)/SimpleLayout（包含日志信息级别和inxi字符串）/TTCCLayout（包括日志产生的时间，线程、类别）  </p>
-<p>4）log4j.appeder.stdout.layout.ConversionPattern = %5p[%t]-%m%n<br>PatternLayout格式：%m输出代码指定信息，%p输出优先级，%r输出应用启动到log信息输出时间（ms），%c输出所属类目，%t输出生产该日志事件线程名，%n输出回车符号（windows：rn / UNIX：n），%d输出日志的日期或时间，%l输出日志事件发生位置，包括类目名，发生的线程，以及代码的行数。  </p>
 <h2 id="第三部分测试目录"><a href="#第三部分测试目录" class="headerlink" title="第三部分测试目录"></a>第三部分测试目录</h2><p>测试部分综合前面源代码和配置文件，举例说明对数据库的各种操作  </p>
 <ol>
 <li>查询语句select<br>SQL映射文件sqlmap/UserMapper.xml 添加：<br><code>&lt;select id=&quot;findUserById&quot; parameterType=&quot;int&quot; resultType=&quot;mybatis.po.User&quot;&gt;</code><br>   <code>SELECT * FROM USER WHERE id=#{id}</code><br> <code>&lt;/select&gt;</code><br>MybatisTest中调用mappper方法：  <pre><code>   `SqlSession sqlSession=dataConn.getSqlSession();`   
