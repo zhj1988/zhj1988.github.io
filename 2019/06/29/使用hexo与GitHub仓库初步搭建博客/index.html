@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="hexo——blog">
 <meta property="og:description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。 本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-02T06:19:26.980Z">
+<meta property="og:updated_time" content="2019-07-08T15:17:58.763Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用hexo与GitHub仓库初步搭建博客">
 <meta name="twitter:description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。 本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
@@ -200,7 +200,13 @@
 <li>将hexo部署到GitHub<br>在你的blog文件夹中找到配置文件 _config.yml，翻到最后，修改为  </li>
 </ol>
 <p><strong>deploy:<br>  type: git<br>  repo: <a href="https://github.com/YourgithubName/YourgithubName.github.io.git" target="_blank" rel="noopener">https://github.com/YourgithubName/YourgithubName.github.io.git</a><br>  branch: master</strong><br>注意没有repo，brach可以直接复制，后边type / repo / branch，冒号后面一定要加一个空格，我使用的Notepad++修改，修改后记得保存。<br>然后安装deploy-git ，也就是部署的命令,这样你才能用命令部署到GitHub，在命令行中执行：<br>    <strong>npm install hexo-deployer-git –save</strong><br>安装完成后启动hexo：<br>    <strong>hexo clean<br>    hexo generate<br>    hexo deploy</strong><br>在浏览器打开 <a href="https://YourgithubName.github.io/" target="_blank" rel="noopener">https://YourgithubName.github.io/</a> 后看到hexo就代表成功了。<br>运行：<br>    <strong>hexo new “第一篇博客”<br>    hexo clean<br>    hexo g<br>    hexo d</strong><br>就可以看到更新的博客了，第二部分也到此结束。</p>
-<h2 id="第三部分-更换博客主题"><a href="#第三部分-更换博客主题" class="headerlink" title="第三部分 更换博客主题"></a>第三部分 更换博客主题</h2><p>##参考博客来源：  </p>
+<h2 id="第三部分-hexo-blog编写小技巧"><a href="#第三部分-hexo-blog编写小技巧" class="headerlink" title="第三部分 hexo blog编写小技巧"></a>第三部分 hexo blog编写小技巧</h2><p>layout（布局）：Hexo 有三种默认布局：post、page 和 draft，它们分别对应不同的路径，而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。  </p>
+<ol>
+<li>默认使用的是post这个布局，也就是在source文件夹下的_post里面。<br><code>hexo new [layout] &lt;title&gt;</code> </li>
+<li>使用page<br><code>hexo new page board</code><br>系统会自动给你在source文件夹下创建一个board文件夹，以及board文件夹中的index.md，这样你访问的board对应的链接就是<a href="http://xxx.xxx/board" target="_blank" rel="noopener">http://xxx.xxx/board</a>  </li>
+<li>使用draft（草稿）<br> <code>hexo new draft newpage</code><br>这样会在source/_draft中新建一个newpage.md文件，预览草稿，在本地端口中开启服务预览。<br> <code>hexo server --draft</code><br>如果你的草稿文件写完了，想要发表到post中，就会自动把newpage.md发送到post中<br> <code>hexo publish draft newpage</code>  </li>
+</ol>
+<h2 id="第四部分-hexo-blog编写小技巧"><a href="#第四部分-hexo-blog编写小技巧" class="headerlink" title="第四部分 hexo blog编写小技巧"></a>第四部分 hexo blog编写小技巧</h2><p>##参考博客来源：  </p>
 <ol>
 <li><a href="https://blog.csdn.net/sinat_37781304/article/details/82729029" target="_blank" rel="noopener">https://blog.csdn.net/sinat_37781304/article/details/82729029</a> </li>
 <li></li>
