@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.zhuanj1988.cn">
-  <title>MyBatis配置文件总结 | hexo——blog</title>
+  <title>Spring MVC入门介绍 | hexo——blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。">
+  <meta name="description" content="简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MyBatis配置文件总结">
-<meta property="og:url" content="http://www.zhuanj1988.cn/2019/07/08/MyBatis配置文件详细解析/index.html">
+<meta property="og:title" content="Spring MVC入门介绍">
+<meta property="og:url" content="http://www.zhuanj1988.cn/2019/07/10/Spring MVC入门介绍/index.html">
 <meta property="og:site_name" content="hexo——blog">
-<meta property="og:description" content="简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。">
+<meta property="og:description" content="简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-10T06:13:58.996Z">
+<meta property="og:updated_time" content="2019-07-11T09:23:05.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MyBatis配置文件总结">
-<meta name="twitter:description" content="简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。">
+<meta name="twitter:title" content="Spring MVC入门介绍">
+<meta name="twitter:description" content="简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发">
   
     <link rel="alternative" href="/atom.xml" title="hexo——blog" type="application/atom+xml">
   
@@ -154,108 +154,109 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MyBatis配置文件详细解析" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spring MVC入门介绍" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      MyBatis配置文件总结
+      Spring MVC入门介绍
     </h1>
   
 
         
-        <a href="/2019/07/08/MyBatis配置文件详细解析/" class="archive-article-date">
-  	<time datetime="2019-07-08T03:47:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-08</time>
+        <a href="/2019/07/10/Spring MVC入门介绍/" class="archive-article-date">
+  	<time datetime="2019-07-10T06:44:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。  </p>
+        <p> 简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发</p>
 <a id="more"></a>
-<h2 id="MyBatis配置文件分为四个部分学习"><a href="#MyBatis配置文件分为四个部分学习" class="headerlink" title="MyBatis配置文件分为四个部分学习"></a>MyBatis配置文件分为四个部分学习</h2><ol>
-<li>数据库配置文件SqlMapConfig  </li>
-<li>SQL映射配置中输入映射的配置  </li>
-<li>SQL映射配置中输出映射的配置  </li>
-<li>Mapper自动映射 </li>
+
+<h2 id="第一部分Spring-mvc的工作原理"><a href="#第一部分Spring-mvc的工作原理" class="headerlink" title="第一部分Spring mvc的工作原理"></a>第一部分Spring mvc的工作原理</h2><p>第一步 用户发送请求，request请求，前段控制器DispatcherServlet处理；<br>第二步 前端控制器请求处理映射器HandlerMapping查找Handler，也可以依据注解或者XML配置去查找；<br>第三步 处理器映射器找到Handler（其中可能包含若干个Interceptor拦截器），返回给前端控制器；<br>第四步 前端控制器请求处理器适配器（HandlerAdapter）去执行相应的Handler（也称呼为Controller）；<br>第五步 处理器适配器执行Handler；<br>第六步 Handler执行完返回一个ModelAndView对象给处理器适配器；<br>第七步 处理器适配器将第六步返回的数据在传送给前端控制器；<br>第八步 前端控制器接收到ModelAndView后，请求视图解析器ViewResolver对视图进行解析；<br>第九步 视图解析器根据ViewResolver信息匹配到相应的视图结果，反馈给前端控制器；<br>第十步 前端控制器收到View视图后进行视图渲染，将Model中的模型数据填充到View视图中的request域中，生成最终的视图；<br>第十一步 前端控制器返回结果给用户  </p>
+<h2 id="第二部分各部分组件介绍"><a href="#第二部分各部分组件介绍" class="headerlink" title="第二部分各部分组件介绍"></a>第二部分各部分组件介绍</h2><ol>
+<li>前端控制器  </li>
+<li>处理器映射器：根据请求的url，通过注解或者xml配置，寻找匹配的Handler信息</li>
+<li>处理器适配器：根据映射器找到处理器信息，按照特定规则执行下那个关的处理器</li>
+<li>处理器：执行相关的请求处理逻辑，返回ModelAndView</li>
+<li>视图解析器：</li>
+<li>视图：本身是一个接口，实现类支持不同的view类型   </li>
 </ol>
-<h2 id="第一部分数据库配置文件SqlMapConfig"><a href="#第一部分数据库配置文件SqlMapConfig" class="headerlink" title="第一部分数据库配置文件SqlMapConfig"></a>第一部分数据库配置文件SqlMapConfig</h2><ol>
-<li><p>configuration 配置文件的顶级标签  </p>
-</li>
-<li><p>properties 属性提供整个配置文件中其他的配置使用properties标签可以引入一个可动态变换的外部配置，如db.properties<br> <code>&lt;properties resource = &quot;dataSource.properties&quot;&gt;</code><br>   <code>&lt;property name = &quot;username&quot; value = &quot;root&quot;/&gt;</code><br>   <code>&lt;property name = &quot;password&quot; value = &quot;123456&quot;/&gt;</code><br> <code>&lt;/properties&gt;</code><br>其中dataSource.properties为项目一个配置文件，可以在其中修改，driver，url，name，password，相应的数据库连接池的信息会影响，在程序中，property属性，代表SqlMapConfig配置文件中可以修改dataSource.properties的属性值，name对应变量名，其他配置地区，使用value = “${username}”,即可调用出username对应的值，若在引用中使用value = “${username：root}”，即设置username默认值为root，要设置当username为空或者不存在时默认值。<br>*. properties避免了数据库配置信息硬编码 </p>
-</li>
-<li><p>setting配置分析<br>setting 影响Mybatis框架在运行时候的一些行为，如配置缓冲，延迟加载等待，下面详细介绍一下；<br>1）cacheEnable ：是否使用缓存，全局缓存的开关，默认值true（开启二级缓冲，Mapper，一级缓冲在SqlSession对象中，也要在mapper.xml文件中添加）    
-2）lazyLoadingEnglish ：是否开启延迟加载 ，默认值false<br>3）aggressiveLazyLoading：是否需加载属，开启后调用方法加载对象，都会加载对象所有属性，关闭之后只会按需加载，默认值 false<br>4）multipleResultSetsEnable：是否允许单一语句返回多结果集，即Mapper 配置中单一的SQL配置是否返回多个结果集， 默认值true<br>5）useColumnLabel：使用列标签代替列名，默认值true<br>6）useGenerateKeys:是否支持JDBC自动生成主键 ，默认值false<br>7）autoMappingBehavior： 指定Mybatis自动映射的字段或属的方式，NONE,PARTIAL,FULL，默认值 PARTIAL（只会自动映射没有定义结果集的结果映射）<br>8）autoMappingUnknownColumnBehavior：设置当前自动映射时发现未知列的动作，NONE,WARNING,FAILING,默认值为NONE<br>9)defaultExecutorType:设置默认的执行器SIMPLE,REUSE,BATCH,默认值为SIMPLE(普通执行器会重用与处理语句)<br>a）defaultStatementTimeout：设置超时时间<br>b）defaultFetchSize：设置驱动的结果集获取数量的提示值（fetchSize），防止获得的结果过多，导致内存溢出<br>c）safeRowBoundEnable：允许嵌套语句中使用分页（行内嵌套语句），默认值false（允许）<br>d）mapUnderscoreToCamelCase：是否开启驼峰命名规则映射，默认false<br>e）localCacheScope：利用本地缓存机制，防止循环引用和加速重复嵌套查询，即sqlsession对象是否共享，默认值SESSION(缓存一个会话中执行的所有查询，数据共享)，STATEMENT（对相同的session不同调用，不会共享数据）<br>f）jdbcTypeForNull：JDBC类型的默认设置，当没有参数提供特定的JDBC类型时，某些驱动需要指定列的JDBC类型（NULL,VARCHAR,OTHER）,默认值为OTHER<br>10）lazyLoadTriggerMethods：指定哪个对象的方法触发一次延迟加载，ex：value =”equals,clone,hashCode,toString”<br>ex:<br> <code>&lt;settings&gt;</code><br><code>&lt;setting name =&quot;cacheEnable&quot; values = &quot;true&quot; /&gt;</code><br> <code>&lt;/settings&gt;</code> </p>
-</li>
-<li><p>typeAliases<br>为sql映射文件中输入/输出参数设置类型别名，然后在sql映射配置文件中指定输入/输出参数类型时使用别名<br><code>&lt;typeAliases&gt;</code><br>  <code>&lt;typeAlias alias=&quot;user&quot; type=&quot;mybatis.po.User&quot;/&gt;</code><br>  <code>&lt;typeAlias alias=&quot;str&quot; type=&quot;java.lang.String&quot;/&gt;</code><br><code>&lt;/typeAliases&gt;</code><br>批量定义别名，定义一个包装类的类，别名规范就是对应类的类名首字母变为小写<br><code>&lt;typeAliases&gt;</code><br>  <code>&lt;package name=&quot;mybatis.po.User&quot;/&gt;</code><br><code>&lt;/typeAliases&gt;</code><br>别名也可以在需要指定别名的类声明头添加注解”@Alias”<br><code>@Alies(&quot;user&quot;)</code><br> <code>public clase User{//代码</code><br> <code>}</code><br>Mybatis对java常见类型默认指定了别名，可以直接使用<br>_long /long, _int/int , string/java.lang.String ,int/java.lang.Integer , list/java.util.List  </p>
-</li>
-<li><p>typeHandlers 类型处理器<br>声明自己的类型处理器（将从数据库获取的值以合适的方式转换成java类型，将java类型的参数转换成数据库对应的类型）<br>三个步骤：<br>1）编写类型处理器类<br>一般要实现org.apache.ibatis.type.TypeHandler类型接口，接口泛式指定要转化的java参数类型<br>主要改写四个方法：<br>public void setParameter（PreparedStatement ps，int i，String parameter，JdbcType jdbcType）<br>在sql配置传入参数时（新增，修改，删除，条件查询）做处理<br>public String getResult（Resulset rs，String columnName）根据字段名<br>public String getResult（Resulset rs，int colcolumnIndex）根据字段下标<br>public String getResult（CallableStatement cs，int colcolumnIndex）供存储过程使用<br>2）在MyBatis全局配置文件中配置该类型处理器<br>在SqlMapConfig中使用标签来注册类型处理器<br> <code>&lt;typeHandlers&gt;</code><br><code>&lt;typeHandler handler=&quot;mybatis.test.DataTypeHander&quot;</code><br>   <code>javaType=&quot;java.util.Data&quot; jdbcType=&quot;TIMESTAMP&quot;/&gt;</code><br> <code>&lt;typeHandlers/&gt;</code><br>3）在SQL映射配置文件中使用<br>xxxMapper.xml中的语句中添加自定义的类型处理器的处理配置，ex：<br>insert into user（username，password，regdate）<br>Values<br>（#{usename}，#{password}，#{regdate，javaType=date，jdbcType=TIMESTAMP，typeHandler=mybatis.test.DateTypeHandler}）<br>设置参数regdate，会将java的Date类型转换成数据库需要的timestamp类型<br>补充不适用TypeHandler接口，可以继承org.apache.ibatis.type.BaseTypeHandler方法（setNonNUllParameter，getNullParameter（三个）总四个方法，同TypeHandler接口四个方法）  </p>
-</li>
-<li><p>objectFactory<br>对象工厂，创造实体对象的类，即实例化查询结果所对应的目标类（目标类的默认构造方法；目标类的有参构造方法）若自己创建对象工厂，继承DefaultObjectFactory类，改写相关四个方法，在全局配置文件SqlMapConfig中添加配置，使对象工厂生效；当Resource资源类加载SqlMapConfig.xml文件，创建SqlSessionFactory时候，会加载配置文件中的自定义ojectFactory    </p>
-</li>
-<li><p>plugins（插件）<br>执行程序过程对某一点进行拦截，并在拦截之后做出一系列处理，即拦截器，对某种方法进行拦截调用的机制，被称为plugin<br>实现一个plugin类，继承Interceptor接口，并且指定需要拦截的方法的签名信息<br>“@Intercepts”拦截器注解，该注解声明此类是一个插件类；”@Signature”签名信息注解，每个注解中的参数分别为拦截的方法所属接口类型（type），拦截方法名称（method）以及所需要的参数信息（args），其中intercept方法是一个对目标方法进行拦截的抽象方法，而pligin方法的作用是将拦截器插入目标对象，setProperties方法的作用是将全局配置文件中的参数注入插件类，最后在全局配置文件SqlMapConfig中配置该插件。<br>plugin使用场景：日志记录，权限控制，缓存控制等  </p>
-</li>
-<li><p>environments<br>放置有关数据库连接数据的配置标签，可以配置多个数据库连接环境，一个environment包含两部分，事务管理器（transactionManager），数据源（DataSource）信息<br>1）事务管理器类型：<br>a）JDBC，相当于直接使用jdbc的提交和回滚设置<br> <code>&lt;transactionManager type=&quot;JDBC&quot; /&gt;</code><br><code>&lt;property name =&quot;... &quot;, value = &quot;...&quot;/&gt;</code><br> <code>&lt;/transactionManager&gt;</code><br>b）MANAGED，不提交和回滚连接，而是由容器来管理事务的生命周期，默认关闭连接，动态指定closeConnection参数，当设置为”false”，在MANAGED类型下不会自动关闭连接<br><code>&lt;transactionManager type=&quot;MANAGED&quot; /&gt;</code><br><code>&lt;property name =&quot;closeConnection &quot;, value = &quot;false&quot;/&gt;</code><br> <code>&lt;/transactionManager&gt;</code><br>2)数据源（DataSource）三种内建数据源类型：<br>a）UNPOOLED设置每次请求时打开和关闭连接<br>b）POOLED设置一个管理数据库连接的资源池，用来合理控制数据库连接与关闭的次数  </p>
-</li>
-</ol>
-<p><strong>c）JNDI配置连接外部数据源（如服务器提供的数据源）</strong><br>支持配置多个数据库连接环境，配置”databaseIdProvider”参数，在SqlMapConfig中添加：<br><databaseidprovider type="DB_VENDOR">  </databaseidprovider></p>
-<ol start="9">
-<li>mappers<br>基于sql映射文件，即Mapper配置文件，SqlSession类，读取Mapper配置文件中的sql，通过全局配置文件自己中，mappers<br>配置方式：<br>1）使用相对路径进行配置：<br><code>&lt;mappers&gt;</code>   <pre><code>`&lt;mapper resource=&quot;org/mybatis/mappers/UserMapper.xml&quot;/&gt;`   
-`&lt;mapper resource=&quot;org/mybatis/mappers/CustomerMapper.xml&quot;/&gt;`   </code></pre> <code>&lt;/mappers&gt;</code><br>2)使用绝对路径进行配置：<br> <code>&lt;mappers&gt;</code>   <pre><code>`&lt;mapper url=&quot;file：///var/mapper/UserMapper.xml&quot;/&gt;`   
-`&lt;mapper url=&quot;file：///var/mapper/CustomerMapper.xml&quot;/&gt;`   </code></pre> <code>&lt;/mappers&gt;</code><br>3）使用接口信息进行配置：<br><code>&lt;mappers&gt;</code>   <pre><code>`&lt;mapper class=&quot;org.mybatis.mappers.UserMapper.xml&quot;/&gt;`   
-`&lt;mapper class=&quot;org.mybatis.mappers.CustomerMapper.xml&quot;/&gt;`   </code></pre> <code>&lt;/mappers&gt;</code><br>4)使用接口所在包进行配置：<br><code>&lt;mappers&gt;</code>   <pre><code>`&lt;package name =&quot;org.mybatis.mappers&quot;/&gt;`     </code></pre> <code>&lt;/mappers&gt;</code> </li>
-</ol>
-<hr>
-<h2 id="Mapper映射文件"><a href="#Mapper映射文件" class="headerlink" title="Mapper映射文件"></a>Mapper映射文件</h2><p>Mapper文件即sql语句的配置文件，创建会话SqlSessionFactory<br>映射文件总体介绍  ：insert ，update，select，delete，resultMap，cache，sql，cache-ref<br>标签中各个属性含义：<br>id：sql映射配置的唯一标识，可以代表sql配置，所属标签<br>parameterType ：传入sql配置中需要的类型的类名或者别名<br>resultType：配置sql语句执行后<strong>期望</strong>得到的结果数据类型<br>resultMap：引入外部结果集配置，该结果集配置对应sql结果中的每个字段名称，即将映射到java对象中的哪些属性<br>fetchSize：每次批量返回结果的行数<br>resultSetType:设置结果集类型<br>resultSets：当多个结果集时使用，为返回的每个结果集设定一个名称，以逗号分开  </p>
-<h2 id="第二部分-Mapper配置输入映射"><a href="#第二部分-Mapper配置输入映射" class="headerlink" title="第二部分 Mapper配置输入映射"></a>第二部分 Mapper配置输入映射</h2><p>输入配置参数属性配置在paramterType，基本数据类型，int，char，boolean基本数据包装类，Byte，Integer，java复杂数据类型，javabean 包装类型  </p>
+<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>1.在WebRoot文件夹下的web.xml文件中添加Spring MVC的前端控制器DispatcherServlet，用于拦截url请求</p>
+<p>2.核心配置文件springmvc.xml：添加xml版本声明和一个包含spring标签声明规则的<beans>标签对。  </beans></p>
+<p>3.前端控制器DispatcherServlet收到Handler返回数据model和视图view之后，配置视图解析器ViewResolver<br>（XMLViewResolver，ResourceBundleViewResolver，InternalResourceViewResolver）根据Handler方法执行之后返回ModelAndView中的视图的具体位置，来加载相应的界面并绑定反馈数据</p>
+<p>4.springmvc.xml中添加HandlerMapping(处理器映射器)寻找相关的Handler对象，返回控制器Handler的执行链，无论哪一种映射器都实现了HandlerMapping接口（BeanNameHandlerMapping处理映射器，将bean的name作为url进行查找，即在springmvc.xml中配置一个可以被url映射的Handler的bean，供处理器映射器查找，ex：<bean name="/xxx.action" class="xxx">）  </bean></p>
+<p>5.springmvc.xml中添加HandlerAdapter(处理器适配器)调用自己的Handle，（HttpRequestHandlerAdapter/SimpleControllerHandlerAdapter/AnnotationMethodHandlerAdapter）无论哪一种适配器都实现了HandlerAdapter接口，SimpleControllerHandlerAdapter适配器支持所有实现Controller接口的Handler控制器  </p>
+<p>6.Handler处理器：利用java反射机制去执行具体的Controller方法并获得ModelAndView视图对象；在包创建类，</p>
+<p>7.Handler处理器与视图  </p>
+<h2 id="第三部分处理器映射器和适配器"><a href="#第三部分处理器映射器和适配器" class="headerlink" title="第三部分处理器映射器和适配器"></a>第三部分处理器映射器和适配器</h2><h3 id="（一）非注解的处理器映射器和映射器"><a href="#（一）非注解的处理器映射器和映射器" class="headerlink" title="（一）非注解的处理器映射器和映射器"></a>（一）非注解的处理器映射器和映射器</h3><p><strong>1 非注解的处理器映射器</strong>（可配置，interceptors拦截器和Handler处理器）</p>
+<p>1）BeanNameUrlHandlerMapping:<br>将beanname作为url进行查找，需要在配置Handler时指定beanname（url），在springmv.xml中配置<bean name="/xxx.action" class="xxx">    </bean></p>
+<p>2）SimpleUrlHandlerMapping：<br>通过<strong>内部参数配置请求的url</strong>和<strong>Handler</strong>的映射关系<br><code>&lt;bean id=&quot;urlMapping&quot;</code>   <code>class=&quot;org.springframework.web.servlet.handler.SimpleUrlHandlerMapping&quot;&gt;</code><br>          <code>&lt;property name=&quot;interceptors&quot;&gt;</code><br>            <code>&lt;list&gt;</code><br>              <code>&lt;ref bean=&quot;/someCheckInterceptor1/&gt;</code><br>             <code>&lt;ref bean=&quot;/someCheckInterceptor1/&gt;</code><br>            <code>&lt;/list&gt;</code><br>          <code>&lt;/property&gt;</code><br>          <code>&lt;property name=&quot;mappings&quot;&gt;</code><br>            <code>&lt;props&gt;</code><br>              <code>&lt;prop key=&quot;/queryFruits_test1.action&quot;&gt;fruitsController&lt;/prop&gt;</code><br>              <code>&lt;prop key=&quot;/queryFruits_test2.action&quot;&gt;fruitsController&lt;/prop&gt;</code><br>              <code>&lt;prop key=&quot;/queryFruits_test3.action&quot;&gt;fruitsController2&lt;/prop&gt;</code><br>            <code>&lt;/props&gt;</code><br>          <code>&lt;/property&gt;</code><br>        <code>&lt;/bean&gt;</code><br>    <code>&lt;!--添加Handler的url--</code>&gt;  
+<code>&lt;bean id=&quot;fruitsController&quot; class=&quot;cn.com.mvc.controller.FruitsControllerTest&quot; /&gt;</code><br>        <code>&lt;bean id=&quot;fruitsController2&quot; class=&quot;cn.com.mvc.controller.FruitsControllerTest2&quot; /&gt;</code><br>a.interceptors，拦截器<br>b.mapping：key：xx.action -&gt; Controller  url请求映射到Controller控制器</p>
+<p>3）ControllerClassNameHandlerMapping:<br>使用CoC惯例优先原则的方式来处理请求，对普通的Controller，其类名”xxxController”映射到”/xxx*”的请求URL；对于MultiActionController类型的Controller，ControllerClassNameHandlerMapping会把类名”xxxController”以及类名中的方法”yyy”映射到”xxx/yyy.action”,ex:<br>   <code>&lt;bean class=&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;/&gt;</code></p>
+<p><strong>2 非注解的处理器适配器</strong>  </p>
+<p>1)SimpleControllerHandlerAdapter:<br>SimpleControllerHandlerAdapter适配器支持所有实现Controller接口的Handler控制器</p>
+<p>2)HttpRequestHandlerAdapter:<br>在Spring MVC配置文件中修改相应的bean标签：<code>&lt;bean class=&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;/&gt;</code> ， Handler实现HttpRequestHandler接口，使用这种Handler的开发方式，方便开发者获取request的相关http请求信息，以及设置返回对象response的一些参数 </p>
+<h3 id="（二）注解的处理器映射器和适配器"><a href="#（二）注解的处理器映射器和适配器" class="headerlink" title="（二）注解的处理器映射器和适配器"></a>（二）注解的处理器映射器和适配器</h3><p>（主流配置方法）如果在核心配置文件中（springmvc.xml）默认配置文件中有DefaultAnnotationHandlerMapping，AnnotationMethodHandlerAdapter等注解处理器映射器和适配器<br><strong>注解的处理器映射器和适配器两种配置方式</strong>：   
+<strong>第一种配置方式：</strong>和非注解的处理器映射器和适配器一样，在核心配置文件中声明相关的bean，ex：<br><code>&lt;!-- 注解映射器 --&gt;</code><br>        <code>&lt;!-- &lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping&quot;/&gt; --&gt;</code><br>        <code>&lt;!-- 注解适配器 --&gt;</code><br>        <code>&lt;!-- &lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter&quot;/&gt; --&gt;</code><br>不使用annotation-driven标签配置，必须保证基于注解的处理器映射器和适配器成对配置<br><strong>第二种配置方式：</strong>使用<a href="mvc:annotation-driven/" target="_blank" rel="noopener">mvc:annotation-driven/</a>标签配置，annotation-driven标会自动注册处理器映射器和处理器适配器，不需要在xml中配置任何信息，也不需要实现任何接口，只需要作为Handler处理的类中添加相应的注解即可，ex：  </p>
+<pre><code>&lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot; validator=&quot;validator&quot;&gt;
+    &lt;/mvc:annotation-driven&gt;  
+&lt;mvc:default-servlet-handler/&gt;</code></pre><p>使用在类上@Controller 标识它是一个控制器，在方法上@RequestMapping注解信息，指定一个URL与该方法绑定。   </p>
+<p>为了让<strong>注解的处理器映射器和适配器找到注解的Handler</strong>，有两种配置方式：<br>第一种在核心配置文件中声明相关的bean信息即可：<br><code>&lt;bean class=&quot;类路径&quot;&gt;&lt;/bean&gt;</code><br>第二种，使用扫描配置，对某一个包下的所有类进行扫描，找出所有使用的@Controller注解的Handler控制器类:<br>    <code>&lt;context:component-scan base-package=&quot;cn.com.mvc.controller&quot;&gt;&lt;/context:component-scan&gt;</code>  </p>
+<h2 id="第四部分前端控制器和视图解析器"><a href="#第四部分前端控制器和视图解析器" class="headerlink" title="第四部分前端控制器和视图解析器"></a>第四部分前端控制器和视图解析器</h2><p>（一）前端控制器DispatcherServlet：<br>在web.xml中添加：<br>    <servlet-mapping><br>    <servlet-name>springmvc</servlet-name><br>    <url-pattern><em>.aciton<br>    </em></url-pattern></servlet-mapping><br>所有以.action结尾的请求都会去寻找springmvc的servlet配置：<br><code>&lt;servlet&gt;</code><br><code>&lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;</code><br><code>&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;</code><br><code>&lt;int-param&gt;</code><br><code>&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</code><br><code>&lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;</code><br><code>&lt;/int-param&gt;</code><br><code>&lt;/servlet&gt;</code><br>DispatcherServlet顶级父类HttpServlet类中方法，doGet（）跟都Post（），而其核心功能有doService跟doDispatch实现：doService 处理request请求（doPost跟doGet）；doDispatch处理拦截，转发请求调用处理器获得结果，并绘制结果视图<br>*前端控制器处理请求步骤**：<br>第一步通过servlet类型的父类处理，调用doService在request中设置一些必要的参数，然后调用doDispatch<br>第二步在doDispatch中，先检测request是否包含多媒体类型，在转化成processedRequest对象，之后比较request，若为true，删除processedRequest<br>第三步调用处理器映射器查找Handler，调用getHandler获取相关的处理器对象，即在getHandler中，利用HandlerMapping通过request获取一个包含Handler本身和前后拦截器interceptor的处理器执行链HandlerExecutionChain对象<br>第四步通过处理器执行类对象获取具体的Handler处理器对象，使用getHandlerAdapter方法获取处理器适配器对象<br>第五步调用HandlerAdapter对象的handle方法，将request对象，以及Handler处理器本身作为参数传入，返回ModelAndView对象<br>第六步获得ModelAndView对象后，进行视图渲染，model数据填充到request域中，在processDispatchResult方法中render方法，将ModelAndView对象以及request，response对象作为参数传入，把model对象中数据遍历，分为key和value，设置在request的attribute域中  </p>
+<p>（二）视图解析器ViewResolve<br>把一个逻辑上的视图名称解析为一个真正的视图，即为具体的View对象<br><strong>1.UrlBasedViewResolver</strong>：  
+prefix属性指定视图资源所在路径的前缀信息，ex：prefix”/WEB-INF/page”<br>suffix属性指定视图所在资源路径的后缀信息,ex:”.jsp”<br>view视图名称：”/user/login”<br>加载路径：/WEB-INF/page/user/login.jsp</p>
+<p>UrlBasedViewResolver支持前缀<br>“redirect：”重定向：<br>“forward：”内部跳转：</p>
+<p>在springmvc.xml中配置：<br>        <code>&lt;bean class=&quot;org.springframework.web.servlet.view.UrlBasedViewResolver&quot;&gt;</code><br>           <code>&lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp&quot;/&gt;</code><br>           <code>&lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</code><br>           <code>&lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.InternalResourceView&quot;/&gt;</code><br>        <code>&lt;/bean&gt;</code><br><strong>2.InternalResourceViewResolver</strong>：   
+继承了UrlBasedViewResolver，视图名称自动解析成InternalResourceView对象类型，ex：<br>        <code>&lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</code><br>           <code>&lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp&quot;/&gt;</code><br>           <code>&lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</code><br>        <code>&lt;/bean&gt;</code>  </p>
+<h2 id="第五部分Handler处理器"><a href="#第五部分Handler处理器" class="headerlink" title="第五部分Handler处理器"></a>第五部分Handler处理器</h2><p><strong>（一）Controller与RequestMapping注解的配置</strong>  </p>
+<pre><code>&lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot; validator=&quot;validator&quot;&gt;
+    &lt;/mvc:annotation-driven&gt;  
+&lt;mvc:default-servlet-handler/&gt;</code></pre><p>mvc:annotation-driven标签表明，处理器Handler类型要符合annotation-driven指定的HandMapping跟HandlerAdapter，Spring3.1之后的版本为RequestMappingHandMapping 跟RequestMappingHandlerAdapter<br>当使用@Controller注解配置一个类时候，告诉SpringMVC该类为一个Handler控制器类，配置了     <code>&lt;context:component-scan base-package=&quot;cn.com.mvc.controller&quot;&gt;&lt;/context:component-scan&gt;</code>  </p>
 <ol>
-<li><p>Handler（类型处理器）<br>当需要为传输参数指定一个特殊的数据库类型时，在#{}添加类型处理  </p>
-<h1 id="age，javaType-int-jdbcType-NUMERIC-typeHandler-AgeTypeHandler"><a href="#age，javaType-int-jdbcType-NUMERIC-typeHandler-AgeTypeHandler" class="headerlink" title="{age，javaType=int,jdbcType=NUMERIC,typeHandler=AgeTypeHandler}"></a>{age，javaType=int,jdbcType=NUMERIC,typeHandler=AgeTypeHandler}</h1></li>
-<li><p>numericScale(添加小数点位数设置)保留两位小数点ex：   </p>
-<h1 id="price，javaType-double-jdbcType-DECIMAL-numericScale-2"><a href="#price，javaType-double-jdbcType-DECIMAL-numericScale-2" class="headerlink" title="{price，javaType=double,jdbcType=DECIMAL,numericScale=2}"></a>{price，javaType=double,jdbcType=DECIMAL,numericScale=2}</h1></li>
-<li><p>使用存储过程，设置一个参数“mode”，其值有IN（输入参数，可多个），OUT（输出参数，至多一个），INOUT（输入/输出参数，至多一个）  </p>
-<p> &lt;select id=””statementType=”CALLABLE”parameterType=”hashmap”&gt;</p>
- <!--[CDATA[
- {call pro_for_input(#{information,mode=IN,jdbcType=VARCHAR})}
- ]]-->
- 
-</li>
-<li><p>向sql语句中插入一个不会被改变的字符串或者向拼接sql语句，使用${}  </p>
-</li>
-<li><p>原javaBean，User类，使用UserInstant extends User，按照后续的要求修改UserInstant而不用修改原始的User，定义一个UserQuerInfo，含有UserInstant属性，则可以使用set，get方法一次性加载或存储UserInstant类型；</p>
-</li>
+<li>Spring初始化时候，该controller类会被扫描作为Handler来加载  </li>
+<li>@Controller注解的类中，标注了@RequestMapping注解的方法，表明该方法是一个处理前端请求的方法，器value = “/test”  都是相对于web应用的根目录的相对路径  </li>
+<li>@RequestMapping，默认数据为value，即@RequestMapping（”/test”）等价于 @RequestMapping(value=”/test”),@RequestMapping中还包含了限定请求方法（method=RequestMethod.GET），请求参数(param=”username”)，请求头（headers=”Content-Type：text/html；charset=UTF-8”）  </li>
 </ol>
-<h2 id="第三部分-Mapper配置输出映射"><a href="#第三部分-Mapper配置输出映射" class="headerlink" title="第三部分 Mapper配置输出映射"></a>第三部分 Mapper配置输出映射</h2><ol>
-<li>resultType 类型<br>特点：<br>1）不管输出javaBean单个对象还是一个列表，在Mapper映射文件中resultType类型是一样的<br>输出单个对象，返回javaBean对象类型，输出一个列表，返回List<javabean>；  
-2）如果没有合适的javaBean接受结果集数据，resultType输出HashMap类型的数据，将输出字段名称作为map的key，value作为字段值，为集合时，list<hashmap>  </hashmap></javabean></li>
-</ol>
-<ol start="2">
-<li>resultMap类型<br>返回结果为多个值，没有一个完全与返回结果值一一匹配的封装类接受，使用一个容器接受结果数据，到业务层再处理，resultMap 和数据库列名column 与javaBean属性名之间创建映射关系<br>ex：<br> <code>&lt;resultMap id=&quot;productResult&quot; type=&quot;cn.com.mybatis.po.Product&quot;&gt;</code><br>   <code>&lt;id property=&quot;pid&quot; column=&quot;product_id&quot;/&gt;</code><br>   <code>&lt;result property=&quot;pname&quot; column=&quot;product_name&quot;/&gt;</code><br> <code>&lt;/resultMap&gt;</code><br> <code>&lt;select id=&quot;queryProductInfo&quot; parameterType=&quot;int&quot; resultMap=&quot;productResult&quot;&gt;</code><br>   <code>select</code>  <pre><code>`P.id            as pid,`  
-`U.email         as user_email`  </code></pre>   <code>from product P</code><br>   <code>where P.id = #{id}</code><br> <code>&lt;/select&gt;</code><br>id property：主键； result property:非主键； 引入外部Mapper，使用namespace.id<br>1)association标签:<br>关联嵌套结果，表明返回的结果集对象中，java包装类中还含有其他java包装类，应用于表与表关联，一对一的关系中<br>ex：<br> <code>&lt;resultMap id=&quot;GamePlayerResult&quot; type=&quot;cn.com.mybatis.po.User&quot;&gt;</code><br>   <code>&lt;id property=&quot;id&quot; column=&quot;id&quot; /&gt;</code><br>   <code>&lt;result property=&quot;username&quot; column=&quot;name&quot;/&gt;</code><br>   <code>&lt;association property=&quot;professionalAttributes&quot;</code> <code>javaType=&quot;java.util.HashMap&quot;&gt;</code><pre><code>`&lt;id property=&quot;pid&quot; column=&quot;product_id&quot;/&gt;`  
-`&lt;result property=&quot;pname&quot; column=&quot;product_name&quot;/&gt;`</code></pre>   <code>&lt;/association&gt;</code><br> <code>&lt;/resultMap&gt;</code><br>如果已经定义好包装类嵌套的包装类，则可以这样定义<br><code>&lt;association property=&quot;user&quot;</code> <code>javaType=&quot;myBatis.po.User&quot; resultMap = &quot;userResult&quot;/&gt;</code><br>2）connection标签：<br>集合的嵌套结果，包装类中包含一些List集合属性，便于对Mybatis对包装类中的集合类型属性进行映射，应用于一对多的关系中<br>ex：<br> <code>&lt;resultMap id=&quot;productResult&quot; type=&quot;cn.com.mybatis.po.Product&quot;&gt;</code><br>   <code>&lt;id property=&quot;pid&quot; column=&quot;product_id&quot;/&gt;</code><br>   <code>&lt;result property=&quot;pname&quot; column=&quot;product_name&quot;/&gt;</code><br>   <code>&lt;collection property=&quot;users&quot; ofType=&quot;cn.com.mybatis.po.User&quot;&gt;</code>  <pre><code>`&lt;id property=&quot;id&quot; column=&quot;user_id&quot;/&gt;`  
-`&lt;result property=&quot;username&quot; column=&quot;user_username&quot;/&gt;`  </code></pre>   <code>&lt;/collection&gt;</code><br> <code>&lt;/resultMap&gt;</code><br>3）鉴别器：<br>resultMap根据”professionType”字段的不同，映射不同的resultMap信息  <pre><code>`&lt;discriminator javaType=&quot;int&quot; column=&quot;profession_type&quot;&gt;`  
-  `&lt;case value=&quot;1&quot; resultMap=&quot;warriorResult&quot;/&gt;`  
-  `&lt;case value=&quot;2&quot; resultMap=&quot;magicianResult&quot;/&gt;`  
-`&lt;/discriminator&gt;`    </code></pre><h2 id="第四部分Mapper自动映射以及配置动态sql语句"><a href="#第四部分Mapper自动映射以及配置动态sql语句" class="headerlink" title="第四部分Mapper自动映射以及配置动态sql语句"></a>第四部分Mapper自动映射以及配置动态sql语句</h2></li>
-</ol>
-<p><strong>第一部分</strong>  </p>
+<p><strong>（二）参数绑定</strong><br>将用户请求的key/value数据绑定到Controller处理器方法形参上  </p>
 <ol>
-<li>autoMappingBehavior（自动映射设置主要在SqlMapConfig中，setting标签中，name= value= ）：指定Mybatis自动映射的字段或属的方式，NONE,PARTIAL,FULL，默认值 PARTIAL（只会自动映射没有定义结果集的结果映射）；PARTIAL只对非嵌套的resultMap进行自动映射；FULL对所有resultMap都进行自动映射，可能会造成某些嵌套属性和结果的字段名一致而被映射；NONE不能进行自动映射  </li>
-<li>autoMapping（在resultMap中定义，忽略SqlMapConfig中的设置）：false不能自动映射，只能手动映射  </li>
-<li>包装类使用驼峰命名规则，在全局配置文件中设置mapUnderscoreToCamelCase，为true </li>
+<li>在方法参数中，加入HttpServletRequest，HttpServletrResponse,HttpSession,Model，ModelMap,ex:<br>@RequestMapping（”/test”）<br>public void method(Model model，Integer id){}  </li>
+<li>使用@RequestParam方法时，要求形参与传入参数名称一样，形参采用驼峰命名，ex：<br>@RequestMapping（”/test”）<br>public void method(Model model，@RequestParam(value=”user_id”)Integer user_Id){}  </li>
+<li>@RequestParam,使用空校验时候，required属性为true，ex：<br>@RequestMapping（”/test”）<br>public void method(Model model，@RequestParam(value=”user_id”,required=true) Integer user_Id){}  </li>
+<li>@RequestParam,使用默认值时候，加上defaultValue属性  </li>
+<li>包装类型参数绑定，ex：<br>@RequestMapping（”/test”）<br>public void method(Model model，User user){ … model.addAttribute（”userlist”,userlist）;}    </li>
+<li>集合类型参数绑定，使用name相同的数组类型形参接收，ex：<br>1）数组类型：<br>@RequestMapping（”/test”）<br>public void method(Model model，int[] fids)<br>2）List类型请求参数：<br>使用集合名[下标].属性<br>3）Map类型请求参数：<br>Mao名[‘key值’]，String key=Map.keySet() ,  Map.get(key)    </li>
 </ol>
-<p><strong>第二部分</strong>  </p>
-<ol>
-<li>sql语句中可替换的条件或者sql语句<br>ex：<br><code>&lt;where&gt;</code><br><code>&lt;if test=&quot;User!=null&quot;&gt;</code><br><code>&lt;if test =&quot;User.id!=null and User.id!=&#39;&#39;&quot;&gt;</code><br><code>and user.id = # {User.id}</code><br><code>&lt;/if&gt;</code><br><code>&lt;/if&gt;</code><br><code>&lt;/where&gt;</code><br>因为<where>的存在自动忽略第一个and<br>复用性较强的sql语句：<br><code>&lt;sql id=&quot;use_id_check&quot;&gt;</code><br><code>and user.id = #{value}</code><br><code>&lt;/sql&gt;</code><br>调用时：    <where>   
-<include refid="use_id_check"></include>  
-</where>   </where></li>
-<li>向sql配置传递一个数组或者List类型的输入参数，使用<foreach><br>ex:<br><foreach collection="ids" item="user_id" open="and(" close=")" separator="or"><br>id=#{user_id}</foreach>
-使用foreach遍历传入的ids查询参数，在foreach标签中，collection指定输入对象中的集合属性，item指定每次遍历生成的对象名，open为开始遍历时要拼接的串，close为结束时候要拼接的串，separator为遍历对象中间需要拼接的串  
-</foreach></li>
-</ol>
+<h2 id="第六部分Validation校验"><a href="#第六部分Validation校验" class="headerlink" title="第六部分Validation校验"></a>第六部分Validation校验</h2><h3 id="（一）Bean-Validation数据校验"><a href="#（一）Bean-Validation数据校验" class="headerlink" title="（一）Bean Validation数据校验"></a>（一）Bean Validation数据校验</h3><p>在核心配置文件中，添加Validator属性，指定validator值，并添加配置 ，ex： </p>
+<p>&lt;mvc:annotation-driven conversion-service=”conversionService” validator=”validator”&gt;  </p>
+<!-- 校验器 -->  
+<pre><code>&lt;bean id=&quot;validator&quot;  
+    class=&quot;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&quot;&gt;  
+    &lt;!-- 校验器--&gt;  
+    &lt;property name=&quot;providerClass&quot; value=&quot;org.hibernate.validator.HibernateValidator&quot; /&gt;  
+    &lt;!-- 指定校验使用的资源文件，在文件中配置校验的错误信息，如果不指定则默认使用classpath下的ValidationMessages.properties --&gt;   
+    &lt;property name=&quot;validationMessageSource&quot; ref=&quot;messageSource&quot; /&gt;  
+&lt;/bean&gt;  
+&lt;!-- 校验错误信息配置文件 --&gt;  
+&lt;bean id=&quot;messageSource&quot;  
+    class=&quot;org.springframework.context.support.ReloadableResourceBundleMessageSource&quot;&gt;  
+    &lt;!-- 资源文件名--&gt;  
+    &lt;property name=&quot;basenames&quot;&gt;     
+         &lt;list&gt;      
+           &lt;value&gt;classpath:ProductValidationMessages&lt;/value&gt;  
+         &lt;/list&gt;     
+    &lt;/property&gt;  
+    &lt;!-- 资源文件编码格式 --&gt;  
+    &lt;property name=&quot;fileEncodings&quot; value=&quot;utf-8&quot; /&gt;  
+    &lt;!-- 对资源文件内容缓存时间，单位秒 --&gt;  
+    &lt;property name=&quot;cacheSeconds&quot; value=&quot;120&quot; /&gt;  
+&lt;/bean&gt;</code></pre><p>1.providerClass，校验器提供类:org.hibernate.validator.HibernateValidator<br>2.validationMessageSource校验器使用的资源文件，在文件中配置校验的错误信息<br>3.bean id=”messageSource”自定义的校验资源文件，在springmvc中添加<br>4.校正类型@Size（min =，max=，message=”{报错信息}”）;@NotEmpty(message=”{报错信息}”)<br>ex：<br>@RequestMapping（”/test”）<br>public void method(Model model，@Validated User user，BindingResult bindingResult ){ }<br>@Validated 与 BindingResult 成对出现，顺序固定<br>5.将错误传到页面 model.addAttribute（”allErrors”,allErrors）</p>
+<h3 id="（二）分组校验"><a href="#（二）分组校验" class="headerlink" title="（二）分组校验"></a>（二）分组校验</h3><p>当javabean被不同的Controller调用的时候，有些需要Validation校验有些不用，这个时候就需要分组校验了<br>1.新建一个接口<br>public interface group1{}<br>2.在实体类中校验分配给不同的组<br>javabean:<br>public class User{<br>@Size（min =，max=，message=”{user.name.length.error}”，groups={group1.class}）;<br>private String name;<br>}  
+测试类中：<br>public void method(Model model，@Validated（value=”group1.class”） User user，BindingResult bindingResult ){ }<br>3.validator 接口实现<br>1）编写一个实现了validator接口的实现类；<br>2）测试类中，首先建立@initBinder 方法为DataBinder对象设置Validator校验对象，当调用下面方法形参中的有BindingResult参数时候，BindingResult对象将DataBinder中Validator的校验结果对象封装到自己的Errors对象集合中，BindingResult对象 Errors属性通过器getErrors（）方法获得校正错误信息，hasErrors（）方法获得是否有校正错误信息<br>补充：Errors集合对象，为一个List<objecterror>,使用getcode(),getDefaultMessage()获得相关属性（String）</objecterror></p>
 
       
 
@@ -335,7 +336,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuanj1988.cn/2019/07/08/MyBatis配置文件详细解析/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuanj1988.cn/2019/07/10/Spring MVC入门介绍/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -349,18 +350,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/08/基础算法程序记录/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          基础算法程序记录
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/07/MyBatis入门介绍/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MyBatis入门介绍</div>
+    <a href="/2019/07/08/基础算法程序记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基础算法程序记录</div>
       <i class="icon-circle-right"></i>
     </a>
   
