@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.zhuanj1988.cn">
-  <title>MyBatis配置文件总结 | hexo——blog</title>
+  <title>sql语句知识汇总 | hexo——blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。">
+  <meta name="description" content="简介：mysql上的sql语句一些简单的汇总，同时记录学习过程遇到的sql语句">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MyBatis配置文件总结">
-<meta property="og:url" content="http://www.zhuanj1988.cn/2019/07/08/MyBatis配置文件详细解析/index.html">
+<meta property="og:title" content="sql语句知识汇总">
+<meta property="og:url" content="http://www.zhuanj1988.cn/2019/07/24/sql语句知识汇总/index.html">
 <meta property="og:site_name" content="hexo——blog">
-<meta property="og:description" content="简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。">
+<meta property="og:description" content="简介：mysql上的sql语句一些简单的汇总，同时记录学习过程遇到的sql语句">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-12T05:05:38.931Z">
+<meta property="og:updated_time" content="2019-07-24T01:59:42.588Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MyBatis配置文件总结">
-<meta name="twitter:description" content="简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。">
+<meta name="twitter:title" content="sql语句知识汇总">
+<meta name="twitter:description" content="简介：mysql上的sql语句一些简单的汇总，同时记录学习过程遇到的sql语句">
   
     <link rel="alternative" href="/atom.xml" title="hexo——blog" type="application/atom+xml">
   
@@ -154,108 +154,105 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MyBatis配置文件详细解析" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-sql语句知识汇总" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      MyBatis配置文件总结
+      sql语句知识汇总
     </h1>
   
 
         
-        <a href="/2019/07/08/MyBatis配置文件详细解析/" class="archive-article-date">
-  	<time datetime="2019-07-08T03:47:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-08</time>
+        <a href="/2019/07/24/sql语句知识汇总/" class="archive-article-date">
+  	<time datetime="2019-07-24T01:48:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。  </p>
+        <p>简介：mysql上的sql语句一些简单的汇总，同时记录学习过程遇到的sql语句</p>
 <a id="more"></a>
-<h2 id="MyBatis配置文件分为四个部分学习"><a href="#MyBatis配置文件分为四个部分学习" class="headerlink" title="MyBatis配置文件分为四个部分学习"></a>MyBatis配置文件分为四个部分学习</h2><ol>
-<li>数据库配置文件SqlMapConfig  </li>
-<li>SQL映射配置中输入映射的配置  </li>
-<li>SQL映射配置中输出映射的配置  </li>
-<li>Mapper自动映射 </li>
-</ol>
-<h2 id="第一部分数据库配置文件SqlMapConfig"><a href="#第一部分数据库配置文件SqlMapConfig" class="headerlink" title="第一部分数据库配置文件SqlMapConfig"></a>第一部分数据库配置文件SqlMapConfig</h2><ol>
-<li><p>configuration 配置文件的顶级标签     </p>
-</li>
-<li><p>properties 属性提供整个配置文件中其他的配置使用properties标签可以引入一个可动态变换的外部配置，如db.properties<br> <code>&lt;properties resource = &quot;dataSource.properties&quot;&gt;</code><br>   <code>&lt;property name = &quot;username&quot; value = &quot;root&quot;/&gt;</code><br>   <code>&lt;property name = &quot;password&quot; value = &quot;123456&quot;/&gt;</code><br> <code>&lt;/properties&gt;</code><br>其中dataSource.properties为项目一个配置文件，可以在其中修改，driver，url，name，password，相应的数据库连接池的信息会影响，在程序中，property属性，代表SqlMapConfig配置文件中可以修改dataSource.properties的属性值，name对应变量名，其他配置地区，使用value = “${username}”,即可调用出username对应的值，若在引用中使用value = “${username：root}”，即设置username默认值为root，要设置当username为空或者不存在时默认值。<br>*. properties避免了数据库配置信息硬编码     </p>
-</li>
-<li><p>setting配置分析<br>setting 影响Mybatis框架在运行时候的一些行为，如配置缓冲，延迟加载等待，下面详细介绍一下；<br>1）cacheEnable ：是否使用缓存，全局缓存的开关，默认值true（开启二级缓冲，Mapper，一级缓冲在SqlSession对象中，也要在mapper.xml文件中添加）    
-2）lazyLoadingEnglish ：是否开启延迟加载 ，默认值false<br>3）aggressiveLazyLoading：是否需加载属，开启后调用方法加载对象，都会加载对象所有属性，关闭之后只会按需加载，默认值 false<br>4）multipleResultSetsEnable：是否允许单一语句返回多结果集，即Mapper 配置中单一的SQL配置是否返回多个结果集， 默认值true<br>5）useColumnLabel：使用列标签代替列名，默认值true<br>6）useGenerateKeys:是否支持JDBC自动生成主键 ，默认值false<br>7）autoMappingBehavior： 指定Mybatis自动映射的字段或属的方式，NONE,PARTIAL,FULL，默认值 PARTIAL（只会自动映射没有定义结果集的结果映射）<br>8）autoMappingUnknownColumnBehavior：设置当前自动映射时发现未知列的动作，NONE,WARNING,FAILING,默认值为NONE<br>9)defaultExecutorType:设置默认的执行器SIMPLE,REUSE,BATCH,默认值为SIMPLE(普通执行器会重用与处理语句)<br>a）defaultStatementTimeout：设置超时时间<br>b）defaultFetchSize：设置驱动的结果集获取数量的提示值（fetchSize），防止获得的结果过多，导致内存溢出<br>c）safeRowBoundEnable：允许嵌套语句中使用分页（行内嵌套语句），默认值false（允许）<br>d）mapUnderscoreToCamelCase：是否开启驼峰命名规则映射，默认false<br>e）localCacheScope：利用本地缓存机制，防止循环引用和加速重复嵌套查询，即sqlsession对象是否共享，默认值SESSION(缓存一个会话中执行的所有查询，数据共享)，STATEMENT（对相同的session不同调用，不会共享数据）<br>f）jdbcTypeForNull：JDBC类型的默认设置，当没有参数提供特定的JDBC类型时，某些驱动需要指定列的JDBC类型（NULL,VARCHAR,OTHER）,默认值为OTHER<br>10）lazyLoadTriggerMethods：指定哪个对象的方法触发一次延迟加载，ex：value =”equals,clone,hashCode,toString”<br>ex:<br> <code>&lt;settings&gt;</code><br><code>&lt;setting name =&quot;cacheEnable&quot; values = &quot;true&quot; /&gt;</code><br> <code>&lt;/settings&gt;</code>    </p>
-</li>
-<li><p>typeAliases<br>为sql映射文件中输入/输出参数设置类型别名，然后在sql映射配置文件中指定输入/输出参数类型时使用别名<br><code>&lt;typeAliases&gt;</code><br>  <code>&lt;typeAlias alias=&quot;user&quot; type=&quot;mybatis.po.User&quot;/&gt;</code><br>  <code>&lt;typeAlias alias=&quot;str&quot; type=&quot;java.lang.String&quot;/&gt;</code><br><code>&lt;/typeAliases&gt;</code><br>批量定义别名，定义一个包装类的类，别名规范就是对应类的类名首字母变为小写<br><code>&lt;typeAliases&gt;</code><br>  <code>&lt;package name=&quot;mybatis.po.User&quot;/&gt;</code><br><code>&lt;/typeAliases&gt;</code><br>别名也可以在需要指定别名的类声明头添加注解”@Alias”<br><code>@Alies(&quot;user&quot;)</code><br> <code>public clase User{//代码</code><br> <code>}</code><br>Mybatis对java常见类型默认指定了别名，可以直接使用<br>_long /long, _int/int , string/java.lang.String ,int/java.lang.Integer , list/java.util.List    </p>
-</li>
-<li><p>typeHandlers 类型处理器<br>声明自己的类型处理器（将从数据库获取的值以合适的方式转换成java类型，将java类型的参数转换成数据库对应的类型）<br>三个步骤：<br>1）编写类型处理器类<br>一般要实现org.apache.ibatis.type.TypeHandler类型接口，接口泛式指定要转化的java参数类型<br>主要改写四个方法：<br>public void setParameter（PreparedStatement ps，int i，String parameter，JdbcType jdbcType）<br>在sql配置传入参数时（新增，修改，删除，条件查询）做处理<br>public String getResult（Resulset rs，String columnName）根据字段名<br>public String getResult（Resulset rs，int colcolumnIndex）根据字段下标<br>public String getResult（CallableStatement cs，int colcolumnIndex）供存储过程使用<br>2）在MyBatis全局配置文件中配置该类型处理器<br>在SqlMapConfig中使用标签来注册类型处理器<br> <code>&lt;typeHandlers&gt;</code><br><code>&lt;typeHandler handler=&quot;mybatis.test.DataTypeHander&quot;</code><br>   <code>javaType=&quot;java.util.Data&quot; jdbcType=&quot;TIMESTAMP&quot;/&gt;</code><br> <code>&lt;typeHandlers/&gt;</code><br>3）在SQL映射配置文件中使用<br>xxxMapper.xml中的语句中添加自定义的类型处理器的处理配置，ex：<br>insert into user（username，password，regdate）<br>Values<br>（#{usename}，#{password}，#{regdate，javaType=date，jdbcType=TIMESTAMP，typeHandler=mybatis.test.DateTypeHandler}）<br>设置参数regdate，会将java的Date类型转换成数据库需要的timestamp类型<br>补充不适用TypeHandler接口，可以继承org.apache.ibatis.type.BaseTypeHandler方法（setNonNUllParameter，getNullParameter（三个）总四个方法，同TypeHandler接口四个方法）    </p>
-</li>
-<li><p>objectFactory<br>对象工厂，创造实体对象的类，即实例化查询结果所对应的目标类（目标类的默认构造方法；目标类的有参构造方法）若自己创建对象工厂，继承DefaultObjectFactory类，改写相关四个方法，在全局配置文件SqlMapConfig中添加配置，使对象工厂生效；当Resource资源类加载SqlMapConfig.xml文件，创建SqlSessionFactory时候，会加载配置文件中的自定义ojectFactory    </p>
-</li>
-<li><p>plugins（插件）<br>执行程序过程对某一点进行拦截，并在拦截之后做出一系列处理，即拦截器，对某种方法进行拦截调用的机制，被称为plugin<br>实现一个plugin类，继承Interceptor接口，并且指定需要拦截的方法的签名信息<br>“@Intercepts”拦截器注解，该注解声明此类是一个插件类；”@Signature”签名信息注解，每个注解中的参数分别为拦截的方法所属接口类型（type），拦截方法名称（method）以及所需要的参数信息（args），其中intercept方法是一个对目标方法进行拦截的抽象方法，而pligin方法的作用是将拦截器插入目标对象，setProperties方法的作用是将全局配置文件中的参数注入插件类，最后在全局配置文件SqlMapConfig中配置该插件。<br>plugin使用场景：日志记录，权限控制，缓存控制等    </p>
-</li>
-<li><p>environments<br>放置有关数据库连接数据的配置标签，可以配置多个数据库连接环境，一个environment包含两部分，事务管理器（transactionManager），数据源（DataSource）信息<br>1）事务管理器类型：<br>a）JDBC，相当于直接使用jdbc的提交和回滚设置<br> <code>&lt;transactionManager type=&quot;JDBC&quot; /&gt;</code><br><code>&lt;property name =&quot;... &quot;, value = &quot;...&quot;/&gt;</code><br> <code>&lt;/transactionManager&gt;</code><br>b）MANAGED，不提交和回滚连接，而是由容器来管理事务的生命周期，默认关闭连接，动态指定closeConnection参数，当设置为”false”，在MANAGED类型下不会自动关闭连接<br><code>&lt;transactionManager type=&quot;MANAGED&quot; /&gt;</code><br><code>&lt;property name =&quot;closeConnection &quot;, value = &quot;false&quot;/&gt;</code><br> <code>&lt;/transactionManager&gt;</code><br>2)数据源（DataSource）三种内建数据源类型：<br>a）UNPOOLED设置每次请求时打开和关闭连接<br>b）POOLED设置一个管理数据库连接的资源池，用来合理控制数据库连接与关闭的次数  </p>
-</li>
-</ol>
-<p><strong>c）JNDI配置连接外部数据源（如服务器提供的数据源）</strong><br>支持配置多个数据库连接环境，配置”databaseIdProvider”参数，在SqlMapConfig中添加：<br><databaseidprovider type="DB_VENDOR">    </databaseidprovider></p>
-<ol start="9">
-<li>mappers<br>基于sql映射文件，即Mapper配置文件，SqlSession类，读取Mapper配置文件中的sql，通过全局配置文件自己中，mappers<br>配置方式：<br>1）使用相对路径进行配置：<br><code>&lt;mappers&gt;</code>   <pre><code>`&lt;mapper resource=&quot;org/mybatis/mappers/UserMapper.xml&quot;/&gt;`   
-`&lt;mapper resource=&quot;org/mybatis/mappers/CustomerMapper.xml&quot;/&gt;`   </code></pre> <code>&lt;/mappers&gt;</code><br>2)使用绝对路径进行配置：<br> <code>&lt;mappers&gt;</code>   <pre><code>`&lt;mapper url=&quot;file：///var/mapper/UserMapper.xml&quot;/&gt;`   
-`&lt;mapper url=&quot;file：///var/mapper/CustomerMapper.xml&quot;/&gt;`   </code></pre> <code>&lt;/mappers&gt;</code><br>3）使用接口信息进行配置：<br><code>&lt;mappers&gt;</code>   <pre><code>`&lt;mapper class=&quot;org.mybatis.mappers.UserMapper.xml&quot;/&gt;`   
-`&lt;mapper class=&quot;org.mybatis.mappers.CustomerMapper.xml&quot;/&gt;`   </code></pre> <code>&lt;/mappers&gt;</code><br>4)使用接口所在包进行配置：<br><code>&lt;mappers&gt;</code>   <pre><code>`&lt;package name =&quot;org.mybatis.mappers&quot;/&gt;`     </code></pre> <code>&lt;/mappers&gt;</code> </li>
-</ol>
-<hr>
-<h2 id="Mapper映射文件"><a href="#Mapper映射文件" class="headerlink" title="Mapper映射文件"></a>Mapper映射文件</h2><p>Mapper文件即sql语句的配置文件，创建会话SqlSessionFactory<br>映射文件总体介绍  ：insert ，update，select，delete，resultMap，cache，sql，cache-ref<br>标签中各个属性含义：<br>id：sql映射配置的唯一标识，可以代表sql配置，所属标签<br>parameterType ：传入sql配置中需要的类型的类名或者别名<br>resultType：配置sql语句执行后<strong>期望</strong>得到的结果数据类型<br>resultMap：引入外部结果集配置，该结果集配置对应sql结果中的每个字段名称，即将映射到java对象中的哪些属性<br>fetchSize：每次批量返回结果的行数<br>resultSetType:设置结果集类型<br>resultSets：当多个结果集时使用，为返回的每个结果集设定一个名称，以逗号分开  </p>
-<h2 id="第二部分-Mapper配置输入映射"><a href="#第二部分-Mapper配置输入映射" class="headerlink" title="第二部分 Mapper配置输入映射"></a>第二部分 Mapper配置输入映射</h2><p>输入配置参数属性配置在paramterType，基本数据类型，int，char，boolean基本数据包装类，Byte，Integer，java复杂数据类型，javabean 包装类型   </p>
-<ol>
-<li><p>Handler（类型处理器）<br>当需要为传输参数指定一个特殊的数据库类型时，在#{}添加类型处理<br> <code>#{age，javaType=int,jdbcType=NUMERIC,typeHandler=AgeTypeHandler}</code>   </p>
-</li>
-<li><p>numericScale(添加小数点位数设置)保留两位小数点ex：<br>  <code>#{price，javaType=double,jdbcType=DECIMAL,numericScale=2}</code>    </p>
-</li>
-<li><p>使用存储过程，设置一个参数“mode”，其值有IN（输入参数，可多个），OUT（输出参数，至多一个），INOUT（输入/输出参数，至多一个）  </p>
-<p> &lt;select id=””statementType=”CALLABLE”parameterType=”hashmap”&gt;</p>
- <!--[CDATA[
- {call pro_for_input(#{information,mode=IN,jdbcType=VARCHAR})}
- ]]-->
- 
-</li>
-<li><p>向sql语句中插入一个不会被改变的字符串或者向拼接sql语句，使用${}   </p>
-</li>
-<li><p>原javaBean，User类，使用UserInstant extends User，按照后续的要求修改UserInstant而不用修改原始的User，定义一个UserQuerInfo，含有UserInstant属性，则可以使用set，get方法一次性加载或存储UserInstant类型；</p>
-</li>
-</ol>
-<h2 id="第三部分-Mapper配置输出映射"><a href="#第三部分-Mapper配置输出映射" class="headerlink" title="第三部分 Mapper配置输出映射"></a>第三部分 Mapper配置输出映射</h2><ol>
-<li>resultType 类型<br>特点：<br>1）不管输出javaBean单个对象还是一个列表，在Mapper映射文件中resultType类型是一样的<br>输出单个对象，返回javaBean对象类型，输出一个列表，返回List<javabean>；  
-2）如果没有合适的javaBean接受结果集数据，resultType输出HashMap类型的数据，将输出字段名称作为map的key，value作为字段值，为集合时，list<hashmap>  </hashmap></javabean></li>
-</ol>
-<ol start="2">
-<li>resultMap类型<br>返回结果为多个值，没有一个完全与返回结果值一一匹配的封装类接受，使用一个容器接受结果数据，到业务层再处理，resultMap 和数据库列名column 与javaBean属性名之间创建映射关系<br>ex：<br> <code>&lt;resultMap id=&quot;productResult&quot; type=&quot;cn.com.mybatis.po.Product&quot;&gt;</code><br>   <code>&lt;id property=&quot;pid&quot; column=&quot;product_id&quot;/&gt;</code><br>   <code>&lt;result property=&quot;pname&quot; column=&quot;product_name&quot;/&gt;</code><br> <code>&lt;/resultMap&gt;</code><br> <code>&lt;select id=&quot;queryProductInfo&quot; parameterType=&quot;int&quot; resultMap=&quot;productResult&quot;&gt;</code><br>   <code>select</code>  <pre><code>`P.id            as pid,`  
-`U.email         as user_email`  </code></pre>   <code>from product P</code><br>   <code>where P.id = #{id}</code><br> <code>&lt;/select&gt;</code><br>id property：主键； result property:非主键； 引入外部Mapper，使用namespace.id<br>1)association标签:<br>关联嵌套结果，表明返回的结果集对象中，java包装类中还含有其他java包装类，应用于表与表关联，一对一的关系中<br>ex：<br> <code>&lt;resultMap id=&quot;GamePlayerResult&quot; type=&quot;cn.com.mybatis.po.User&quot;&gt;</code><br>   <code>&lt;id property=&quot;id&quot; column=&quot;id&quot; /&gt;</code><br>   <code>&lt;result property=&quot;username&quot; column=&quot;name&quot;/&gt;</code><br>   <code>&lt;association property=&quot;professionalAttributes&quot;</code> <code>javaType=&quot;java.util.HashMap&quot;&gt;</code><pre><code>`&lt;id property=&quot;pid&quot; column=&quot;product_id&quot;/&gt;`  
-`&lt;result property=&quot;pname&quot; column=&quot;product_name&quot;/&gt;`</code></pre>   <code>&lt;/association&gt;</code><br> <code>&lt;/resultMap&gt;</code><br>如果已经定义好包装类嵌套的包装类，则可以这样定义<br><code>&lt;association property=&quot;user&quot;</code> <code>javaType=&quot;myBatis.po.User&quot; resultMap = &quot;userResult&quot;/&gt;</code><br>2）connection标签：<br>集合的嵌套结果，包装类中包含一些List集合属性，便于对Mybatis对包装类中的集合类型属性进行映射，应用于一对多的关系中<br>ex：<br> <code>&lt;resultMap id=&quot;productResult&quot; type=&quot;cn.com.mybatis.po.Product&quot;&gt;</code><br>   <code>&lt;id property=&quot;pid&quot; column=&quot;product_id&quot;/&gt;</code><br>   <code>&lt;result property=&quot;pname&quot; column=&quot;product_name&quot;/&gt;</code><br>   <code>&lt;collection property=&quot;users&quot; ofType=&quot;cn.com.mybatis.po.User&quot;&gt;</code>  <pre><code>`&lt;id property=&quot;id&quot; column=&quot;user_id&quot;/&gt;`  
-`&lt;result property=&quot;username&quot; column=&quot;user_username&quot;/&gt;`  </code></pre>   <code>&lt;/collection&gt;</code><br> <code>&lt;/resultMap&gt;</code><br>3）鉴别器：<br>resultMap根据”professionType”字段的不同，映射不同的resultMap信息  <pre><code>`&lt;discriminator javaType=&quot;int&quot; column=&quot;profession_type&quot;&gt;`  
-  `&lt;case value=&quot;1&quot; resultMap=&quot;warriorResult&quot;/&gt;`  
-  `&lt;case value=&quot;2&quot; resultMap=&quot;magicianResult&quot;/&gt;`  
-`&lt;/discriminator&gt;`    </code></pre><h2 id="第四部分Mapper自动映射以及配置动态sql语句"><a href="#第四部分Mapper自动映射以及配置动态sql语句" class="headerlink" title="第四部分Mapper自动映射以及配置动态sql语句"></a>第四部分Mapper自动映射以及配置动态sql语句</h2></li>
-</ol>
-<p><strong>第一部分</strong>  </p>
-<ol>
-<li>autoMappingBehavior（自动映射设置主要在SqlMapConfig中，setting标签中，name= value= ）：指定Mybatis自动映射的字段或属的方式，NONE,PARTIAL,FULL，默认值 PARTIAL（只会自动映射没有定义结果集的结果映射）；PARTIAL只对非嵌套的resultMap进行自动映射；FULL对所有resultMap都进行自动映射，可能会造成某些嵌套属性和结果的字段名一致而被映射；NONE不能进行自动映射  </li>
-<li>autoMapping（在resultMap中定义，忽略SqlMapConfig中的设置）：false不能自动映射，只能手动映射  </li>
-<li>包装类使用驼峰命名规则，在全局配置文件中设置mapUnderscoreToCamelCase，为true </li>
-</ol>
-<p><strong>第二部分</strong>  </p>
-<ol>
-<li>sql语句中可替换的条件或者sql语句<br>ex：<br><code>&lt;where&gt;</code><br><code>&lt;if test=&quot;User!=null&quot;&gt;</code><br><code>&lt;if test =&quot;User.id!=null and User.id!=&#39;&#39;&quot;&gt;</code><br><code>and user.id = # {User.id}</code><br><code>&lt;/if&gt;</code><br><code>&lt;/if&gt;</code><br><code>&lt;/where&gt;</code><br>因为<where>的存在自动忽略第一个and<br>复用性较强的sql语句：<br><code>&lt;sql id=&quot;use_id_check&quot;&gt;</code><br><code>and user.id = #{value}</code><br><code>&lt;/sql&gt;</code><br>调用时：    <where>   
-<include refid="use_id_check"></include>  
-</where>   </where></li>
-<li>向sql配置传递一个数组或者List类型的输入参数，使用<foreach><br>ex:<br><foreach collection="ids" item="user_id" open="and(" close=")" separator="or"><br>id=#{user_id}</foreach>
-使用foreach遍历传入的ids查询参数，在foreach标签中，collection指定输入对象中的集合属性，item指定每次遍历生成的对象名，open为开始遍历时要拼接的串，close为结束时候要拼接的串，separator为遍历对象中间需要拼接的串  
-</foreach></li>
-</ol>
+
+
+<h2 id="一、-数据库基本操作"><a href="#一、-数据库基本操作" class="headerlink" title="一、 数据库基本操作"></a>一、 数据库基本操作</h2><p>1、说明：创建数据库</p>
+<p>　　CREATE DATABASE database-name</p>
+<p>　　2、说明：删除数据库</p>
+<p>　　drop database dbname</p>
+<p>　　3、说明：备份sql server</p>
+<p>　　— 创建 备份数据的 device</p>
+<p>　　USE master</p>
+<p>　　EXEC sp_addumpdevice ‘disk’, ‘testBack’, ‘c:\mssql7backup\MyNwind_1.dat’</p>
+<p>　　— 开始 备份</p>
+<p>　　BACKUP DATABASE pubs TO testBack</p>
+<p>　　4、说明：创建新表</p>
+<p>　　create table tabname(col1 type1 [not null] [primary key],col2 type2 [not null],..)</p>
+<p>　　根据已有的表创建新表：</p>
+<p>　　A：create table tab_new like tab_old (使用旧表创建新表)</p>
+<p>　　B：create table tab_new as select col1,col2… from tab_old definition only</p>
+<p>　　5、说明：删除新表</p>
+<p>　　drop table tabname</p>
+<p>　　6、说明：增加一个列</p>
+<p>　　Alter table tabname add column col type</p>
+<p>　　注：列增加后将不能删除。DB2中列加上后数据类型也不能改变，唯一能改变的是增加varchar类型的长度。</p>
+<p>　　7、说明：添加主键： Alter table tabname add primary key(col)</p>
+<p>　　说明：删除主键： Alter table tabname drop primary key(col)</p>
+<p>　　8、说明：创建索引：create [unique] index idxname on tabname(col….)</p>
+<p>　　删除索引：drop index idxname</p>
+<p>　　注：索引是不可更改的，想更改必须删除重新建。</p>
+<p>　　9、说明：创建视图：create view viewname as select statement</p>
+<p>　　删除视图：drop view viewname</p>
+<p>　　10、说明：几个简单的基本的sql语句</p>
+<p>　　选择：select * from table1 where 范围</p>
+<p>　　插入：insert into table1(field1,field2) values(value1,value2)</p>
+<p>　　删除：delete from table1 where 范围</p>
+<p>　　更新：update table1 set field1=value1 where 范围</p>
+<p>　　查找：select * from table1 where field1 like ’%value1%’ —like的语法很精妙，查资料!</p>
+<p>　　排序：select * from table1 order by field1,field2 [desc]</p>
+<p>　　总数：select count as totalcount from table1</p>
+<p>　　求和：select sum(field1) as sumvalue from table1</p>
+<p>　　平均：select avg(field1) as avgvalue from table1</p>
+<p>　　最大：select max(field1) as maxvalue from table1</p>
+<p>　　最小：select min(field1) as minvalue from table1</p>
+<p>　　11、说明：几个高级查询运算词</p>
+<p>　　A： UNION 运算符</p>
+<p>　　UNION 运算符通过组合其他两个结果表(例如 TABLE1 和 TABLE2)并消去表中任何重复行而派生出一个结果表。当 ALL 随 UNION 一起使用时(即 UNION ALL)，不消除重复行。两种情况下，派生表的每一行不是来自 TABLE1 就是来自 TABLE2。</p>
+<p>　　B： EXCEPT 运算符</p>
+<p>　　EXCEPT 运算符通过包括所有在 TABLE1 中但不在 TABLE2 中的行并消除所有重复行而派生出一个结果表。当 ALL 随 EXCEPT 一起使用时 (EXCEPT ALL)，不消除重复行。</p>
+<p>　　C： INTERSECT 运算符</p>
+<p>　　INTERSECT 运算符通过只包括 TABLE1 和 TABLE2 中都有的行并消除所有重复行而派生出一个结果表。当 ALL 随 INTERSECT 一起使用时 (INTERSECT ALL)，不消除重复行。</p>
+<p>　　注：使用运算词的几个查询结果行必须是一致的。</p>
+<p>　　12、说明：使用外连接</p>
+<p>　　A、left (outer) join：</p>
+<p>　　左外连接(左连接)：结果集几包括连接表的匹配行，也包括左连接表的所有行。</p>
+<p>　　SQL: select a.a, a.b, a.c, b.c, b.d, b.f from a LEFT OUT JOIN b ON a.a = b.c</p>
+<p>　　B：right (outer) join:</p>
+<p>　　右外连接(右连接)：结果集既包括连接表的匹配连接行，也包括右连接表的所有行。</p>
+<p>　　C：full/cross (outer) join：</p>
+<p>　　全外连接：不仅包括符号连接表的匹配行，还包括两个连接表中的所有记录。</p>
+<p>　　13、分组:Group by:</p>
+<p>　　一张表，一旦分组 完成后，查询后只能得到组相关的信息。</p>
+<p>　　组相关的信息：(统计信息) count,sum,max,min,avg 分组的标准)</p>
+<p>　　在SQLServer中分组时：不能以text,ntext,image类型的字段作为分组依据</p>
+<p>　　在selecte统计函数中的字段，不能和普通的字段放在一起;</p>
+<p>　　14、对数据库进行操作：</p>
+<p>　　分离数据库： sp_detach_db; 附加数据库：sp_attach_db 后接表明，附加需要完整的路径名</p>
+<p>　　15.如何修改数据库的名称:</p>
+<p>　　sp_renamedb ‘old_name’, ‘new_name’</p>
+<p>　　16、创建外键</p>
+<pre><code>create table course
+(
+cno varchar(20) not null ,
+cname varchar(20) not null,
+tno varchar(20) not null,
+foreign key(tno) references teacher(tno)
+
+);</code></pre><h2 id="二、数据库优化"><a href="#二、数据库优化" class="headerlink" title="二、数据库优化"></a>二、数据库优化</h2><p>如何进行SQL优化？</p>
+<p>（1）选择正确的存储引擎<br>以 MySQL为例，包括有两个存储引擎 MyISAM 和 InnoDB，每个引擎都有利有弊。<br>MyISAM 适合于一些需要大量查询的应用，但其对于有大量写操作并不是很好。甚至你只是需要update一个字段，整个表都会被锁起来，而别的进程，就算是读进程都无法操作直到读操作完成。另外，MyISAM 对于 SELECT COUNT(<em>) 这类的计算是超快无比的。<br>InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应用，它会比 MyISAM 还慢。但是它支持“行锁” ，于是在写操作比较多的时候，会更优秀。并且，他还支持更多的高级应用，比如：事务。<br>（2）优化字段的数据类型<br>记住一个原则，越小的列会越快。如果一个表只会有几列罢了（比如说字典表，配置表），那么，我们就没有理由使用 INT 来做主键，使用 MEDIUMINT, SMALLINT 或是更小的 TINYINT 会更经济一些。如果你不需要记录时间，使用 DATE 要比 DATETIME 好得多。当然，你也需要留够足够的扩展空间。<br>（3）为搜索字段添加索引<br>索引并不一定就是给主键或是唯一的字段。如果在你的表中，有某个字段你总要会经常用来做搜索，那么最好是为其建立索引，除非你要搜索的字段是大的文本字段，那应该建立全文索引。<br>(4)避免使用Select<br>*</em>从数据库里读出越多的数据，那么查询就会变得越慢。并且，如果你的数据库服务器和WEB服务器是两台独立的服务器的话，这还会增加网络传输的负载。即使你要查询数据表的所有字段，也尽量不要用**通配符，善用内置提供的字段排除定义也许能给带来更多的便利。<br>(5)使用 ENUM 而不是 VARCHAR<br>ENUM 类型是非常快和紧凑的。在实际上，其保存的是 TINYINT，但其外表上显示为字符串。这样一来，用这个字段来做一些选项列表变得相当的完美。例如，性别、民族、部门和状态之类的这些字段的取值是有限而且固定的，那么，你应该使用 ENUM 而不是 VARCHAR。<br>(6)尽可能的使用 NOT NULL<br>除非你有一个很特别的原因去使用 NULL 值，你应该总是让你的字段保持 NOT NULL。 NULL其实需要额外的空间，并且，在你进行比较的时候，你的程序会更复杂。 当然，这里并不是说你就不能使用NULL了，现实情况是很复杂的，依然会有些情况下，你需要使用NULL值。<br>(7)固定长度的表会更快<br>如果表中的所有字段都是“固定长度”的，整个表会被认为是 “static” 或 “fixed-length”。 例如，表中没有如下类型的字段： VARCHAR，TEXT，BLOB。只要你包括了其中一个这些字段，那么这个表就不是“固定长度静态表”了，这样，MySQL 引擎会用另一种方法来处理。<br>固定长度的表会提高性能，因为MySQL搜寻得会更快一些，因为这些固定的长度是很容易计算下一个数据的偏移量的，所以读取的自然也会很快。而如果字段不是定长的，那么，每一次要找下一条的话，需要程序找到主键。<br>并且，固定长度的表也更容易被缓存和重建。不过，唯一的副作用是，固定长度的字段会浪费一些空间，因为定长的字段无论你用不用，他都是要分配那么多的空间。  </p>
+<h2 id="三、其他操作"><a href="#三、其他操作" class="headerlink" title="三、其他操作"></a>三、其他操作</h2><p>1.自增主键重置<br>ALTER TABLE babyTeacher.user AUTO_INCREMENT = 1;</p>
 
       
 
@@ -335,7 +332,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuanj1988.cn/2019/07/08/MyBatis配置文件详细解析/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuanj1988.cn/2019/07/24/sql语句知识汇总/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -349,18 +346,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/08/基础算法程序记录/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/24/SpringBoot结构分层解析/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          算法程序记录
+          SpringBoot结构分层解析 
         
       </div>
     </a>
   
   
-    <a href="/2019/07/07/MyBatis入门介绍/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MyBatis入门介绍</div>
+    <a href="/2019/07/14/Struts总结与体会/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Struts2总结与体会</div>
       <i class="icon-circle-right"></i>
     </a>
   

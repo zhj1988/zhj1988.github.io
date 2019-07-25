@@ -6,19 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.zhuanj1988.cn">
-  <title>MyBatis配置文件总结 | hexo——blog</title>
+  <title>Archives | hexo——blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MyBatis配置文件总结">
-<meta property="og:url" content="http://www.zhuanj1988.cn/2019/07/08/MyBatis配置文件详细解析/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="hexo——blog">
+<meta property="og:url" content="http://www.zhuanj1988.cn/archives/page/2/index.html">
 <meta property="og:site_name" content="hexo——blog">
-<meta property="og:description" content="简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-12T05:05:38.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MyBatis配置文件总结">
-<meta name="twitter:description" content="简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。">
+<meta name="twitter:title" content="hexo——blog">
   
     <link rel="alternative" href="/atom.xml" title="hexo——blog" type="application/atom+xml">
   
@@ -154,245 +150,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MyBatis配置文件详细解析" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      MyBatis配置文件总结
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/06/30/程序经典排序算法个人体会与总结/" class="archive-article-date">
+  	<time datetime="2019-06-30T10:58:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/06/30/程序经典排序算法个人体会与总结/">经典排序算法概述&amp;&amp;个人体会总结</a>
     </h1>
   
 
-        
-        <a href="/2019/07/08/MyBatis配置文件详细解析/" class="archive-article-date">
-  	<time datetime="2019-07-08T03:47:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>简介：本篇博客记录学习MyBatis配置文件中一些知识点跟总结，以提供给大家复习或者查看某个为学习到知识点，不适合初学者看，其中有什么错误的地方，欢迎指正。  </p>
-<a id="more"></a>
-<h2 id="MyBatis配置文件分为四个部分学习"><a href="#MyBatis配置文件分为四个部分学习" class="headerlink" title="MyBatis配置文件分为四个部分学习"></a>MyBatis配置文件分为四个部分学习</h2><ol>
-<li>数据库配置文件SqlMapConfig  </li>
-<li>SQL映射配置中输入映射的配置  </li>
-<li>SQL映射配置中输出映射的配置  </li>
-<li>Mapper自动映射 </li>
-</ol>
-<h2 id="第一部分数据库配置文件SqlMapConfig"><a href="#第一部分数据库配置文件SqlMapConfig" class="headerlink" title="第一部分数据库配置文件SqlMapConfig"></a>第一部分数据库配置文件SqlMapConfig</h2><ol>
-<li><p>configuration 配置文件的顶级标签     </p>
-</li>
-<li><p>properties 属性提供整个配置文件中其他的配置使用properties标签可以引入一个可动态变换的外部配置，如db.properties<br> <code>&lt;properties resource = &quot;dataSource.properties&quot;&gt;</code><br>   <code>&lt;property name = &quot;username&quot; value = &quot;root&quot;/&gt;</code><br>   <code>&lt;property name = &quot;password&quot; value = &quot;123456&quot;/&gt;</code><br> <code>&lt;/properties&gt;</code><br>其中dataSource.properties为项目一个配置文件，可以在其中修改，driver，url，name，password，相应的数据库连接池的信息会影响，在程序中，property属性，代表SqlMapConfig配置文件中可以修改dataSource.properties的属性值，name对应变量名，其他配置地区，使用value = “${username}”,即可调用出username对应的值，若在引用中使用value = “${username：root}”，即设置username默认值为root，要设置当username为空或者不存在时默认值。<br>*. properties避免了数据库配置信息硬编码     </p>
-</li>
-<li><p>setting配置分析<br>setting 影响Mybatis框架在运行时候的一些行为，如配置缓冲，延迟加载等待，下面详细介绍一下；<br>1）cacheEnable ：是否使用缓存，全局缓存的开关，默认值true（开启二级缓冲，Mapper，一级缓冲在SqlSession对象中，也要在mapper.xml文件中添加）    
-2）lazyLoadingEnglish ：是否开启延迟加载 ，默认值false<br>3）aggressiveLazyLoading：是否需加载属，开启后调用方法加载对象，都会加载对象所有属性，关闭之后只会按需加载，默认值 false<br>4）multipleResultSetsEnable：是否允许单一语句返回多结果集，即Mapper 配置中单一的SQL配置是否返回多个结果集， 默认值true<br>5）useColumnLabel：使用列标签代替列名，默认值true<br>6）useGenerateKeys:是否支持JDBC自动生成主键 ，默认值false<br>7）autoMappingBehavior： 指定Mybatis自动映射的字段或属的方式，NONE,PARTIAL,FULL，默认值 PARTIAL（只会自动映射没有定义结果集的结果映射）<br>8）autoMappingUnknownColumnBehavior：设置当前自动映射时发现未知列的动作，NONE,WARNING,FAILING,默认值为NONE<br>9)defaultExecutorType:设置默认的执行器SIMPLE,REUSE,BATCH,默认值为SIMPLE(普通执行器会重用与处理语句)<br>a）defaultStatementTimeout：设置超时时间<br>b）defaultFetchSize：设置驱动的结果集获取数量的提示值（fetchSize），防止获得的结果过多，导致内存溢出<br>c）safeRowBoundEnable：允许嵌套语句中使用分页（行内嵌套语句），默认值false（允许）<br>d）mapUnderscoreToCamelCase：是否开启驼峰命名规则映射，默认false<br>e）localCacheScope：利用本地缓存机制，防止循环引用和加速重复嵌套查询，即sqlsession对象是否共享，默认值SESSION(缓存一个会话中执行的所有查询，数据共享)，STATEMENT（对相同的session不同调用，不会共享数据）<br>f）jdbcTypeForNull：JDBC类型的默认设置，当没有参数提供特定的JDBC类型时，某些驱动需要指定列的JDBC类型（NULL,VARCHAR,OTHER）,默认值为OTHER<br>10）lazyLoadTriggerMethods：指定哪个对象的方法触发一次延迟加载，ex：value =”equals,clone,hashCode,toString”<br>ex:<br> <code>&lt;settings&gt;</code><br><code>&lt;setting name =&quot;cacheEnable&quot; values = &quot;true&quot; /&gt;</code><br> <code>&lt;/settings&gt;</code>    </p>
-</li>
-<li><p>typeAliases<br>为sql映射文件中输入/输出参数设置类型别名，然后在sql映射配置文件中指定输入/输出参数类型时使用别名<br><code>&lt;typeAliases&gt;</code><br>  <code>&lt;typeAlias alias=&quot;user&quot; type=&quot;mybatis.po.User&quot;/&gt;</code><br>  <code>&lt;typeAlias alias=&quot;str&quot; type=&quot;java.lang.String&quot;/&gt;</code><br><code>&lt;/typeAliases&gt;</code><br>批量定义别名，定义一个包装类的类，别名规范就是对应类的类名首字母变为小写<br><code>&lt;typeAliases&gt;</code><br>  <code>&lt;package name=&quot;mybatis.po.User&quot;/&gt;</code><br><code>&lt;/typeAliases&gt;</code><br>别名也可以在需要指定别名的类声明头添加注解”@Alias”<br><code>@Alies(&quot;user&quot;)</code><br> <code>public clase User{//代码</code><br> <code>}</code><br>Mybatis对java常见类型默认指定了别名，可以直接使用<br>_long /long, _int/int , string/java.lang.String ,int/java.lang.Integer , list/java.util.List    </p>
-</li>
-<li><p>typeHandlers 类型处理器<br>声明自己的类型处理器（将从数据库获取的值以合适的方式转换成java类型，将java类型的参数转换成数据库对应的类型）<br>三个步骤：<br>1）编写类型处理器类<br>一般要实现org.apache.ibatis.type.TypeHandler类型接口，接口泛式指定要转化的java参数类型<br>主要改写四个方法：<br>public void setParameter（PreparedStatement ps，int i，String parameter，JdbcType jdbcType）<br>在sql配置传入参数时（新增，修改，删除，条件查询）做处理<br>public String getResult（Resulset rs，String columnName）根据字段名<br>public String getResult（Resulset rs，int colcolumnIndex）根据字段下标<br>public String getResult（CallableStatement cs，int colcolumnIndex）供存储过程使用<br>2）在MyBatis全局配置文件中配置该类型处理器<br>在SqlMapConfig中使用标签来注册类型处理器<br> <code>&lt;typeHandlers&gt;</code><br><code>&lt;typeHandler handler=&quot;mybatis.test.DataTypeHander&quot;</code><br>   <code>javaType=&quot;java.util.Data&quot; jdbcType=&quot;TIMESTAMP&quot;/&gt;</code><br> <code>&lt;typeHandlers/&gt;</code><br>3）在SQL映射配置文件中使用<br>xxxMapper.xml中的语句中添加自定义的类型处理器的处理配置，ex：<br>insert into user（username，password，regdate）<br>Values<br>（#{usename}，#{password}，#{regdate，javaType=date，jdbcType=TIMESTAMP，typeHandler=mybatis.test.DateTypeHandler}）<br>设置参数regdate，会将java的Date类型转换成数据库需要的timestamp类型<br>补充不适用TypeHandler接口，可以继承org.apache.ibatis.type.BaseTypeHandler方法（setNonNUllParameter，getNullParameter（三个）总四个方法，同TypeHandler接口四个方法）    </p>
-</li>
-<li><p>objectFactory<br>对象工厂，创造实体对象的类，即实例化查询结果所对应的目标类（目标类的默认构造方法；目标类的有参构造方法）若自己创建对象工厂，继承DefaultObjectFactory类，改写相关四个方法，在全局配置文件SqlMapConfig中添加配置，使对象工厂生效；当Resource资源类加载SqlMapConfig.xml文件，创建SqlSessionFactory时候，会加载配置文件中的自定义ojectFactory    </p>
-</li>
-<li><p>plugins（插件）<br>执行程序过程对某一点进行拦截，并在拦截之后做出一系列处理，即拦截器，对某种方法进行拦截调用的机制，被称为plugin<br>实现一个plugin类，继承Interceptor接口，并且指定需要拦截的方法的签名信息<br>“@Intercepts”拦截器注解，该注解声明此类是一个插件类；”@Signature”签名信息注解，每个注解中的参数分别为拦截的方法所属接口类型（type），拦截方法名称（method）以及所需要的参数信息（args），其中intercept方法是一个对目标方法进行拦截的抽象方法，而pligin方法的作用是将拦截器插入目标对象，setProperties方法的作用是将全局配置文件中的参数注入插件类，最后在全局配置文件SqlMapConfig中配置该插件。<br>plugin使用场景：日志记录，权限控制，缓存控制等    </p>
-</li>
-<li><p>environments<br>放置有关数据库连接数据的配置标签，可以配置多个数据库连接环境，一个environment包含两部分，事务管理器（transactionManager），数据源（DataSource）信息<br>1）事务管理器类型：<br>a）JDBC，相当于直接使用jdbc的提交和回滚设置<br> <code>&lt;transactionManager type=&quot;JDBC&quot; /&gt;</code><br><code>&lt;property name =&quot;... &quot;, value = &quot;...&quot;/&gt;</code><br> <code>&lt;/transactionManager&gt;</code><br>b）MANAGED，不提交和回滚连接，而是由容器来管理事务的生命周期，默认关闭连接，动态指定closeConnection参数，当设置为”false”，在MANAGED类型下不会自动关闭连接<br><code>&lt;transactionManager type=&quot;MANAGED&quot; /&gt;</code><br><code>&lt;property name =&quot;closeConnection &quot;, value = &quot;false&quot;/&gt;</code><br> <code>&lt;/transactionManager&gt;</code><br>2)数据源（DataSource）三种内建数据源类型：<br>a）UNPOOLED设置每次请求时打开和关闭连接<br>b）POOLED设置一个管理数据库连接的资源池，用来合理控制数据库连接与关闭的次数  </p>
-</li>
-</ol>
-<p><strong>c）JNDI配置连接外部数据源（如服务器提供的数据源）</strong><br>支持配置多个数据库连接环境，配置”databaseIdProvider”参数，在SqlMapConfig中添加：<br><databaseidprovider type="DB_VENDOR">    </databaseidprovider></p>
-<ol start="9">
-<li>mappers<br>基于sql映射文件，即Mapper配置文件，SqlSession类，读取Mapper配置文件中的sql，通过全局配置文件自己中，mappers<br>配置方式：<br>1）使用相对路径进行配置：<br><code>&lt;mappers&gt;</code>   <pre><code>`&lt;mapper resource=&quot;org/mybatis/mappers/UserMapper.xml&quot;/&gt;`   
-`&lt;mapper resource=&quot;org/mybatis/mappers/CustomerMapper.xml&quot;/&gt;`   </code></pre> <code>&lt;/mappers&gt;</code><br>2)使用绝对路径进行配置：<br> <code>&lt;mappers&gt;</code>   <pre><code>`&lt;mapper url=&quot;file：///var/mapper/UserMapper.xml&quot;/&gt;`   
-`&lt;mapper url=&quot;file：///var/mapper/CustomerMapper.xml&quot;/&gt;`   </code></pre> <code>&lt;/mappers&gt;</code><br>3）使用接口信息进行配置：<br><code>&lt;mappers&gt;</code>   <pre><code>`&lt;mapper class=&quot;org.mybatis.mappers.UserMapper.xml&quot;/&gt;`   
-`&lt;mapper class=&quot;org.mybatis.mappers.CustomerMapper.xml&quot;/&gt;`   </code></pre> <code>&lt;/mappers&gt;</code><br>4)使用接口所在包进行配置：<br><code>&lt;mappers&gt;</code>   <pre><code>`&lt;package name =&quot;org.mybatis.mappers&quot;/&gt;`     </code></pre> <code>&lt;/mappers&gt;</code> </li>
-</ol>
-<hr>
-<h2 id="Mapper映射文件"><a href="#Mapper映射文件" class="headerlink" title="Mapper映射文件"></a>Mapper映射文件</h2><p>Mapper文件即sql语句的配置文件，创建会话SqlSessionFactory<br>映射文件总体介绍  ：insert ，update，select，delete，resultMap，cache，sql，cache-ref<br>标签中各个属性含义：<br>id：sql映射配置的唯一标识，可以代表sql配置，所属标签<br>parameterType ：传入sql配置中需要的类型的类名或者别名<br>resultType：配置sql语句执行后<strong>期望</strong>得到的结果数据类型<br>resultMap：引入外部结果集配置，该结果集配置对应sql结果中的每个字段名称，即将映射到java对象中的哪些属性<br>fetchSize：每次批量返回结果的行数<br>resultSetType:设置结果集类型<br>resultSets：当多个结果集时使用，为返回的每个结果集设定一个名称，以逗号分开  </p>
-<h2 id="第二部分-Mapper配置输入映射"><a href="#第二部分-Mapper配置输入映射" class="headerlink" title="第二部分 Mapper配置输入映射"></a>第二部分 Mapper配置输入映射</h2><p>输入配置参数属性配置在paramterType，基本数据类型，int，char，boolean基本数据包装类，Byte，Integer，java复杂数据类型，javabean 包装类型   </p>
-<ol>
-<li><p>Handler（类型处理器）<br>当需要为传输参数指定一个特殊的数据库类型时，在#{}添加类型处理<br> <code>#{age，javaType=int,jdbcType=NUMERIC,typeHandler=AgeTypeHandler}</code>   </p>
-</li>
-<li><p>numericScale(添加小数点位数设置)保留两位小数点ex：<br>  <code>#{price，javaType=double,jdbcType=DECIMAL,numericScale=2}</code>    </p>
-</li>
-<li><p>使用存储过程，设置一个参数“mode”，其值有IN（输入参数，可多个），OUT（输出参数，至多一个），INOUT（输入/输出参数，至多一个）  </p>
-<p> &lt;select id=””statementType=”CALLABLE”parameterType=”hashmap”&gt;</p>
- <!--[CDATA[
- {call pro_for_input(#{information,mode=IN,jdbcType=VARCHAR})}
- ]]-->
- 
-</li>
-<li><p>向sql语句中插入一个不会被改变的字符串或者向拼接sql语句，使用${}   </p>
-</li>
-<li><p>原javaBean，User类，使用UserInstant extends User，按照后续的要求修改UserInstant而不用修改原始的User，定义一个UserQuerInfo，含有UserInstant属性，则可以使用set，get方法一次性加载或存储UserInstant类型；</p>
-</li>
-</ol>
-<h2 id="第三部分-Mapper配置输出映射"><a href="#第三部分-Mapper配置输出映射" class="headerlink" title="第三部分 Mapper配置输出映射"></a>第三部分 Mapper配置输出映射</h2><ol>
-<li>resultType 类型<br>特点：<br>1）不管输出javaBean单个对象还是一个列表，在Mapper映射文件中resultType类型是一样的<br>输出单个对象，返回javaBean对象类型，输出一个列表，返回List<javabean>；  
-2）如果没有合适的javaBean接受结果集数据，resultType输出HashMap类型的数据，将输出字段名称作为map的key，value作为字段值，为集合时，list<hashmap>  </hashmap></javabean></li>
-</ol>
-<ol start="2">
-<li>resultMap类型<br>返回结果为多个值，没有一个完全与返回结果值一一匹配的封装类接受，使用一个容器接受结果数据，到业务层再处理，resultMap 和数据库列名column 与javaBean属性名之间创建映射关系<br>ex：<br> <code>&lt;resultMap id=&quot;productResult&quot; type=&quot;cn.com.mybatis.po.Product&quot;&gt;</code><br>   <code>&lt;id property=&quot;pid&quot; column=&quot;product_id&quot;/&gt;</code><br>   <code>&lt;result property=&quot;pname&quot; column=&quot;product_name&quot;/&gt;</code><br> <code>&lt;/resultMap&gt;</code><br> <code>&lt;select id=&quot;queryProductInfo&quot; parameterType=&quot;int&quot; resultMap=&quot;productResult&quot;&gt;</code><br>   <code>select</code>  <pre><code>`P.id            as pid,`  
-`U.email         as user_email`  </code></pre>   <code>from product P</code><br>   <code>where P.id = #{id}</code><br> <code>&lt;/select&gt;</code><br>id property：主键； result property:非主键； 引入外部Mapper，使用namespace.id<br>1)association标签:<br>关联嵌套结果，表明返回的结果集对象中，java包装类中还含有其他java包装类，应用于表与表关联，一对一的关系中<br>ex：<br> <code>&lt;resultMap id=&quot;GamePlayerResult&quot; type=&quot;cn.com.mybatis.po.User&quot;&gt;</code><br>   <code>&lt;id property=&quot;id&quot; column=&quot;id&quot; /&gt;</code><br>   <code>&lt;result property=&quot;username&quot; column=&quot;name&quot;/&gt;</code><br>   <code>&lt;association property=&quot;professionalAttributes&quot;</code> <code>javaType=&quot;java.util.HashMap&quot;&gt;</code><pre><code>`&lt;id property=&quot;pid&quot; column=&quot;product_id&quot;/&gt;`  
-`&lt;result property=&quot;pname&quot; column=&quot;product_name&quot;/&gt;`</code></pre>   <code>&lt;/association&gt;</code><br> <code>&lt;/resultMap&gt;</code><br>如果已经定义好包装类嵌套的包装类，则可以这样定义<br><code>&lt;association property=&quot;user&quot;</code> <code>javaType=&quot;myBatis.po.User&quot; resultMap = &quot;userResult&quot;/&gt;</code><br>2）connection标签：<br>集合的嵌套结果，包装类中包含一些List集合属性，便于对Mybatis对包装类中的集合类型属性进行映射，应用于一对多的关系中<br>ex：<br> <code>&lt;resultMap id=&quot;productResult&quot; type=&quot;cn.com.mybatis.po.Product&quot;&gt;</code><br>   <code>&lt;id property=&quot;pid&quot; column=&quot;product_id&quot;/&gt;</code><br>   <code>&lt;result property=&quot;pname&quot; column=&quot;product_name&quot;/&gt;</code><br>   <code>&lt;collection property=&quot;users&quot; ofType=&quot;cn.com.mybatis.po.User&quot;&gt;</code>  <pre><code>`&lt;id property=&quot;id&quot; column=&quot;user_id&quot;/&gt;`  
-`&lt;result property=&quot;username&quot; column=&quot;user_username&quot;/&gt;`  </code></pre>   <code>&lt;/collection&gt;</code><br> <code>&lt;/resultMap&gt;</code><br>3）鉴别器：<br>resultMap根据”professionType”字段的不同，映射不同的resultMap信息  <pre><code>`&lt;discriminator javaType=&quot;int&quot; column=&quot;profession_type&quot;&gt;`  
-  `&lt;case value=&quot;1&quot; resultMap=&quot;warriorResult&quot;/&gt;`  
-  `&lt;case value=&quot;2&quot; resultMap=&quot;magicianResult&quot;/&gt;`  
-`&lt;/discriminator&gt;`    </code></pre><h2 id="第四部分Mapper自动映射以及配置动态sql语句"><a href="#第四部分Mapper自动映射以及配置动态sql语句" class="headerlink" title="第四部分Mapper自动映射以及配置动态sql语句"></a>第四部分Mapper自动映射以及配置动态sql语句</h2></li>
-</ol>
-<p><strong>第一部分</strong>  </p>
-<ol>
-<li>autoMappingBehavior（自动映射设置主要在SqlMapConfig中，setting标签中，name= value= ）：指定Mybatis自动映射的字段或属的方式，NONE,PARTIAL,FULL，默认值 PARTIAL（只会自动映射没有定义结果集的结果映射）；PARTIAL只对非嵌套的resultMap进行自动映射；FULL对所有resultMap都进行自动映射，可能会造成某些嵌套属性和结果的字段名一致而被映射；NONE不能进行自动映射  </li>
-<li>autoMapping（在resultMap中定义，忽略SqlMapConfig中的设置）：false不能自动映射，只能手动映射  </li>
-<li>包装类使用驼峰命名规则，在全局配置文件中设置mapUnderscoreToCamelCase，为true </li>
-</ol>
-<p><strong>第二部分</strong>  </p>
-<ol>
-<li>sql语句中可替换的条件或者sql语句<br>ex：<br><code>&lt;where&gt;</code><br><code>&lt;if test=&quot;User!=null&quot;&gt;</code><br><code>&lt;if test =&quot;User.id!=null and User.id!=&#39;&#39;&quot;&gt;</code><br><code>and user.id = # {User.id}</code><br><code>&lt;/if&gt;</code><br><code>&lt;/if&gt;</code><br><code>&lt;/where&gt;</code><br>因为<where>的存在自动忽略第一个and<br>复用性较强的sql语句：<br><code>&lt;sql id=&quot;use_id_check&quot;&gt;</code><br><code>and user.id = #{value}</code><br><code>&lt;/sql&gt;</code><br>调用时：    <where>   
-<include refid="use_id_check"></include>  
-</where>   </where></li>
-<li>向sql配置传递一个数组或者List类型的输入参数，使用<foreach><br>ex:<br><foreach collection="ids" item="user_id" open="and(" close=")" separator="or"><br>id=#{user_id}</foreach>
-使用foreach遍历传入的ids查询参数，在foreach标签中，collection指定输入对象中的集合属性，item指定每次遍历生成的对象名，open为开始遍历时要拼接的串，close为结束时候要拼接的串，separator为遍历对象中间需要拼接的串  
-</foreach></li>
-</ol>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuanj1988.cn/2019/07/08/MyBatis配置文件详细解析/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
-  
-    <a href="/2019/07/08/基础算法程序记录/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          算法程序记录
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/07/07/MyBatis入门介绍/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MyBatis入门介绍</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/06/29/使用hexo与GitHub仓库初步搭建博客/" class="archive-article-date">
+  	<time datetime="2019-06-28T17:37:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-29</time>
+</a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
+    	 
   
-  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/06/29/使用hexo与GitHub仓库初步搭建博客/">使用hexo与GitHub仓库初步搭建博客</a>
+    </h1>
   
 
+        <div class="article-info info-on-right">
+          
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
   
 
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -416,8 +246,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

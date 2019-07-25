@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="hexo——blog">
 <meta property="og:description" content="简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-11T09:23:05.363Z">
+<meta property="og:updated_time" content="2019-07-16T10:40:47.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring MVC入门介绍">
 <meta name="twitter:description" content="简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发">
@@ -256,7 +256,42 @@ prefix属性指定视图资源所在路径的前缀信息，ex：prefix”/WEB-I
     &lt;property name=&quot;cacheSeconds&quot; value=&quot;120&quot; /&gt;  
 &lt;/bean&gt;</code></pre><p>1.providerClass，校验器提供类:org.hibernate.validator.HibernateValidator<br>2.validationMessageSource校验器使用的资源文件，在文件中配置校验的错误信息<br>3.bean id=”messageSource”自定义的校验资源文件，在springmvc中添加<br>4.校正类型@Size（min =，max=，message=”{报错信息}”）;@NotEmpty(message=”{报错信息}”)<br>ex：<br>@RequestMapping（”/test”）<br>public void method(Model model，@Validated User user，BindingResult bindingResult ){ }<br>@Validated 与 BindingResult 成对出现，顺序固定<br>5.将错误传到页面 model.addAttribute（”allErrors”,allErrors）</p>
 <h3 id="（二）分组校验"><a href="#（二）分组校验" class="headerlink" title="（二）分组校验"></a>（二）分组校验</h3><p>当javabean被不同的Controller调用的时候，有些需要Validation校验有些不用，这个时候就需要分组校验了<br>1.新建一个接口<br>public interface group1{}<br>2.在实体类中校验分配给不同的组<br>javabean:<br>public class User{<br>@Size（min =，max=，message=”{user.name.length.error}”，groups={group1.class}）;<br>private String name;<br>}  
-测试类中：<br>public void method(Model model，@Validated（value=”group1.class”） User user，BindingResult bindingResult ){ }<br>3.validator 接口实现<br>1）编写一个实现了validator接口的实现类；<br>2）测试类中，首先建立@initBinder 方法为DataBinder对象设置Validator校验对象，当调用下面方法形参中的有BindingResult参数时候，BindingResult对象将DataBinder中Validator的校验结果对象封装到自己的Errors对象集合中，BindingResult对象 Errors属性通过器getErrors（）方法获得校正错误信息，hasErrors（）方法获得是否有校正错误信息<br>补充：Errors集合对象，为一个List<objecterror>,使用getcode(),getDefaultMessage()获得相关属性（String）</objecterror></p>
+测试类中：<br>public void method(Model model，@Validated（value=”group1.class”） User user，BindingResult bindingResult ){ }<br>3.validator 接口实现<br>1）编写一个实现了validator接口的实现类；<br>2）测试类中，首先建立@initBinder 方法为DataBinder对象设置Validator校验对象，当调用下面方法形参中的有BindingResult参数时候，BindingResult对象将DataBinder中Validator的校验结果对象封装到自己的Errors对象集合中，BindingResult对象 Errors属性通过器getErrors（）方法获得校正错误信息，hasErrors（）方法获得是否有校正错误信息<br>补充：Errors集合对象，为一个List<objecterror>,使用getcode(),getDefaultMessage()获得相关属性（String）；可以使用@valid标准需要检验的参数，spring才会对其检验  </objecterror></p>
+<h2 id="第七部分异常处理和拦截器"><a href="#第七部分异常处理和拦截器" class="headerlink" title="第七部分异常处理和拦截器"></a>第七部分异常处理和拦截器</h2><h3 id="（一）全局异常处理器"><a href="#（一）全局异常处理器" class="headerlink" title="（一）全局异常处理器"></a>（一）全局异常处理器</h3><ol>
+<li>SpringMVC中有一个全局异常处理器，service，DAO，Controller层出现异常throws Exception的形式向上抛出，最后由前端控制器统一交给全局异常处理器处理  </li>
+<li>对于预期的异常，通常自定义异常类处理，将异常存储在自定义异常类中，如message属性，最后全局异常处理器处理该异常  </li>
+<li>自定义异常类UserException(继承Exception) -&gt; 全局异常类(UserExceptionResolver)实现HandlerExceptionResolver接口<br>接口实现了resolverException方法，输入参数(Object handler,Exception ex), 返回值为ModelAndView ,通过这个返回值来设置异常时显示的页面；在全局异常处理器中，如果没有UserException定义的错误，输出message信息”未知错误”，最后都需要ModelAndView.addObject（”message”,message）  </li>
+</ol>
+<h3 id="（二）拦截器"><a href="#（二）拦截器" class="headerlink" title="（二）拦截器"></a>（二）拦截器</h3><ol>
+<li><p>interceptor拦截器，用于请求的预处理和后处理  </p>
+</li>
+<li><p>继承或实现HandlerInterception接口<br>1）preHandler：决定程序是否执行，返回Boolean<br>2）postHandler：决定执行Handler之后，返回ModelAndView之前执行，统一返回视图<br>3）afterCompletion:在Controller执行完之后执行，进行统一的异常或日志操作<br>在spring的类加载配置文件中配置拦截器实现类，即处理器映射器中配置ref bean=“id”， 针对全局配置可以在spring类加载文件中红配置：  </p>
+<pre><code>&lt;mvc:interceptors&gt;  
+    &lt;!-- 多个拦截器，顺序执行 --&gt;  
+    &lt;mvc:interceptor&gt;  
+        &lt;!-- /**表示所有url包括子url路径 --&gt;  
+        &lt;mvc:mapping path=&quot;/**&quot;/&gt;  
+        &lt;bean class=&quot;cn.com.mvc.interceptor.LoginInterceptor&quot;/&gt;  
+    &lt;/mvc:interceptor&gt;  
+&lt;/mvc:interceptors&gt; </code></pre></li>
+<li><p>继承或实现WebRequestInterception接口<br>1）preHandler：返回值为void<br>2）postHandler：执行Handler之后，返回ModelAndView之前执行,返回ModelMap,来改变Model<br>3）afterCompletion：将WebRequest参数中不需要的准备资源释放掉<br>主要进行请求前及请求后拦截，该接口参数没有response，只有request ，参数含有WebRequest ，含有三个属性（SCOPE_REQUEST,SCOPE_SESSION,SCOPE_GLOBAL_SESSION）</p>
+</li>
+<li><p>拦截器链：拦截器按照spring中顺序，顺序执行    </p>
+</li>
+<li><p>拦截器可以作为登录拦截，判断session中user对象是否为空，判断为是否登录过  </p>
+</li>
+</ol>
+<h2 id="第八部分SpringMVC与前段页面常见的交互类型"><a href="#第八部分SpringMVC与前段页面常见的交互类型" class="headerlink" title="第八部分SpringMVC与前段页面常见的交互类型"></a>第八部分SpringMVC与前段页面常见的交互类型</h2><h3 id="（一）上传文件"><a href="#（一）上传文件" class="headerlink" title="（一）上传文件"></a>（一）上传文件</h3><ol>
+<li>servlet，使用multipart/form-data 属性传输，包装成HttpServletRequest对象，再由servlet处理  </li>
+<li>在springmvc.xml中配置multipart类型加载器 ，使用MultiPartFile类来接受request请求中的multipart文件数据；若为文件类型，使用UUID.randomUUID方法生成随机名称；将存储路径及图片文件合并，生成file对象，在执行transferTO方法，将内存中图片缓冲写入设置的路径中，大文件可用IO流进行读写，并且实时返回读写进度；回显图片时候，将图片名称放入Model对象即可</li>
+<li>如果把文件存储在服务器中，需要修改tomcat配置中的虚拟路径，对应对相应的绝对路径</li>
+<li>当传入多张图片时候，使用MultipartFile数组  <h3 id="（二）JSON交互"><a href="#（二）JSON交互" class="headerlink" title="（二）JSON交互"></a>（二）JSON交互</h3>JSON格式(int,boolean,null不需要加””)<br>普通：{“key”:”value”}<br>数组：{“key”:[{“key1”:”value”} ,{“key2”:”value”} ,{“key3”:”value”} ]} 使用方括号<br>对象：{“key”:{“key1”:”value”,”key2”:”value”,”key3”:”value”}}使用中括号  </li>
+</ol>
+<p>利用类型转换器（messageConverters），在相应的Controller方法中，输入参数或者返回参数之前添加<br>@RequestBody注解，根据contentType类型，如果为application/json 就将其转换为JSON<br>@ResponseBody该注解用于将Controller的方法返回的对象，通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。  当返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用；</p>
+<h3 id="（三）RESTful风格"><a href="#（三）RESTful风格" class="headerlink" title="（三）RESTful风格"></a>（三）RESTful风格</h3><p>RESTful:表现层状态转换；规范资源获取URL路径；<br>RESTful约束：<br>URL中不会出现动词，使用HTTP的动词（GET,POST,PUT,DELETE）;<br>充分利用HTTP方法：GET：获取资源,POST：新建资源,PUT：更新资源,DELETE：删除资源  </p>
+<p>使用RequestMapping（value=”/url/{id}”，method={RequestMethod.GET}）,在请求路径中获得动态数据{id}，使用@<br>PathVariable（”id”）注解，将id赋值给其他参数</p>
+<p>web框架不支持除了post跟get方法时候，在请求数据中添加 “_method”参数，然后再web.xml中配置hiddenHttpMethodFilter的过滤器</p>
+<p>web.xml规定了，url后缀为”.action”就交付给springmvc前端控制器，改为 / 所有路径请求都可以被springmvc处理，但是静态页面的访问也会带来错误，第一种解决方法：在springmvc.xml中使用&lt;mvc:resources location=”/js” mapping=”路径”/&gt;将需要加载的静态资源的URL路径配置在路径标签中；在springmvc.xml中<a href="mvc:default-servlet-handler/" target="_blank" rel="noopener">mvc:default-servlet-handler/</a> 使用默认的servlet处理器，对进入DispatchServlet前端控制器的请求进行筛选，没有经过映射的请求交由web应用默认的servlet处理  </p>
 
       
 
@@ -350,9 +385,18 @@ prefix属性指定视图资源所在路径的前缀信息，ex：prefix”/WEB-I
   
 <nav id="article-nav">
   
+    <a href="/2019/07/13/maven学习与总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          maven学习与总结
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/07/08/基础算法程序记录/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基础算法程序记录</div>
+      <div class="article-nav-title">算法程序记录</div>
       <i class="icon-circle-right"></i>
     </a>
   

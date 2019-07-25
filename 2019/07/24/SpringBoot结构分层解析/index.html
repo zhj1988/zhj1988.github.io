@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.zhuanj1988.cn">
-  <title>经典排序算法概述&amp;&amp;个人体会总结 | hexo——blog</title>
+  <title>SpringBoot结构分层解析  | hexo——blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介：本次博客总结一下网上现存的经典算法，结合个人之前一些不理解的地方进行汇总，如果有错误的地方，欢迎指正。">
+  <meta name="description" content="简介：最近使用springBoot写项目，springBoot的层次分层跟之前学习不太一样，百度得到的答案杂七杂八，最后在github上找一个例子，依样画葫芦之后总算运算成功，特此记录一下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="经典排序算法概述&amp;&amp;个人体会总结">
-<meta property="og:url" content="http://www.zhuanj1988.cn/2019/06/30/程序经典算法个人体会总结/index.html">
+<meta property="og:title" content="SpringBoot结构分层解析 ">
+<meta property="og:url" content="http://www.zhuanj1988.cn/2019/07/24/SpringBoot结构分层解析/index.html">
 <meta property="og:site_name" content="hexo——blog">
-<meta property="og:description" content="简介：本次博客总结一下网上现存的经典算法，结合个人之前一些不理解的地方进行汇总，如果有错误的地方，欢迎指正。">
+<meta property="og:description" content="简介：最近使用springBoot写项目，springBoot的层次分层跟之前学习不太一样，百度得到的答案杂七杂八，最后在github上找一个例子，依样画葫芦之后总算运算成功，特此记录一下">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-06T07:38:50.986Z">
+<meta property="og:updated_time" content="2019-07-24T02:29:26.892Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="经典排序算法概述&amp;&amp;个人体会总结">
-<meta name="twitter:description" content="简介：本次博客总结一下网上现存的经典算法，结合个人之前一些不理解的地方进行汇总，如果有错误的地方，欢迎指正。">
+<meta name="twitter:title" content="SpringBoot结构分层解析 ">
+<meta name="twitter:description" content="简介：最近使用springBoot写项目，springBoot的层次分层跟之前学习不太一样，百度得到的答案杂七杂八，最后在github上找一个例子，依样画葫芦之后总算运算成功，特此记录一下">
   
     <link rel="alternative" href="/atom.xml" title="hexo——blog" type="application/atom+xml">
   
@@ -154,35 +154,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-程序经典算法个人体会总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SpringBoot结构分层解析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      经典排序算法概述&amp;&amp;个人体会总结
+      SpringBoot结构分层解析 
     </h1>
   
 
         
-        <a href="/2019/06/30/程序经典算法个人体会总结/" class="archive-article-date">
-  	<time datetime="2019-06-30T10:58:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
+        <a href="/2019/07/24/SpringBoot结构分层解析/" class="archive-article-date">
+  	<time datetime="2019-07-24T01:50:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简介：本次博客总结一下网上现存的经典算法，结合个人之前一些不理解的地方进行汇总，如果有错误的地方，欢迎指正。 </p>
-<a id="more"></a> 
-<p>首先是关于稳定性解释：假定在待排序的记录序列中，存在多个具有相同的关键字的记录，若经过排序，这些记录的相对次序保持不变，即在原序列中，r[i]=r[j]，且r[i]在r[j]之前，而在排序后的序列中，r[i]仍在r[j]之前，则称这种排序算法是稳定的；否则称为不稳定的。—–来自百度百科（十分好理解）  </p>
-<h2 id="1-冒泡排序法（Bubble-Sort）"><a href="#1-冒泡排序法（Bubble-Sort）" class="headerlink" title="1. 冒泡排序法（Bubble Sort）"></a>1. 冒泡排序法（Bubble Sort）</h2><p>冒泡排序是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。<br>时间复杂度：最优 O（n），最坏O（n^2）<br>怎么最优解：第一层循环设定一个标志为true，在第二层循环，if判断是否交换数组元素时候，若交换则修改标志为false，第二层循环结束，若无交换，则标志任为false，此时写一个if判断，若为false，则break跳出循环，或者return退出方法。<br>稳定性：稳定  </p>
-<h2 id="2-选择排序法-Selection-sort"><a href="#2-选择排序法-Selection-sort" class="headerlink" title="2. 选择排序法(Selection-sort)"></a>2. 选择排序法(Selection-sort)</h2><p>选择排序是一种简单直观的排序算法。它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。<br>时间复杂度：最优O（n^2）最坏O（n^2）<br>解释：选择排序法，每次固定两层循环，将未排序的剩余元素一一进行比较，排序得出该序列上位置的最优解，所以时间复杂度固定不变。<br>稳定性：不稳定<br>解释：举个例子，序列5 8 5 2 9， 我们知道第一遍选择第1个元素5会和2交换，那么原序列中2个5的相对前后顺序就被破坏了，所以选择排序不是一个稳定的排序算法。</p>
-<h2 id="3-插入排序（Insertion-Sort）"><a href="#3-插入排序（Insertion-Sort）" class="headerlink" title="3. 插入排序（Insertion Sort）"></a>3. 插入排序（Insertion Sort）</h2><p>插入排序的算法描述是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。<br>贴一段代码<br>function insertionSort(arr) {<br>    var len = arr.length;<br>    var preIndex, current;<br>    for (var i = 1; i &lt; len; i++) {<br>        preIndex = i - 1;<br>        current = arr[i];<br>        while (preIndex &gt;= 0 &amp;&amp; arr[preIndex] &gt; current) {<br>            arr[preIndex + 1] = arr[preIndex];<br>            preIndex–;<br>        }<br>        arr[preIndex + 1] = current;<br>    }<br>    return arr;<br>}  
-注意点:插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。<br>时间复杂度：最优 O（n），最坏O（n^2）<br>解释：若为已排序数组，第二层循环每次仅执行一次，最优时间复杂度O(n)<br>稳定性：稳定</p>
-<h2 id="4-希尔排序（Shell-Sort）"><a href="#4-希尔排序（Shell-Sort）" class="headerlink" title="4. 希尔排序（Shell Sort）"></a>4. 希尔排序（Shell Sort）</h2><p>1959年Shell发明，第一个突破O(n2)的排序算法，是简单插入排序的改进版。它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序。比较相隔较远距离（称为增量）的数，使得数移动时能跨过多个元素，则进行一次比较就可能消除多个元素交换。<br>希尔排序的核心在于间隔序列的设定。既可以提前设定好间隔序列，也可以动态的定义间隔序列。<br>列出java程序<br>int d=a.length;<br>            while(true)<br>            {<br>                d=d/2;<br>                for(int x=0;x&lt;d;x++)<br>                {<br>                    for(int i=x+d;i&lt;a.length;i=i+d)<br>                    {<br>                        int temp=a[i];<br>                        int j;<br>                        for(j=i-d;j&gt;=0&amp;&amp;a[j]&gt;temp;j=j-d)<br>                        {<br>                            a[j+d]=a[j];<br>                        }<br>                        a[j+d]=temp;<br>                    }<br>                }<br>                if(d==1)<br>                {<br>                    break;<br>                }<br>            }<br>            System.out.println();<br>            System.out.println(“排序之后：”);<br>时间复杂度：最优 O（n），最坏O（n^2）<br>稳定性：不稳定</p>
+        <p>简介：最近使用springBoot写项目，springBoot的层次分层跟之前学习不太一样，百度得到的答案杂七杂八，最后在github上找一个例子，依样画葫芦之后总算运算成功，特此记录一下  </p>
+<a id="more"></a>
 
+<p>springBoot项目的结构分层</p>
+<p>总共分成五个文件夹  </p>
+<p>controller</p>
+<p>configuration</p>
+<p>bean（entity）</p>
+<p>dao（mapper）</p>
+<p>service</p>
+<p>下面对每个层次进行分析</p>
+<p>一、controller控制层</p>
+<p>使用@Controller注解标志控制类<br>主要负责写url，对与前端数据进行交互<br>@Autowired<br>UserDao userdao<br>现实Dao层接口<br>之后使用user.xx 方法与数据库交互  </p>
+<p>二、configuration配置层</p>
+<p>使用@Configuration注解标志配置类<br>本层编写spring MVC / Mybatis 配置的一些文件，再使用@Bean添加到容器中<br>本层如果全部自动配置，使用注解，这一层可以不用编写  </p>
+<p>三、bean实体类</p>
+<p>编写数据库表映射的类，如果使用hibernate，使用@Entity标志类，@Table标志表名，@id标志主键 ，@Columns标志列名，自动在数据库中建表不要忘记创建set and get 方法  </p>
+<p>四、dao层</p>
+<p>本层为接口<br>1、如果使用@entity标志类，本层可以直接编写方法，调用实体类中的方法<br>如 User user.getOne(id);</p>
+<p>2、如果使用mybatis，全注解方式  </p>
+<pre><code>@Repository
+@Mapper
+public interface UserDao {
+    //通过手机号码找到登录密码
+    @Select(&quot;select user_password from user where user_phone = #{userPhone}&quot;)
+     String getUserPassword(String userPhone);</code></pre><p>3、如果使用mybatis，配置文件方式<br>首先需要在Configuration层，编写相应的配置文类，再@Bean添加到容器中<br>在application.xml/application.yml编写  </p>
+<pre><code>mybatis:
+  config-location: classpath:mybatis/myabtis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml</code></pre><p>之后可以在uao接口编写相应的方法</p>
+<p>五、service业务逻辑层</p>
+<p>此层分层两个部分，service接口和serviceImpl实现类</p>
+<p>service接口</p>
+<pre><code>public interface UserService {
+    String getUserPassword(String userPhone);
+    void insertUser(User uer);
+}</code></pre><p>serviceImpl实现类</p>
+<pre><code>@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserDao userDao;
+
+    @Override
+    public String getUserPassword(String userPhone) {
+        return userDao.getUserPassword(userPhone);
+    }
+    @Override
+    public void insertUser(User user) {
+        userDao.insertUser(user);
+    }
+}</code></pre>
       
 
       
@@ -261,7 +303,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuanj1988.cn/2019/06/30/程序经典算法个人体会总结/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.zhuanj1988.cn/2019/07/24/SpringBoot结构分层解析/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,18 +317,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/01/数据结构与算法个人总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          数据结构与算法个人总结
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/29/使用hexo与GitHub仓库初步搭建博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">使用hexo与GitHub仓库初步搭建博客</div>
+    <a href="/2019/07/24/sql语句知识汇总/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">sql语句知识汇总</div>
       <i class="icon-circle-right"></i>
     </a>
   
