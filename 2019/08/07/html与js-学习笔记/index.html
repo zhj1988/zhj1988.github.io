@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://zhj1988.github.io">
-  <title>Archives: 2019/7 | hexo——blog</title>
+  <title>html与js 学习笔记 | hexo——blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="hexo——blog">
-<meta property="og:url" content="https://zhj1988.github.io/archives/2019/07/index.html">
+  <meta name="description" content="最近学习使用bootstrap搭建一个后台管理系统，需要熟悉前段页面的一些语法操作，所以记录一下html与js 学习过程的一些笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html与js 学习笔记">
+<meta property="og:url" content="https://zhj1988.github.io/2019/08/07/html与js-学习笔记/index.html">
 <meta property="og:site_name" content="hexo——blog">
+<meta property="og:description" content="最近学习使用bootstrap搭建一个后台管理系统，需要熟悉前段页面的一些语法操作，所以记录一下html与js 学习过程的一些笔记。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-11T08:41:44.369Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo——blog">
+<meta name="twitter:title" content="html与js 学习笔记">
+<meta name="twitter:description" content="最近学习使用bootstrap搭建一个后台管理系统，需要熟悉前段页面的一些语法操作，所以记录一下html与js 学习过程的一些笔记。">
   
     <link rel="alternative" href="/atom.xml" title="hexo——blog" type="application/atom+xml">
   
@@ -150,292 +154,997 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-html与js-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      html与js 学习笔记
+    </h1>
+  
+
+        
+        <a href="zhj1988.github.io/2019/08/07/html与js-学习笔记/" class="archive-article-date">
+  	<time datetime="2019-08-07T07:43:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近学习使用bootstrap搭建一个后台管理系统，需要熟悉前段页面的一些语法操作，所以记录一下html与js 学习过程的一些笔记。</p>
+<a id="more"></a>
+
+<h1 id="第一部分关于html基本语法"><a href="#第一部分关于html基本语法" class="headerlink" title="第一部分关于html基本语法"></a>第一部分关于html基本语法</h1><h2 id="一、html入门总结"><a href="#一、html入门总结" class="headerlink" title="一、html入门总结"></a>一、html入门总结</h2><p>1.元素（规范写法：需要开始标签和结束标签）</p>
+<pre><code>&lt;p&gt;    这是一个段落    &lt;/p&gt;
+&lt;a href=&quot;default.htm&quot;&gt;    这是一个链接    &lt;/a&gt;
+&lt;br&gt;    换行
+
+没有内容的 HTML 元素被称为空元素。空元素是在开始标签中关闭的。
+&lt;br&gt; 就是没有关闭标签的空元素（&lt;br&gt; 标签定义换行）。
+推荐使用小写标签
+&lt;hr&gt; 标签在 HTML 页面中创建水平线。
+
+超链接文本
+&lt;a href=&quot;url&quot;&gt;链接文本&lt;/a&gt;
+
+&lt;a id=&quot;tips&quot;&gt;有用的提示部分&lt;/a&gt;
+在HTML文档中创建一个链接到&quot;有用的提示部分(id=&quot;tips&quot;）&quot;：
+&lt;a href=&quot;#tips&quot;&gt;访问有用的提示部分&lt;/a&gt;</code></pre><p>2.属性</p>
+<p>HTML 属性<br>HTML 元素可以设置属性<br>属性可以在元素中添加附加信息<br>属性一般描述于开始标签<br>属性总是以名称/值对的形式出现，比如：name=”value”。  </p>
+<pre><code>accesskey    设置访问元素的键盘快捷键。
+class    规定元素的类名（classname）
+contenteditableNew    规定是否可编辑元素的内容。
+contextmenuNew    指定一个元素的上下文菜单。当用户右击该元素，出现上下文菜单
+data-*New    用于存储页面的自定义数据
+dir    设置元素中内容的文本方向。
+draggableNew    指定某个元素是否可以拖动
+dropzoneNew    指定是否将数据复制，移动，或链接，或删除
+hiddenNew    hidden 属性规定对元素进行隐藏。
+id    规定元素的唯一 id
+lang    设置元素中内容的语言代码。
+spellcheckNew    检测元素是否拼写错误
+style    规定元素的行内样式（inline style）
+tabindex    设置元素的 Tab 键控制次序。
+title    规定元素的额外信息（可在工具提示中显示）
+translateNew    指定是否一个元素的值在页面载入时是否需要翻译</code></pre><p>3.属性引发事件 </p>
+<pre><code>属性    值    描述
+onblur    script    当元素失去焦点时运行脚本
+onchange    script    当元素改变时运行脚本
+oncontextmenuNew    script    当触发上下文菜单时运行脚本
+onfocus    script    当元素获得焦点时运行脚本
+onformchangeNew    script    当表单改变时运行脚本
+onforminputNew    script    当表单获得用户输入时运行脚本
+oninputNew    script    当元素获得用户输入时运行脚本
+oninvalidNew    script    当元素无效时运行脚本
+onreset    script    当表单重置时运行脚本。HTML 5 不支持。
+onselect    script    当选取元素时运行脚本
+onsubmit    script    当提交表单时运行脚本
+
+键盘事件（Keyboard Events）
+属性    值    描述
+onkeydown    script    当按下按键时运行脚本
+onkeypress    script    当按下并松开按键时运行脚本
+onkeyup    script    当松开按键时运行脚本
+
+鼠标事件（Mouse Events）
+通过鼠标触发事件, 类似用户的行为:
+
+属性    值    描述
+onclick    script    当单击鼠标时运行脚本
+ondblclick    script    当双击鼠标时运行脚本
+ondragNew    script    当拖动元素时运行脚本
+ondragendNew    script    当拖动操作结束时运行脚本
+ondragenterNew    script    当元素被拖动至有效的拖放目标时运行脚本
+ondragleaveNew    script    当元素离开有效拖放目标时运行脚本
+ondragoverNew    script    当元素被拖动至有效拖放目标上方时运行脚本
+ondragstartNew    script    当拖动操作开始时运行脚本
+ondropNew    script    当被拖动元素正在被拖放时运行脚本
+onmousedown    script    当按下鼠标按钮时运行脚本
+onmousemove    script    当鼠标指针移动时运行脚本
+onmouseout    script    当鼠标指针移出元素时运行脚本
+onmouseover    script    当鼠标指针移至元素之上时运行脚本
+onmouseup    script    当松开鼠标按钮时运行脚本
+onmousewheelNew    script    当转动鼠标滚轮时运行脚本
+onscrollNew    script    当滚动元素的滚动条时运行脚本</code></pre><p>4.文本标签</p>
+<pre><code>&lt;b&gt;    定义粗体文本
+&lt;em&gt;    定义着重文字
+&lt;i&gt;    定义斜体字
+&lt;small&gt;    定义小号字
+&lt;strong&gt;    定义加重语气
+&lt;sub&gt;    定义下标字
+&lt;sup&gt;    定义上标字
+&lt;ins&gt;    定义插入字
+&lt;del&gt;    定义删除字
+
+&lt;p style=&quot;font-family:arial;color:red;font-size:20px;&quot;&gt;一个段落。&lt;/p&gt;</code></pre><p>5.head元素</p>
+<pre><code>HTML head 元素
+标签    描述
+&lt;head&gt;    定义了文档的信息
+&lt;title&gt;    定义了文档的标题
+&lt;base&gt;    定义了页面链接标签的默认链接地址
+&lt;link&gt;    定义了一个文档和外部资源之间的关系
+&lt;meta&gt;    定义了HTML文档中的元数据
+&lt;script&gt;    定义了客户端的脚本文件
+&lt;style&gt;    定义了HTML文档的样式文件</code></pre><p>6.图片</p>
+<pre><code>&lt;img&gt; 是空标签，意思是说，它只包含属性，并且没有闭合标签。
+alt 属性用来为图像定义一串预备的可替换的文本。height（高度） 与 width（宽度）属性用于设置图像的高度与宽度。
+&lt;img src=&quot;url&quot; alt=&quot;some_text&quot;width=&quot;304&quot; height=&quot;228&quot;&gt;</code></pre><p>7.表格</p>
+<pre><code>表格的表头使用 &lt;th&gt; 标签进行定义。
+大多数浏览器会把表头显示为粗体居中的文本：
+border=&quot;1&quot;，外边框宽度
+&lt;caption&gt; 标签定义表格的标题。
+&lt;caption&gt; 标签必须直接放置到 &lt;table&gt; 标签之后。
+
+&lt;table border=&quot;1&quot;&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Header 1&lt;/th&gt;
+        &lt;th&gt;Header 2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;row 1, cell 1&lt;/td&gt;
+        &lt;td&gt;row 1, cell 2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;row 2, cell 1&lt;/td&gt;
+        &lt;td&gt;row 2, cell 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre><p>8.列表</p>
+<pre><code>无序列表是一个项目的列表，此列项目使用粗体圆点（典型的小黑圆圈）进行标记。
+无序列表使用 &lt;ul&gt; 标签
+
+&lt;ul&gt;
+&lt;li&gt;Coffee&lt;/li&gt;
+&lt;li&gt;Milk&lt;/li&gt;
+&lt;/ul&gt;
+
+同样，有序列表也是一列项目，列表项目使用数字进行标记。 有序列表始于 &lt;ol&gt; 标签。每个列表项始于 &lt;li&gt; 标签。
+列表项使用数字来标记。
+
+&lt;ol&gt;
+&lt;li&gt;Coffee&lt;/li&gt;
+&lt;li&gt;Milk&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;ol&gt;    定义有序列表
+&lt;ul&gt;    定义无序列表
+&lt;li&gt;    定义列表项
+&lt;dl&gt;    定义列表
+&lt;dt&gt;    自定义列表项目
+&lt;dd&gt;    定义自定列表项的描述</code></pre><p>9.区块布局</p>
+<pre><code>HTML 分组标签
+标签    描述
+&lt;div&gt;    定义了文档的区域，块级 (block-level)
+&lt;span&gt;    用来组合文档中的行内元素， 内联元素(inline)</code></pre><p>10.表单元素</p>
+<pre><code>表单元素是允许用户在表单中输入内容,比如：文本域(textarea)、下拉列表、单选框(radio-buttons)、复选框(checkboxes)等等。
+
+表单使用表单标签 &lt;form&gt; 来设置:
+文本域通过&lt;input type=&quot;text&quot;&gt; 标签来设定
+密码字段通过标签&lt;input type=&quot;password&quot;&gt; 来定义:
+单选按钮（Radio Buttons）
+&lt;input type=&quot;checkbox&quot;&gt; 定义了复选框. 用户需要从若干给定的选择中选取一个或若干选项。
+&lt;input type=&quot;submit&quot;&gt; 定义了提交按钮.
+
+当用户单击确认按钮时，表单的内容会被传送到另一个文件。表单的动作属性定义了目的文件的文件名。由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。:
+
+
+标签    描述
+&lt;form&gt;    定义供用户输入的表单
+&lt;input&gt;    定义输入域
+&lt;textarea&gt;    定义文本域 (一个多行的输入控件)
+&lt;label&gt;    定义了 &lt;input&gt; 元素的标签，一般为输入标题
+&lt;fieldset&gt;    定义了一组相关的表单元素，并使用外框包含起来
+&lt;legend&gt;    定义了 &lt;fieldset&gt; 元素的标题
+&lt;select&gt;    定义了下拉选项列表
+&lt;optgroup&gt;    定义选项组
+&lt;option&gt;    定义下拉列表中的选项
+&lt;button&gt;    定义一个点击按钮
+&lt;datalist&gt;New    指定一个预先定义的输入控件选项列表
+&lt;keygen&gt;New    定义了表单的密钥对生成器字段
+&lt;output&gt;New    定义一个计算结果</code></pre><p>11.框架iframe</p>
+<pre><code>iframe语法:
+
+&lt;iframe src=&quot;URL&quot;&gt;&lt;/iframe&gt;
+该URL指向不同的网页。
+
+Iframe - 设置高度与宽度
+height 和 width 属性用来定义iframe标签的高度与宽度。
+
+属性默认以像素为单位, 但是你可以指定其按比例显示 (如：&quot;80%&quot;)。
+
+实例
+&lt;iframe src=&quot;demo_iframe.htm&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;&lt;/iframe&gt;
+
+尝试一下 »
+
+Iframe - 移除边框
+frameborder 属性用于定义iframe表示是否显示边框。
+
+设置属性值为 &quot;0&quot; 移除iframe的边框:
+
+实例
+&lt;iframe src=&quot;demo_iframe.htm&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+尝试一下 »
+
+使用iframe来显示目标链接页面
+iframe可以显示一个目标链接的页面
+
+目标链接的属性必须使用iframe的属性，如下实例:
+
+实例
+&lt;iframe src=&quot;demo_iframe.htm&quot; name=&quot;iframe_a&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.runoob.com&quot; target=&quot;iframe_a&quot;&gt;RUNOOB.COM&lt;/a&gt;&lt;/p&gt;</code></pre><p>12.字符实体规范</p>
+<pre><code>实体（Entities）
+&amp;lt; 等同于 &lt;
+&amp;gt; 等同于 &gt;
+&amp;#169; 等同于 ©</code></pre><h1 id="第二部分关于java-Script"><a href="#第二部分关于java-Script" class="headerlink" title="第二部分关于java Script"></a>第二部分关于java Script</h1><h2 id="一、java-script入门知识"><a href="#一、java-script入门知识" class="headerlink" title="一、java script入门知识"></a>一、java script入门知识</h2><p>1.example</p>
+<pre><code>&lt;script&gt;
+function changeImage()
+{
+    element=document.getElementById(&apos;myimage&apos;)
+    if (element.src.match(&quot;bulbon&quot;))
+    {
+        element.src=&quot;/images/pic_bulboff.gif&quot;;
+    }
+    else
+    {
+        element.src=&quot;/images/pic_bulbon.gif&quot;;
+    }
+}
+&lt;/script&gt;
+&lt;img id=&quot;myimage&quot; onclick=&quot;changeImage()&quot; src=&quot;/images/pic_bulboff.gif&quot; width=&quot;100&quot; height=&quot;180&quot;&gt;</code></pre><p>通过 element=document.getElementById(‘myimage’)获取元素，并对其相应修改</p>
+<p>2.JavaScript 可以通过不同的方式来输出数据：</p>
+<p>使用 window.alert() 弹出警告框。<br>使用 document.write() 方法将内容写到 HTML 文档中。<br>使用 innerHTML 写入到 HTML 元素。<br>使用 console.log() 写入到浏览器的控制台。  </p>
+<p>3.javaScript 变量</p>
+<pre><code>var cars=new Array();
+cars[0]=&quot;Saab&quot;;
+cars[1]=&quot;Volvo&quot;;
+cars[2]=&quot;BMW&quot;;
+或者 (condensed array):
+
+var cars=new Array(&quot;Saab&quot;,&quot;Volvo&quot;,&quot;BMW&quot;);
+或者 (literal array):
+
+实例
+var cars=[&quot;Saab&quot;,&quot;Volvo&quot;,&quot;BMW&quot;];
+
+对象由花括号分隔。在括号内部，对象的属性以名称和值对的形式 (name : value) 来定义。属性由逗号分隔：
+
+var person={firstname:&quot;John&quot;, lastname:&quot;Doe&quot;, id:5566};
+
+如果您把值赋给尚未声明的变量，该变量将被自动作为 window 的一个属性。
+
+这条语句：
+
+carname=&quot;Volvo&quot;;
+将声明 window 的一个属性 carname。
+
+非严格模式下给未声明变量赋值创建的全局变量，是全局对象的可配置属性，可以删除。
+
+javaScript 变量生命周期在它声明时初始化。
+
+局部变量在函数执行完毕后销毁。
+
+全局变量在页面关闭后销毁。
+
+
+let 声明的变量只在 let 命令所在的代码块内有效。
+
+const 声明一个只读的常量，一旦声明，常量的值就不能改变。</code></pre><p>4.对象的方法 </p>
+<p>你可以使用以下语法创建对象方法：</p>
+<pre><code>methodName : function() { code lines }
+你可以使用以下语法访问对象方法：
+
+objectName.methodName()
+通常 fullName() 是作为 person 对象的一个方法， fullName 是作为一个属性。
+
+有多种方式可以创建，使用和修改 JavaScript 对象。
+
+同样也有多种方式用来创建，使用和修改属性和方法。</code></pre><p>5.事件（触发js函数）</p>
+<pre><code>HTML 事件可以是浏览器行为，也可以是用户行为。
+
+以下是 HTML 事件的实例：
+
+HTML 页面完成加载
+HTML input 字段改变时
+HTML 按钮被点击
+
+常见的HTML事件
+下面是一些常见的HTML事件的列表:
+
+事件    描述
+onchange    HTML 元素改变
+onclick    用户点击 HTML 元素
+onmouseover    用户在一个HTML元素上移动鼠标
+onmouseout    用户从一个HTML元素上移开鼠标
+onkeydown    用户按下键盘按键
+onload    浏览器已完成页面的加载
+
+你可以使用索引位置来访问字符串中的每个字符：
+
+实例
+var character = carname[7];
+
+
+onload 和 onunload 事件
+onload 和 onunload 事件会在用户进入或离开页面时被触发。
+
+onload 事件可用于检测访问者的浏览器类型和浏览器版本，并基于这些信息来加载网页的正确版本。
+
+onload 和 onunload 事件可用于处理 cookie。
+
+onchange 事件
+onchange 事件常结合对输入字段的验证来使用。
+
+下面是一个如何使用 onchange 的例子。当用户改变输入字段的内容时，会调用 upperCase() 函数。
+
+实例
+&lt;input type=&quot;text&quot; id=&quot;fname&quot; onchange=&quot;upperCase()&quot;&gt;
+onmouseover 和 onmouseout 事件
+onmouseover 和 onmouseout 事件可用于在用户的鼠标移至 HTML 元素上方或移出元素时触发函数。
+
+onmousedown、onmouseup 以及 onclick 事件
+onmousedown, onmouseup 以及 onclick 构成了鼠标点击事件的所有部分。首先当点击鼠标按钮时，会触发 onmousedown 事件，当释放鼠标按钮时，会触发 onmouseup 事件，最后，当完成鼠标点击时，会触发 onclick 事件。</code></pre><p>6.语句</p>
+<pre><code>switch(n)
+{
+    case 1:
+        执行代码块 1
+        break;
+    case 2:
+        执行代码块 2
+        break;
+    default:
+        与 case 1 和 case 2 不同时执行的代码
+}
+
+var person={fname:&quot;John&quot;,lname:&quot;Doe&quot;,age:25}; 
+
+for (x in person)  // x 为属性名
+{
+    txt=txt + person[x];
+}</code></pre><p>7.typeof 操作符</p>
+<pre><code>你可以使用 typeof 操作符来检测变量的数据类型。
+
+实例
+typeof &quot;John&quot;                // 返回 string 
+typeof 3.14                  // 返回 number
+typeof false                 // 返回 boolean
+typeof [1,2,3,4]             // 返回 object
+typeof {name:&apos;John&apos;, age:34} // 返回 objec</code></pre><p>8.null</p>
+<pre><code>null是一个只有一个值的特殊类型。表示一个空对象引用。
+你可以设置为 null 来清空对象:
+
+实例
+var person = null;           // 值为 null(空), 但类型为对象
+
+尝试一下 »
+你可以设置为 undefined 来清空对象:
+
+实例
+var person = undefined;     // 值为 undefined, 类型为 undefined</code></pre><p>9.undefined</p>
+<pre><code>在 JavaScript 中, undefined 是一个没有设置值的变量。
+
+typeof 一个没有值的变量会返回 undefined。
+
+实例
+var person;                  // 值为 undefined(空), 类型是undefined
+
+在 JavaScript 中, null 用于对象, undefined 用于变量，属性和方法。</code></pre><p>10.数据类型</p>
+<pre><code>JavaScript 数据类型
+在 JavaScript 中有 5 种不同的数据类型：
+
+string
+number
+boolean
+object
+function
+3 种对象类型：
+
+Object
+Date
+Array
+2 个不包含任何值的数据类型：
+
+null
+undefined
+
+NaN 的数据类型是 number
+数组(Array)的数据类型是 object
+日期(Date)的数据类型为 object
+null 的数据类型是 object
+未定义变量的数据类型为 undefined
+如果对象是 JavaScript Array 或 JavaScript Date ，我们就无法通过 typeof 来判断他们的类型，因为都是 返回 object。</code></pre><p>11.constructor 属性</p>
+<pre><code>constructor 属性返回所有 JavaScript 变量的构造函数。
+
+实例
+&quot;John&quot;.constructor                 // 返回函数 String()  { [native code] }
+(3.14).constructor                 // 返回函数 Number()  { [native code] }
+false.constructor                  // 返回函数 Boolean() { [native code] }
+[1,2,3,4].constructor              // 返回函数 Array()   { [native code] }
+{name:&apos;John&apos;, age:34}.constructor  // 返回函数 Object()  { [native code] }
+new Date().constructor             // 返回函数 Date()    { [native code] }
+function () {}.constructor         // 返回函数 Function(){ [native code] }</code></pre><p>12.类型转化</p>
+<pre><code>将数字转换为字符串
+全局方法 String() 可以将数字转换为字符串，或者同toString（）
+
+该方法可用于任何类型的数字，字母，变量，表达式：
+
+实例
+String(x)         // 将变量 x 转换为字符串并返回
+String(123)       // 将数字 123 转换为字符串并返回
+String(100 + 23)  // 将数字表达式转换为字符串并返回</code></pre><p>13.date</p>
+<pre><code>在 Date 方法 章节中，你可以查看更多关于日期转换为字符串的函数：
+
+方法    描述
+getDate()    从 Date 对象返回一个月中的某一天 (1 ~ 31)。
+getDay()    从 Date 对象返回一周中的某一天 (0 ~ 6)。
+getFullYear()    从 Date 对象以四位数字返回年份。
+getHours()    返回 Date 对象的小时 (0 ~ 23)。
+getMilliseconds()    返回 Date 对象的毫秒(0 ~ 999)。
+getMinutes()    返回 Date 对象的分钟 (0 ~ 59)。
+getMonth()    从 Date 对象返回月份 (0 ~ 11)。
+getSeconds()    返回 Date 对象的秒数 (0 ~ 59)。
+getTime()    返回 1970 年 1 月 1 日至今的毫秒数。</code></pre><p>14.字符串转化成数字</p>
+<pre><code>将字符串转换为数字
+全局方法 Number() 可以将字符串转换为数字。
+
+字符串包含数字(如 &quot;3.14&quot;) 转换为数字 (如 3.14).
+
+空字符串转换为 0。
+
+其他的字符串会转换为 NaN (不是个数字)。
+
+Number(&quot;3.14&quot;)    // 返回 3.14
+Number(&quot; &quot;)       // 返回 0 
+Number(&quot;&quot;)        // 返回 0
+Number(&quot;99 88&quot;)   // 返回 NaN
+在 Number 方法 章节中，你可以查看到更多关于字符串转为数字的方法：
+
+方法    描述
+parseFloat()    解析一个字符串，并返回一个浮点数。
+parseInt()    解析一个字符串，并返回一个整数。
+
+一元运算符 +
+Operator + 可用于将变量转换为数字：
+
+
+将布尔值转换为数字
+全局方法 Number() 可将布尔值转换为数字。
+
+Number(false)     // 返回 0
+Number(true)      // 返回 1
+
+将日期转换为数字
+全局方法 Number() 可将日期转换为数字。
+
+d = new Date();
+Number(d)          // 返回 1404568027739
+日期方法 getTime() 也有相同的效果。
+
+d = new Date();
+d.getTime()        // 返回 1404568027739</code></pre><p>15.正则表达式</p>
+<pre><code>实例解析：
+
+/runoob/i  是一个正则表达式。
+
+runoob  是一个正则表达式主体 (用于检索)。
+
+i  是一个修饰符 (搜索不区分大小写)。
+
+使用字符串方法
+在 JavaScript 中，正则表达式通常用于两个字符串方法 : search() 和 replace()。
+
+search() 方法 用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串，并返回子串的起始位置。
+
+replace() 方法 用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+
+修饰符 可以在全局搜索中不区分大小写:
+
+修饰符    描述
+i    执行对大小写不敏感的匹配。
+g    执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。
+m    执行多行匹配。
+
+正则表达式模式
+方括号用于查找某个范围内的字符：
+
+表达式    描述
+[abc]    查找方括号之间的任何字符。
+[0-9]    查找任何从 0 至 9 的数字。
+(x|y)    查找任何以 | 分隔的选项。
+元字符是拥有特殊含义的字符：
+
+元字符    描述
+\d    查找数字。
+\s    查找空白字符。
+\b    匹配单词边界。
+\uxxxx    查找以十六进制数 xxxx 规定的 Unicode 字符。
+量词:
+
+量词    描述
+n+    匹配任何包含至少一个 n 的字符串。
+n*    匹配任何包含零个或多个 n 的字符串。
+n?    匹配任何包含零个或一个 n 的字符串。</code></pre><p>16.JavaScript 变量提升</p>
+<pre><code>JavaScript 中，函数及变量的声明都将被提升到函数的最顶部。
+
+JavaScript 中，变量可以在使用后声明，也就是变量可以先使用再声明。
+变量提升：函数声明和变量声明总是会被解释器悄悄地被&quot;提升&quot;到方法体的最顶部。</code></pre><p>17.约束</p>
+<pre><code>约束验证 HTML 输入属性
+属性    描述
+disabled    规定输入的元素不可用
+max    规定输入元素的最大值
+min    规定输入元素的最小值
+pattern    规定输入元素值的模式
+required    规定输入元素字段是必需的
+type     规定输入元素的类型
+完整列表，请查看 HTML 输入属性。
+
+约束验证 CSS 伪类选择器
+选择器    描述
+:disabled    选取属性为 &quot;disabled&quot; 属性的 input 元素
+:invalid    选取无效的 input 元素
+:optional    选择没有&quot;required&quot;属性的 input 元素
+:required    选择有&quot;required&quot;属性的 input 元素
+:valid    选取有效值的 input 元素</code></pre><p>18.JSON</p>
+<pre><code>JSON 语法规则
+数据为 键/值 对。
+数据由逗号分隔。
+大括号保存对象
+方括号保存数组
+
+JSON.parse()    用于将一个 JSON 字符串转换为 JavaScript 对象。
+JSON.stringify()    用于将 JavaScript 值转换为 JSON 字符串。</code></pre><p>19.Java Script void（0）</p>
+<pre><code>href=&quot;#&quot;与href=&quot;javascript:void(0)&quot;的区别
+# 包含了一个位置信息，默认的锚是#top 也就是网页的上端。
+
+而javascript:void(0), 仅仅表示一个死链接。
+
+在页面很长的时候会使用 # 来定位页面的具体位置，格式为：# + id。
+
+如果你要定义一个死链接请使用 javascript:void(0) 。
+
+void()仅仅是代表不返回任何值，但是括号内的表达式还是要运行，如
+
+void(alert(&quot;Wornning!&quot;))</code></pre><p>20.arguments 对象</p>
+<pre><code>JavaScript 函数有个内置的对象 arguments 对象。
+
+argument 对象包含了函数调用的参数数组。
+
+通过这种方式你可以很方便的找到最大的一个参数的值：
+
+实例
+x = findMax(1, 123, 500, 115, 44, 88);
+
+function findMax() {
+    var i, max = arguments[0];
+
+    if(arguments.length &lt; 2) return max;
+
+    for (i = 0; i &lt; arguments.length; i++) {
+        if (arguments[i] &gt; max) {
+            max = arguments[i];
+        }
+    }
+    return max;
+}</code></pre><p>参数也可以设置默认值</p>
+<p>21.查找 HTML 元素<br>    通常，通过 JavaScript，您需要操作 HTML 元素。</p>
+<pre><code>为了做到这件事情，您必须首先找到该元素。有三种方法来做这件事：
+
+通过 id 找到 HTML 元素
+通过标签名找到 HTML 元素
+通过类名找到 HTML 元素
+通过 id 查找 HTML 元素
+在 DOM 中查找 HTML 元素的最简单的方法，是通过使用元素的 id。
+
+本例查找 id=&quot;intro&quot; 元素：
+
+实例
+var x=document.getElementById(&quot;intro&quot;);
+
+
+如果找到该元素，则该方法将以对象（在 x 中）的形式返回该元素。
+
+如果未找到该元素，则 x 将包含 null。
+
+通过标签名查找 HTML 元素
+本例查找 id=&quot;main&quot; 的元素，然后查找 id=&quot;main&quot; 元素中的所有 &lt;p&gt; 元素：
+
+实例
+var x=document.getElementById(&quot;main&quot;);
+var y=x.getElementsByTagName(&quot;p&quot;);
+
+
+
+通过类名找到 HTML 元素
+本例通过 getElementsByClassName 函数来查找 class=&quot;intro&quot; 的元素：
+
+实例
+var x=document.getElementsByClassName(&quot;intro&quot;);
+
+改变 HTML 属性
+如需改变 HTML 元素的属性，请使用这个语法：
+
+document.getElementById(id).attribute=新属性值
+本例改变了 &lt;img&gt; 元素的 src 属性：
+
+实例
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;img id=&quot;image&quot; src=&quot;smiley.gif&quot;&gt;
+
+&lt;script&gt;
+document.getElementById(&quot;image&quot;).src=&quot;landscape.jpg&quot;;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+改变 HTML 样式
+如需改变 HTML 元素的样式，请使用这个语法：
+
+document.getElementById(id).style.property=新样式
+
+
+
+控制文本是否显现        
+style.visibility=&apos;hidden&apos;
+style.visibility=&apos;visible&apos;</code></pre><p>22.监听器</p>
+<pre><code>addEventListener() 方法用于向指定元素添加事件句柄。
+
+addEventListener() 方法添加的事件句柄不会覆盖已存在的事件句柄。
+
+你可以向一个元素添加多个事件句柄。
+
+你可以向同个元素添加多个同类型的事件句柄，如：两个 &quot;click&quot; 事件。
+
+你可以向任何 DOM 对象添加事件监听，不仅仅是 HTML 元素。如： window 对象。
+
+addEventListener() 方法可以更简单的控制事件（冒泡与捕获）。
+
+当你使用 addEventListener() 方法时, JavaScript 从 HTML 标记中分离开来，可读性更强， 在没有控制HTML标记时也可以添加事件监听。
+
+你可以使用 removeEventListener() 方法来移除事件的监听。
+
+element.addEventListener(event, function, useCapture);
+第一个参数是事件的类型 (如 &quot;click&quot; 或 &quot;mousedown&quot;).
+
+第二个参数是事件触发后调用的函数。
+
+第三个参数是个布尔值用于描述事件是冒泡还是捕获。该参数是可选的。
+
+
+事件冒泡或事件捕获？
+事件传递有两种方式：冒泡与捕获。
+
+事件传递定义了元素事件触发的顺序。 如果你将 &lt;p&gt; 元素插入到 &lt;div&gt; 元素中，用户点击 &lt;p&gt; 元素, 哪个元素的 &quot;click&quot; 事件先被触发呢？
+
+在 冒泡 中，内部元素的事件会先被触发，然后再触发外部元素，即： &lt;p&gt; 元素的点击事件先触发，然后会触发 &lt;div&gt; 元素的点击事件。
+
+在 捕获 中，外部元素的事件会先被触发，然后才会触发内部元素的事件，即： &lt;div&gt; 元素的点击事件先触发 ，然后再触发 &lt;p&gt; 元素的点击事件。
+
+addEventListener() 方法可以指定 &quot;useCapture&quot; 参数来设置传递类型：
+
+addEventListener(event, function, useCapture);
+默认值为 false, 即冒泡传递，当值为 true 时, 事件使用捕获传递。
+
+实例
+document.getElementById(&quot;myDiv&quot;).addEventListener(&quot;click&quot;, myFunction, true);
+
+
+removeEventListener() 方法
+removeEventListener() 方法移除由 addEventListener() 方法添加的事件句柄:
+
+实例
+element.removeEventListener(&quot;mousemove&quot;, myFunction);</code></pre><p>23.DOM元素节点</p>
+<pre><code>JavaScript HTML DOM 元素 (节点)
+本章节介绍如何向文档中添加和移除元素(节点)。
+
+创建新的 HTML 元素 (节点) - appendChild()
+要创建新的 HTML 元素 (节点)需要先创建一个元素，然后在已存在的元素中添加它。
+
+实例
+&lt;div id=&quot;div1&quot;&gt;
+&lt;p id=&quot;p1&quot;&gt;这是一个段落。&lt;/p&gt;
+&lt;p id=&quot;p2&quot;&gt;这是另外一个段落。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var para = document.createElement(&quot;p&quot;);
+var node = document.createTextNode(&quot;这是一个新的段落。&quot;);
+para.appendChild(node);
+
+var element = document.getElementById(&quot;div1&quot;);
+element.appendChild(para);
+&lt;/script&gt;
+
+尝试一下 »
+实例解析
+以下代码是用于创建 &lt;p&gt; 元素:
+
+var para = document.createElement(&quot;p&quot;);
+为 &lt;p&gt; 元素创建一个新的文本节点：
+
+var node = document.createTextNode(&quot;这是一个新的段落。&quot;);
+将文本节点添加到 &lt;p&gt; 元素中：
+
+para.appendChild(node);
+最后，在一个已存在的元素中添加 p 元素。
+
+查找已存在的元素：
+
+var element = document.getElementById(&quot;div1&quot;);
+添加到已存在的元素中:
+
+element.appendChild(para);
+创建新的 HTML 元素 (节点) - insertBefore()
+以上的实例我们使用了 appendChild() 方法，它用于添加新元素到尾部。
+
+如果我们需要将新元素添加到开始位置，可以使用 insertBefore() 方法:
+
+实例
+&lt;div id=&quot;div1&quot;&gt;
+&lt;p id=&quot;p1&quot;&gt;这是一个段落。&lt;/p&gt;
+&lt;p id=&quot;p2&quot;&gt;这是另外一个段落。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var para = document.createElement(&quot;p&quot;);
+var node = document.createTextNode(&quot;这是一个新的段落。&quot;);
+para.appendChild(node);
+
+var element = document.getElementById(&quot;div1&quot;);
+var child = document.getElementById(&quot;p1&quot;);
+element.insertBefore(para, child);
+&lt;/script&gt;
+
+尝试一下 »
+移除已存在的元素
+要移除一个元素，你需要知道该元素的父元素。
+
+实例
+&lt;div id=&quot;div1&quot;&gt;
+&lt;p id=&quot;p1&quot;&gt;这是一个段落。&lt;/p&gt;
+&lt;p id=&quot;p2&quot;&gt;这是另外一个段落。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var parent = document.getElementById(&quot;div1&quot;);
+var child = document.getElementById(&quot;p1&quot;);
+parent.removeChild(child);
+&lt;/script&gt;
+
+尝试一下 »
+注意：早期的 Internet Explorer 浏览器不支持 node.remove() 方法。
+
+实例解析
+HTML 文档中 &lt;div&gt; 元素包含两个子节点 (两个 &lt;p&gt; 元素):
+
+&lt;div id=&quot;div1&quot;&gt;
+&lt;p id=&quot;p1&quot;&gt;这是一个段落。&lt;/p&gt;
+&lt;p id=&quot;p2&quot;&gt;这是另外一个段落。&lt;/p&gt;
+&lt;/div&gt;
+查找 id=&quot;div1&quot; 的元素:
+
+var parent = document.getElementById(&quot;div1&quot;);
+查找 id=&quot;p1&quot; 的 &lt;p&gt; 元素:
+
+var child = document.getElementById(&quot;p1&quot;);
+从父元素中移除子节点：
+
+parent.removeChild(child);
+lamp    如果能够在不引用父元素的情况下删除某个元素，就太好了。
+不过很遗憾。DOM 需要清楚您需要删除的元素，以及它的父元素。
+以下代码是已知要查找的子元素，然后查找其父元素，再删除这个子元素（删除节点必须知道父节点）：
+
+var child = document.getElementById(&quot;p1&quot;);
+child.parentNode.removeChild(child);
+替换 HTML 元素 - replaceChild()
+我们可以使用 replaceChild() 方法来替换 HTML DOM 中的元素。
+
+实例
+&lt;div id=&quot;div1&quot;&gt;
+&lt;p id=&quot;p1&quot;&gt;这是一个段落。&lt;/p&gt;
+&lt;p id=&quot;p2&quot;&gt;这是另外一个段落。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+var para = document.createElement(&quot;p&quot;);
+var node = document.createTextNode(&quot;这是一个新的段落。&quot;);
+para.appendChild(node);
+
+var parent = document.getElementById(&quot;div1&quot;);
+var child = document.getElementById(&quot;p1&quot;);
+parent.replaceChild(para, child);
+&lt;/script&gt;
+
+JavaScript HTML DOM 集合(Collection)
+本章节介绍如何向文档中添加和移除元素(节点)。
+
+HTMLCollection 对象
+getElementsByTagName() 方法返回 HTMLCollection 对象。
+
+HTMLCollection 对象类似包含 HTML 元素的一个数组。
+
+以下代码获取文档所有的 &lt;p&gt; 元素：
+
+实例
+var x = document.getElementsByTagName(&quot;p&quot;);
+集合中的元素可以通过索引(以 0 为起始位置)来访问。
+
+访问第二个 &lt;p&gt; 元素可以是以下代码:
+
+y = x[1];
+
+尝试一下 »
+HTMLCollection 对象 length 属性
+HTMLCollection 对象的 length 属性定义了集合中元素的数量。
+
+实例
+var myCollection = document.getElementsByTagName(&quot;p&quot;);
+document.getElementById(&quot;demo&quot;).innerHTML = myCollection.length;
+
+尝试一下 »
+实例解析
+获取 &lt;p&gt; 元素的集合：
+
+var myCollection = document.getElementsByTagName(&quot;p&quot;);
+显示集合元素个数：
+
+document.getElementById(&quot;demo&quot;).innerHTML = myCollection.length;
+集合 length 属性常用于遍历集合中的元素。
+
+实例
+修改所有 &lt;p&gt; 元素的背景颜色:
+
+var myCollection = document.getElementsByTagName(&quot;p&quot;);
+var i;
+for (i = 0; i &lt; myCollection.length; i++) {
+    myCollection[i].style.backgroundColor = &quot;red&quot;;
+}
+
+尝试一下 »
+注意
+HTMLCollection 不是一个数组！
+
+HTMLCollection 看起来可能是一个数组，但其实不是。
+
+你可以像数组一样，使用索引来获取元素。
+
+HTMLCollection 无法使用数组的方法： valueOf(), pop(), push(), 或 join() 。</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="zhj1988.github.io/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/24/SpringBoot结构分层解析/" class="archive-article-date">
-  	<time datetime="2019-07-24T01:50:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/24/SpringBoot结构分层解析/">SpringBoot结构分层解析 </a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhj1988.github.io/2019/08/07/html与js-学习笔记/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/24/sql语句知识汇总/" class="archive-article-date">
-  	<time datetime="2019-07-24T01:48:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="zhj1988.github.io/2019/08/06/bootstrap-学习记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">bootstrap 学习记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/24/sql语句知识汇总/">sql语句知识汇总</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/14/Struts总结与体会/" class="archive-article-date">
-  	<time datetime="2019-07-14T12:30:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/14/Struts总结与体会/">Struts2总结与体会</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/13/maven学习与总结/" class="archive-article-date">
-  	<time datetime="2019-07-13T09:29:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/13/maven学习与总结/">maven学习与总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/10/Spring MVC入门介绍/" class="archive-article-date">
-  	<time datetime="2019-07-10T06:44:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/10/Spring MVC入门介绍/">Spring MVC入门介绍</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/08/基础算法程序记录/" class="archive-article-date">
-  	<time datetime="2019-07-08T14:39:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/08/基础算法程序记录/">算法程序记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/08/MyBatis配置文件详细解析/" class="archive-article-date">
-  	<time datetime="2019-07-08T03:47:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/08/MyBatis配置文件详细解析/">MyBatis配置文件总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/07/MyBatis入门介绍/" class="archive-article-date">
-  	<time datetime="2019-07-07T10:51:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/07/MyBatis入门介绍/">MyBatis入门介绍</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/06/KMP算法程序实现与原理解析/" class="archive-article-date">
-  	<time datetime="2019-07-05T17:43:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/06/KMP算法程序实现与原理解析/">KMP算法程序实现与原理解析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="zhj1988.github.io/2019/07/01/数据结构与算法个人总结/" class="archive-article-date">
-  	<time datetime="2019-07-01T15:37:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="zhj1988.github.io/2019/07/01/数据结构与算法个人总结/">数据结构与算法个人总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -458,8 +1167,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
