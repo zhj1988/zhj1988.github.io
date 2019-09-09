@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="hexo——blog">
 <meta property="og:description" content="简介：最近使用springBoot写项目，springBoot的层次分层跟之前学习不太一样，百度得到的答案杂七杂八，最后在github上找一个例子，依样画葫芦之后总算运算成功，特此记录一下">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-08T04:05:38.064Z">
+<meta property="og:updated_time" content="2019-09-05T02:30:55.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot结构分层解析 ">
 <meta name="twitter:description" content="简介：最近使用springBoot写项目，springBoot的层次分层跟之前学习不太一样，百度得到的答案杂七杂八，最后在github上找一个例子，依样画葫芦之后总算运算成功，特此记录一下">
@@ -228,6 +228,12 @@ public class UserServiceImpl implements UserService {
 <p>2.@RestMapping：@ResponseBody 跟 @RequestMapping(“”)合二为一的注解</p>
 <p>3.@Options(useGeneratedKeys =  true,keyProperty = “id”)  @Insert<br>用于插入语句后，将数据库中自增主键的id 返回给插入对象</p>
 <p>4.@SuppressWarnings注解允许您选择性地取消特定代码段（即，类或方法）中的警告。其中的想法是当您看到警告时，您将调查它，如果您确定它不是问题，您就可以添加一个@SuppressWarnings注解，以使您不会再看到警告。虽然它听起来似乎会屏蔽潜在的错误，但实际上它将提高代码安全性，因为它将防止您对警告无动于衷 — 您看到的每一个警告都将值得注意。<br>@SuppressWarnings(“all”)忽略以下所有警告  </p>
+<p>5.@Transactional注解的特性</p>
+<p>1)service类标签(一般不建议在接口上)上添加@Transactional，可以将整个类纳入spring事务管理，在每个业务方法执行时都会开启一个事务，不过这些事务采用相同的管理方式。</p>
+<p>2)@Transactional 注解只能应用到 public 可见度的方法上。 如果应用在protected、private或者 package可见度的方法上，也不会报错，不过事务设置不会起作用。</p>
+<p>3) 默认情况下，spring会对unchecked异常进行事务回滚；如果是checked异常则不回滚。<br>辣么什么是checked异常，什么是unchecked异常？</p>
+<p>java里面将派生于Error或者RuntimeException（比如空指针，1/0）的异常称为unchecked异常，<br>其他继承自java.lang.Exception得异常统称为Checked Exception，如IOException、TimeoutException等<br>再通俗一点：你写代码出现的空指针等异常，会被回滚，文件读写，网络出问题，spring就没法回滚了。</p>
+<p>4)只读事务：<br>@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)<br>只读标志只在事务启动时应用，否则即使配置也会被忽略。<br>启动事务会增加线程开销，数据库因共享读取而锁定(具体跟数据库类型和事务隔离级别有关)。通常情况下，仅是读取数据时，不必设置只读事务而增加额外的系统开销。</p>
 
       
 
