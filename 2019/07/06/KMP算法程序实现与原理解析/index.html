@@ -1,99 +1,287 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
 
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
+  
+  <title>KMP算法程序实现与原理解析 | ZHuanJ——blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介：KMP算法于串结构中，查询字符串匹配，应用于字符查询等应用场景，本文介绍其原理，由最简答的朴素模式匹配算法（暴力算法）入手，到KMP算法及其优化算法介绍，如果有错误的地方，欢迎指正。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP算法程序实现与原理解析">
+<meta property="og:url" content="https://zhj1988.github.io/2019/07/06/KMP算法程序实现与原理解析/index.html">
+<meta property="og:site_name" content="ZHuanJ——blog">
+<meta property="og:description" content="简介：KMP算法于串结构中，查询字符串匹配，应用于字符查询等应用场景，本文介绍其原理，由最简答的朴素模式匹配算法（暴力算法）入手，到KMP算法及其优化算法介绍，如果有错误的地方，欢迎指正。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-09T17:09:28.580Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KMP算法程序实现与原理解析">
+<meta name="twitter:description" content="简介：KMP算法于串结构中，查询字符串匹配，应用于字符查询等应用场景，本文介绍其原理，由最简答的朴素模式匹配算法（暴力算法）入手，到KMP算法及其优化算法介绍，如果有错误的地方，欢迎指正。">
+  
+    <link rel="alternate" href="zhj1988.github.io/atom.xml" title="ZHuanJ——blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="zhj1988.github.io/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="zhj1988.github.io/" id="logo">ZHuanJ——blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="zhj1988.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhj1988.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-KMP算法程序实现与原理解析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="zhj1988.github.io/2019/07/06/KMP算法程序实现与原理解析/" class="article-date">
+  <time datetime="2019-07-05T17:43:33.000Z" itemprop="datePublished">2019-07-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      KMP算法程序实现与原理解析
+    </h1>
+  
 
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简介：KMP算法于串结构中，查询字符串匹配，应用于字符查询等应用场景，本文介绍其原理，由最简答的朴素模式匹配算法（暴力算法）入手，到KMP算法及其优化算法介绍，如果有错误的地方，欢迎指正。</p>
+<a id="more"></a> 
+
+<h2 id="1-朴素模式匹配算法"><a href="#1-朴素模式匹配算法" class="headerlink" title="1. 朴素模式匹配算法"></a>1. 朴素模式匹配算法</h2><p>原理：原字符数组s 长度n下标i，匹配字符组t 长度m下标j，从s[0]与t[0]开始比较，若相同，则i++，j++继续比较，若i = m，则完全匹配，此时t在s的下标为i-j+1；失配时候j =0 ；循环持续至i = n || j = m；t时间复杂度最坏情况 （n-m）*m ，最优情况 m<br>改良朴素模式匹配算法：可以多次查询，如s = abcabc，t = abc，若没改良则只能输出i= 1 ；改良后i = 1,3；<br>下面为程序实现改良的算法（java）：<br>package demo;<br>import java.util.Scanner;<br>public class test {<br>    static String stringText = “abcabcabcabcabcabcabc”;//原数组<br>    static char num1[]= stringText.toCharArray();<br>    static String stringExample = null;<br>    public static void ViolentMatch() {<br>        int j=0;<br>        int i=0;<br>        int temp = 0;<br>        Scanner input=new Scanner(System.in);<br>        stringExample =input.next();          //输入匹配数组<br>        char num2[]= stringExample .toCharArray();<br>        long startTime = System.nanoTime();  //获取开始时间<br>        while (i&lt;num1.length ) {<br>            if(num1[i] == num2[j]) {<br>                i++;<br>                j++;<br>            }else {<br>                i =  i-j+1;<br>                j = 0;<br>            }<br>            if(j == num2.length) {<br>                System.out.println( i-j+1 );//输出匹配成功的原数组下标<br>                j = 0;<br>                temp++;<br>            }<br>        }<br>        if(temp == 0) {<br>            System.out.println(-1);//没有匹配成功<br>        }<br>        long endTime = System.nanoTime();  //获取结束时间<br>        System.out.println(“程序运行时间：” + (endTime - startTime) + “ns”); //输出程序运行时间<br>    }<br>    public static void main(String arg[]) {<br>        ViolentMatch();<br>        System.out.println(“end”);<br>    }<br>}  </p>
+<h2 id="2-KMP算法"><a href="#2-KMP算法" class="headerlink" title="2.KMP算法"></a>2.KMP算法</h2><p>终于进入正题了，KMP算法相比较朴素模式匹配算法，更加智能化，减少重复的工作，把之前比较的结果都会保留下来，然后呢，其最主要的重点就是next[j]数组的计算方式。<br>原理：原字符数组s 长度n下标i，匹配字符组t 长度m下标j；首先计算next[j],开始匹配，匹配成功退出，匹配失败t相对于s，向右边移动j-next[j]-1距离。然后继续匹配直到j++ = m，或者i++ &gt; n  </p>
+<ol>
+<li>next[j]函数定义<br>next[j]函数三种情况：j=0时候，next[0]=-1；p1….pk-1 = pj-k+1….pj-1(1&lt;k&lt;j);0,其他情况。<br>（书本或者其他网上资料，数组s[0],t[0]不存放数据，存放字符数组长度m/n，本篇程序s[0],t[0]存放数据）<br>ex：模式串t:abcdef   next[j]: -100000 ;模式串：abcabc next[j]:-100012；模式串：aaaaab next[j]:-101234<br>匹配算法程序（java）：  </li>
+</ol>
+<p>求next[]程序：<br>    public static int[] get_next(String T) {<br>        char temp[]=T.toCharArray();<br>        int next[] = new int[temp.length];<br>        next[0] = -1;<br>        int k = -1;<br>        int j = 0;<br>        while (j &lt; temp.length - 1)<br>        {<br>            //p[k]表示前缀，p[j]表示后缀<br>            if (k == -1 || temp[j] ==  temp[k])<br>            {<br>                ++k;<br>                ++j;<br>                next[j] = k;<br>            }<br>            else<br>            {<br>                k = next[k];  //当匹配失败时候，返回next[]数组中k下标的值，如果一直失败将回溯k=-1<br>            }<br>        }<br>        System.out.print(“next[]:”);<br>        for (int i = 0; i &lt; next.length; i++) {<br>            System.out.print(next[i]);<br>            if(!(i == next.length-1)) {<br>                System.out.print(“,”);<br>            }else {<br>                System.out.println();<br>            }<br>        }<br>        return next;<br>    }  `</p>
+<ol start="2">
+<li><p>KMP方法程序：<br> public static void KMP() {  </p>
+<pre><code>int j=0;  
+int i=0;  
+int temp = 1;  
+Scanner input=new Scanner(System.in);  
+stringExample =input.next();          //输入匹配数组  
+char num2[]= stringExample .toCharArray();  
+int next[] = get_next(stringExample);  
+long startTime = System.nanoTime();  //获取开始时间  
+while (i&lt;num1.length ) {  
+    if(num1[i] == num2[j]) {  
+        i++;  
+        j++;  
+    }else {  
+        i =  i-j+1;  
+        j = j-next[j]-1;//T字符串匹配失败后下标  
+    }  
+    if(j == num2.length) {  
+        System.out.print( &quot;第&quot;+ temp +&quot;个成功:&quot;);  
+        System.out.println( i-j+1 );//输出匹配成功的原数组下标  
+        j = 0;  
+        temp++;  
+    }  
+}  
+if(temp == 1) {  
+    System.out.println(-1);//没有匹配成功  
+}  
+long endTime = System.nanoTime();  //获取结束时间  
+System.out.println(&quot;程序运行时间：&quot; + (endTime - startTime) + &quot;ns&quot;); //输出程序运行时间      </code></pre><p> }<br>总结：当重复段越多时候，KMP算法比较朴素算法更快    </p>
+</li>
+<li><p>KMP算法的改进<br>我觉得下面这篇博客内容解释比较容易理解，当失配的时候，j-&gt; next[j]，此时优化算法，避免多余步骤，当前缀与后缀相等时候，采用递归的方法，求出最优的next[j]数组<br>只要出现了T[next[j]] = T[j]的情况，则把next[j]的值再次递归。例如在求模式串“abab”的第2个a的next值时，如果是未优化的next值的话，第2个a对应的next值为0，相当于第2个a失配时，下一步匹配模式串会用T[0]处的a再次跟文本串匹配，必然失配。所以求第2个a的next值时，需要再次递归：next[2] = next[ next[2] ] = next[0] = -1（此后，根据优化后的新next值可知，第2个a失配时，执行“如果j = -1，或者当前字符匹配成功（即S[i] == T[j]），都令i++，j++，继续匹配下一个字符”），同理，第2个b对应的next值为0。<br>对于优化后的next数组可以发现一点：<strong>如果模式串的后缀跟前缀相同，那么它们的next值也是相同的</strong>，例如模式串abcabc，它的前缀后缀都是abc，其优化后的next数组为：-1 0 0 -1 0 0，前缀后缀abc的next值都为-1 0 0。<br>求优化后的数组的方法,求出优化数组：  </p>
+<p> public static int[] get_nextval(String T,int[] next) {  </p>
+<pre><code>char temp[]=T.toCharArray();
+int k = -1;  
+int j = 0;  
+while (j &lt; temp.length - 1)  
+{  
+    if (k == -1 || temp[j] ==  temp[k])   
+    {  
+        ++k;  
+        ++j;
+        if (temp[j] != temp[k]) {  
+            next[j] = k; }  //之前只有这一行  
+        else {  
+            //因为不能出现p[j] = p[ next[j ]]，所以当出现时需要继续递归，k = next[k] = next[next[k]]  
+            next[j] = next[k];} 
+    }  
+    else   
+    {  
+        k = next[k];  //当匹配失败时候，返回next[]数组中k下标的值，如果一直失败将回溯k=-1  
+    }    
+} 
+System.out.print(&quot;nextval[]:&quot;);  
+for (int i = 0; i &lt; next.length; i++) {  
+    System.out.print(next[i]);  
+    if(!(i == next.length-1)) {  
+        System.out.print(&quot;,&quot;);  
+    }else {  
+        System.out.println();  
+    }  
+}  
+return next;      </code></pre><p> } </p>
+</li>
+</ol>
+<p>总结：对于KMP算法原理能够理解，但是程序实现程序部分不能够参透，只能用代入法判断真伪，继续加油琢磨吧！！！！！</p>
+<hr>
+<p>参考博客：<a href="https://www.cnblogs.com/ZuoAndFutureGirl/p/9028287.html" target="_blank" rel="noopener">https://www.cnblogs.com/ZuoAndFutureGirl/p/9028287.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhj1988.github.io/2019/07/06/KMP算法程序实现与原理解析/" data-id="ck11j9uwk0005xwuvlp9uk7uj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="zhj1988.github.io/2019/07/07/MyBatis入门介绍/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MyBatis入门介绍
+        
+      </div>
+    </a>
+  
+  
+    <a href="zhj1988.github.io/2019/07/01/数据结构与算法个人总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构与算法个人总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/25/微信公众号网页授权与模板消息发送/">微信公众号网页授权与模板消息发送</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/09/Spring-Boot-缓存应用——ehcache/">Spring Boot 缓存应用——ehcache</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/07/html与js-学习笔记/">html与js 学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/06/bootstrap-学习记录/">bootstrap 学习记录</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/07/24/SpringBoot结构分层解析/">SpringBoot结构分层解析 </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ZHuanJ<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="zhj1988.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="zhj1988.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="zhj1988.github.io/fancybox/jquery.fancybox.css">
+  <script src="zhj1988.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="zhj1988.github.io/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

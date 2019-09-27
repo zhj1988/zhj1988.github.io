@@ -1,99 +1,248 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
 
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
+  
+  <title>maven学习与总结 | ZHuanJ——blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介：整理一下学习到maven的琐碎知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="maven学习与总结">
+<meta property="og:url" content="https://zhj1988.github.io/2019/07/13/maven学习与总结/index.html">
+<meta property="og:site_name" content="ZHuanJ——blog">
+<meta property="og:description" content="简介：整理一下学习到maven的琐碎知识点">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-18T01:35:38.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="maven学习与总结">
+<meta name="twitter:description" content="简介：整理一下学习到maven的琐碎知识点">
+  
+    <link rel="alternate" href="zhj1988.github.io/atom.xml" title="ZHuanJ——blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="zhj1988.github.io/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="zhj1988.github.io/" id="logo">ZHuanJ——blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="zhj1988.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhj1988.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-maven学习与总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="zhj1988.github.io/2019/07/13/maven学习与总结/" class="article-date">
+  <time datetime="2019-07-13T09:29:54.000Z" itemprop="datePublished">2019-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      maven学习与总结
+    </h1>
+  
 
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简介：整理一下学习到maven的琐碎知识点</p>
+<a id="more"></a>
+
+<p>maven可以集中管理jar包，在pom.xml添加依赖，可以直接获取jar包，把项目当成对象管理<br>依赖包括的部分：  </p>
+<pre><code>&lt;dependency&gt;  
+  &lt;groupId&gt;jstl&lt;/groupId&gt;  
+  &lt;artifactId&gt;jstl&lt;/artifactId&gt;  
+  &lt;version&gt;1.2&lt;/version&gt;  
+&lt;/dependency&gt;  </code></pre><ol>
+<li>groupId：包名称，项目由哪个组织开发  </li>
+<li>artifactId：一般是项目名称，类似于姓名  </li>
+<li>version：jar包版本号</li>
+</ol>
+<p>maven可以代理，进行一步构建：编译，测试，运行，打包，安装；<br>在setting修改，添加本地仓库，保证无联网的状态下也可以下载jar包；<br>maven标准的目录结构  </p>
+<ol>
+<li>src：main{java，resources，webapp{WEB-INF{web.xml} } } test{java，resources}  </li>
+<li>pom.xml</li>
+</ol>
+<p>maven命令：</p>
+<ol>
+<li>clean ：删除target目录下所有内容  </li>
+<li>compile：编译，java文件编译输出到target目录下的class文件中  </li>
+<li>test：执行src/test/java 测试类  </li>
+<li>package：java工程打包成jar包，web工程打包成war包  </li>
+<li>install：把maven打包成jar包或者war包，发布到本地仓库  </li>
+</ol>
+<p>maven生命周期：<br>clean lifecycle：在项目建立之前做清理工作<br>default lifecycle：编译，测试，打包部署<br>site lifecycle：生成项目，站点，发布站点   </p>
+<!--作用范围-->
+<pre><code>&lt;scope&gt; &lt;/scope&gt;   </code></pre><p>compile：编译<br>provided：编译的时候需要，打包的时候不需要，即最终运行不用（例如servlet-api，tomcat本身还有jsp jar包，不需要添加依赖，但是不添加依赖却报错）<br>runtime：运行的时候需要，编译不需要（类似于jdbc）<br>test：测试编译和测试运行时候需要，注解@Test，使用junit jar包<br>system：范围依赖于provided类似，需要制定systempath磁盘路径，此依赖不推荐使用  </p>
+<p>使用maven：父工程（maven-project），子工程（maven-Module：dao，service，web三个子工程），具有依赖的传递性；子工程的pom.xml添加其他子工程的依赖，相当于引入jar包，service依赖dao，web依赖service（由于依赖的传递性，到jar也会被引入进来）；依赖的传递也是有局限性的，使用域的范围（例如junit，依赖范围为test，所以不能传递）；解决依赖冲突的方法：exclusion标签，删除冲突jar；依赖管理原则 ：第一声明者优先，即不同版本的jar，谁现在pom.xml中优先声明，谁优先使用；路径近者优先  </p>
+<p>maven版本的锁定：在父工程，pomml中 用标签dependencyManagement，添加之后，子工程使用标签中相关jar包时，会有锁的标签；  </p>
+<p>maven定义版本常量:  </p>
+<pre><code>&lt;properties&gt;  
+  &lt;spring.version&gt;4.2&lt;/spring.version&gt;  
+&lt;/properties&gt;  
+
+&lt;!--下面依赖中的版本号--&gt;
+&lt;version&gt;${spring.version}&lt;version&gt;</code></pre><p>方便统一管理  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhj1988.github.io/2019/07/13/maven学习与总结/" data-id="ck11j9uwp0008xwuvw3dkzvnv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="zhj1988.github.io/2019/07/14/Struts总结与体会/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Struts2总结与体会
+        
+      </div>
+    </a>
+  
+  
+    <a href="zhj1988.github.io/2019/07/10/Spring MVC入门介绍/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spring MVC入门介绍</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/25/微信公众号网页授权与模板消息发送/">微信公众号网页授权与模板消息发送</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/09/Spring-Boot-缓存应用——ehcache/">Spring Boot 缓存应用——ehcache</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/07/html与js-学习笔记/">html与js 学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/06/bootstrap-学习记录/">bootstrap 学习记录</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/07/24/SpringBoot结构分层解析/">SpringBoot结构分层解析 </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ZHuanJ<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="zhj1988.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="zhj1988.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="zhj1988.github.io/fancybox/jquery.fancybox.css">
+  <script src="zhj1988.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="zhj1988.github.io/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

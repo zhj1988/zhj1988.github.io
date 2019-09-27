@@ -1,99 +1,328 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
 
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
+  
+  <title>Spring MVC入门介绍 | ZHuanJ——blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring MVC入门介绍">
+<meta property="og:url" content="https://zhj1988.github.io/2019/07/10/Spring MVC入门介绍/index.html">
+<meta property="og:site_name" content="ZHuanJ——blog">
+<meta property="og:description" content="简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-16T10:40:47.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring MVC入门介绍">
+<meta name="twitter:description" content="简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发">
+  
+    <link rel="alternate" href="zhj1988.github.io/atom.xml" title="ZHuanJ——blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="zhj1988.github.io/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="zhj1988.github.io/" id="logo">ZHuanJ——blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="zhj1988.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhj1988.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spring MVC入门介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="zhj1988.github.io/2019/07/10/Spring MVC入门介绍/" class="article-date">
+  <time datetime="2019-07-10T06:44:09.000Z" itemprop="datePublished">2019-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring MVC入门介绍
+    </h1>
+  
 
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 简介：Spring MVC 基于MVC架构模式的轻量级web框架，属于Web-MVC处理层框架，目的是将web开发模块化，分为三个层次；M，model：开发数据模型层，封装输入输出的用户信息；V，view：响应视图层，在请求结果显示阶段，跳转的结果网页；C，controller：控制层，负责前台与后台的交互；Spring MVC基于方法开发，支持单例开发</p>
+<a id="more"></a>
+
+<h2 id="第一部分Spring-mvc的工作原理"><a href="#第一部分Spring-mvc的工作原理" class="headerlink" title="第一部分Spring mvc的工作原理"></a>第一部分Spring mvc的工作原理</h2><p>第一步 用户发送请求，request请求，前段控制器DispatcherServlet处理；<br>第二步 前端控制器请求处理映射器HandlerMapping查找Handler，也可以依据注解或者XML配置去查找；<br>第三步 处理器映射器找到Handler（其中可能包含若干个Interceptor拦截器），返回给前端控制器；<br>第四步 前端控制器请求处理器适配器（HandlerAdapter）去执行相应的Handler（也称呼为Controller）；<br>第五步 处理器适配器执行Handler；<br>第六步 Handler执行完返回一个ModelAndView对象给处理器适配器；<br>第七步 处理器适配器将第六步返回的数据在传送给前端控制器；<br>第八步 前端控制器接收到ModelAndView后，请求视图解析器ViewResolver对视图进行解析；<br>第九步 视图解析器根据ViewResolver信息匹配到相应的视图结果，反馈给前端控制器；<br>第十步 前端控制器收到View视图后进行视图渲染，将Model中的模型数据填充到View视图中的request域中，生成最终的视图；<br>第十一步 前端控制器返回结果给用户  </p>
+<h2 id="第二部分各部分组件介绍"><a href="#第二部分各部分组件介绍" class="headerlink" title="第二部分各部分组件介绍"></a>第二部分各部分组件介绍</h2><ol>
+<li>前端控制器  </li>
+<li>处理器映射器：根据请求的url，通过注解或者xml配置，寻找匹配的Handler信息</li>
+<li>处理器适配器：根据映射器找到处理器信息，按照特定规则执行下那个关的处理器</li>
+<li>处理器：执行相关的请求处理逻辑，返回ModelAndView</li>
+<li>视图解析器：</li>
+<li>视图：本身是一个接口，实现类支持不同的view类型   </li>
+</ol>
+<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>1.在WebRoot文件夹下的web.xml文件中添加Spring MVC的前端控制器DispatcherServlet，用于拦截url请求</p>
+<p>2.核心配置文件springmvc.xml：添加xml版本声明和一个包含spring标签声明规则的<beans>标签对。  </beans></p>
+<p>3.前端控制器DispatcherServlet收到Handler返回数据model和视图view之后，配置视图解析器ViewResolver<br>（XMLViewResolver，ResourceBundleViewResolver，InternalResourceViewResolver）根据Handler方法执行之后返回ModelAndView中的视图的具体位置，来加载相应的界面并绑定反馈数据</p>
+<p>4.springmvc.xml中添加HandlerMapping(处理器映射器)寻找相关的Handler对象，返回控制器Handler的执行链，无论哪一种映射器都实现了HandlerMapping接口（BeanNameHandlerMapping处理映射器，将bean的name作为url进行查找，即在springmvc.xml中配置一个可以被url映射的Handler的bean，供处理器映射器查找，ex：<bean name="/xxx.action" class="xxx">）  </bean></p>
+<p>5.springmvc.xml中添加HandlerAdapter(处理器适配器)调用自己的Handle，（HttpRequestHandlerAdapter/SimpleControllerHandlerAdapter/AnnotationMethodHandlerAdapter）无论哪一种适配器都实现了HandlerAdapter接口，SimpleControllerHandlerAdapter适配器支持所有实现Controller接口的Handler控制器  </p>
+<p>6.Handler处理器：利用java反射机制去执行具体的Controller方法并获得ModelAndView视图对象；在包创建类，</p>
+<p>7.Handler处理器与视图  </p>
+<h2 id="第三部分处理器映射器和适配器"><a href="#第三部分处理器映射器和适配器" class="headerlink" title="第三部分处理器映射器和适配器"></a>第三部分处理器映射器和适配器</h2><h3 id="（一）非注解的处理器映射器和映射器"><a href="#（一）非注解的处理器映射器和映射器" class="headerlink" title="（一）非注解的处理器映射器和映射器"></a>（一）非注解的处理器映射器和映射器</h3><p><strong>1 非注解的处理器映射器</strong>（可配置，interceptors拦截器和Handler处理器）</p>
+<p>1）BeanNameUrlHandlerMapping:<br>将beanname作为url进行查找，需要在配置Handler时指定beanname（url），在springmv.xml中配置<bean name="/xxx.action" class="xxx">    </bean></p>
+<p>2）SimpleUrlHandlerMapping：<br>通过<strong>内部参数配置请求的url</strong>和<strong>Handler</strong>的映射关系<br><code>&lt;bean id=&quot;urlMapping&quot;</code>   <code>class=&quot;org.springframework.web.servlet.handler.SimpleUrlHandlerMapping&quot;&gt;</code><br>          <code>&lt;property name=&quot;interceptors&quot;&gt;</code><br>            <code>&lt;list&gt;</code><br>              <code>&lt;ref bean=&quot;/someCheckInterceptor1/&gt;</code><br>             <code>&lt;ref bean=&quot;/someCheckInterceptor1/&gt;</code><br>            <code>&lt;/list&gt;</code><br>          <code>&lt;/property&gt;</code><br>          <code>&lt;property name=&quot;mappings&quot;&gt;</code><br>            <code>&lt;props&gt;</code><br>              <code>&lt;prop key=&quot;/queryFruits_test1.action&quot;&gt;fruitsController&lt;/prop&gt;</code><br>              <code>&lt;prop key=&quot;/queryFruits_test2.action&quot;&gt;fruitsController&lt;/prop&gt;</code><br>              <code>&lt;prop key=&quot;/queryFruits_test3.action&quot;&gt;fruitsController2&lt;/prop&gt;</code><br>            <code>&lt;/props&gt;</code><br>          <code>&lt;/property&gt;</code><br>        <code>&lt;/bean&gt;</code><br>    <code>&lt;!--添加Handler的url--</code>&gt;  
+<code>&lt;bean id=&quot;fruitsController&quot; class=&quot;cn.com.mvc.controller.FruitsControllerTest&quot; /&gt;</code><br>        <code>&lt;bean id=&quot;fruitsController2&quot; class=&quot;cn.com.mvc.controller.FruitsControllerTest2&quot; /&gt;</code><br>a.interceptors，拦截器<br>b.mapping：key：xx.action -&gt; Controller  url请求映射到Controller控制器</p>
+<p>3）ControllerClassNameHandlerMapping:<br>使用CoC惯例优先原则的方式来处理请求，对普通的Controller，其类名”xxxController”映射到”/xxx*”的请求URL；对于MultiActionController类型的Controller，ControllerClassNameHandlerMapping会把类名”xxxController”以及类名中的方法”yyy”映射到”xxx/yyy.action”,ex:<br>   <code>&lt;bean class=&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;/&gt;</code></p>
+<p><strong>2 非注解的处理器适配器</strong>  </p>
+<p>1)SimpleControllerHandlerAdapter:<br>SimpleControllerHandlerAdapter适配器支持所有实现Controller接口的Handler控制器</p>
+<p>2)HttpRequestHandlerAdapter:<br>在Spring MVC配置文件中修改相应的bean标签：<code>&lt;bean class=&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;/&gt;</code> ， Handler实现HttpRequestHandler接口，使用这种Handler的开发方式，方便开发者获取request的相关http请求信息，以及设置返回对象response的一些参数 </p>
+<h3 id="（二）注解的处理器映射器和适配器"><a href="#（二）注解的处理器映射器和适配器" class="headerlink" title="（二）注解的处理器映射器和适配器"></a>（二）注解的处理器映射器和适配器</h3><p>（主流配置方法）如果在核心配置文件中（springmvc.xml）默认配置文件中有DefaultAnnotationHandlerMapping，AnnotationMethodHandlerAdapter等注解处理器映射器和适配器<br><strong>注解的处理器映射器和适配器两种配置方式</strong>：   
+<strong>第一种配置方式：</strong>和非注解的处理器映射器和适配器一样，在核心配置文件中声明相关的bean，ex：<br><code>&lt;!-- 注解映射器 --&gt;</code><br>        <code>&lt;!-- &lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping&quot;/&gt; --&gt;</code><br>        <code>&lt;!-- 注解适配器 --&gt;</code><br>        <code>&lt;!-- &lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter&quot;/&gt; --&gt;</code><br>不使用annotation-driven标签配置，必须保证基于注解的处理器映射器和适配器成对配置<br><strong>第二种配置方式：</strong>使用<a href="mvc:annotation-driven/" target="_blank" rel="noopener">mvc:annotation-driven/</a>标签配置，annotation-driven标会自动注册处理器映射器和处理器适配器，不需要在xml中配置任何信息，也不需要实现任何接口，只需要作为Handler处理的类中添加相应的注解即可，ex：  </p>
+<pre><code>&lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot; validator=&quot;validator&quot;&gt;
+    &lt;/mvc:annotation-driven&gt;  
+&lt;mvc:default-servlet-handler/&gt;</code></pre><p>使用在类上@Controller 标识它是一个控制器，在方法上@RequestMapping注解信息，指定一个URL与该方法绑定。   </p>
+<p>为了让<strong>注解的处理器映射器和适配器找到注解的Handler</strong>，有两种配置方式：<br>第一种在核心配置文件中声明相关的bean信息即可：<br><code>&lt;bean class=&quot;类路径&quot;&gt;&lt;/bean&gt;</code><br>第二种，使用扫描配置，对某一个包下的所有类进行扫描，找出所有使用的@Controller注解的Handler控制器类:<br>    <code>&lt;context:component-scan base-package=&quot;cn.com.mvc.controller&quot;&gt;&lt;/context:component-scan&gt;</code>  </p>
+<h2 id="第四部分前端控制器和视图解析器"><a href="#第四部分前端控制器和视图解析器" class="headerlink" title="第四部分前端控制器和视图解析器"></a>第四部分前端控制器和视图解析器</h2><p>（一）前端控制器DispatcherServlet：<br>在web.xml中添加：<br>    <servlet-mapping><br>    <servlet-name>springmvc</servlet-name><br>    <url-pattern><em>.aciton<br>    </em></url-pattern></servlet-mapping><br>所有以.action结尾的请求都会去寻找springmvc的servlet配置：<br><code>&lt;servlet&gt;</code><br><code>&lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;</code><br><code>&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;</code><br><code>&lt;int-param&gt;</code><br><code>&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</code><br><code>&lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;</code><br><code>&lt;/int-param&gt;</code><br><code>&lt;/servlet&gt;</code><br>DispatcherServlet顶级父类HttpServlet类中方法，doGet（）跟都Post（），而其核心功能有doService跟doDispatch实现：doService 处理request请求（doPost跟doGet）；doDispatch处理拦截，转发请求调用处理器获得结果，并绘制结果视图<br>*前端控制器处理请求步骤**：<br>第一步通过servlet类型的父类处理，调用doService在request中设置一些必要的参数，然后调用doDispatch<br>第二步在doDispatch中，先检测request是否包含多媒体类型，在转化成processedRequest对象，之后比较request，若为true，删除processedRequest<br>第三步调用处理器映射器查找Handler，调用getHandler获取相关的处理器对象，即在getHandler中，利用HandlerMapping通过request获取一个包含Handler本身和前后拦截器interceptor的处理器执行链HandlerExecutionChain对象<br>第四步通过处理器执行类对象获取具体的Handler处理器对象，使用getHandlerAdapter方法获取处理器适配器对象<br>第五步调用HandlerAdapter对象的handle方法，将request对象，以及Handler处理器本身作为参数传入，返回ModelAndView对象<br>第六步获得ModelAndView对象后，进行视图渲染，model数据填充到request域中，在processDispatchResult方法中render方法，将ModelAndView对象以及request，response对象作为参数传入，把model对象中数据遍历，分为key和value，设置在request的attribute域中  </p>
+<p>（二）视图解析器ViewResolve<br>把一个逻辑上的视图名称解析为一个真正的视图，即为具体的View对象<br><strong>1.UrlBasedViewResolver</strong>：  
+prefix属性指定视图资源所在路径的前缀信息，ex：prefix”/WEB-INF/page”<br>suffix属性指定视图所在资源路径的后缀信息,ex:”.jsp”<br>view视图名称：”/user/login”<br>加载路径：/WEB-INF/page/user/login.jsp</p>
+<p>UrlBasedViewResolver支持前缀<br>“redirect：”重定向：<br>“forward：”内部跳转：</p>
+<p>在springmvc.xml中配置：<br>        <code>&lt;bean class=&quot;org.springframework.web.servlet.view.UrlBasedViewResolver&quot;&gt;</code><br>           <code>&lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp&quot;/&gt;</code><br>           <code>&lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</code><br>           <code>&lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.InternalResourceView&quot;/&gt;</code><br>        <code>&lt;/bean&gt;</code><br><strong>2.InternalResourceViewResolver</strong>：   
+继承了UrlBasedViewResolver，视图名称自动解析成InternalResourceView对象类型，ex：<br>        <code>&lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</code><br>           <code>&lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp&quot;/&gt;</code><br>           <code>&lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</code><br>        <code>&lt;/bean&gt;</code>  </p>
+<h2 id="第五部分Handler处理器"><a href="#第五部分Handler处理器" class="headerlink" title="第五部分Handler处理器"></a>第五部分Handler处理器</h2><p><strong>（一）Controller与RequestMapping注解的配置</strong>  </p>
+<pre><code>&lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot; validator=&quot;validator&quot;&gt;
+    &lt;/mvc:annotation-driven&gt;  
+&lt;mvc:default-servlet-handler/&gt;</code></pre><p>mvc:annotation-driven标签表明，处理器Handler类型要符合annotation-driven指定的HandMapping跟HandlerAdapter，Spring3.1之后的版本为RequestMappingHandMapping 跟RequestMappingHandlerAdapter<br>当使用@Controller注解配置一个类时候，告诉SpringMVC该类为一个Handler控制器类，配置了     <code>&lt;context:component-scan base-package=&quot;cn.com.mvc.controller&quot;&gt;&lt;/context:component-scan&gt;</code>  </p>
+<ol>
+<li>Spring初始化时候，该controller类会被扫描作为Handler来加载  </li>
+<li>@Controller注解的类中，标注了@RequestMapping注解的方法，表明该方法是一个处理前端请求的方法，器value = “/test”  都是相对于web应用的根目录的相对路径  </li>
+<li>@RequestMapping，默认数据为value，即@RequestMapping（”/test”）等价于 @RequestMapping(value=”/test”),@RequestMapping中还包含了限定请求方法（method=RequestMethod.GET），请求参数(param=”username”)，请求头（headers=”Content-Type：text/html；charset=UTF-8”）  </li>
+</ol>
+<p><strong>（二）参数绑定</strong><br>将用户请求的key/value数据绑定到Controller处理器方法形参上  </p>
+<ol>
+<li>在方法参数中，加入HttpServletRequest，HttpServletrResponse,HttpSession,Model，ModelMap,ex:<br>@RequestMapping（”/test”）<br>public void method(Model model，Integer id){}  </li>
+<li>使用@RequestParam方法时，要求形参与传入参数名称一样，形参采用驼峰命名，ex：<br>@RequestMapping（”/test”）<br>public void method(Model model，@RequestParam(value=”user_id”)Integer user_Id){}  </li>
+<li>@RequestParam,使用空校验时候，required属性为true，ex：<br>@RequestMapping（”/test”）<br>public void method(Model model，@RequestParam(value=”user_id”,required=true) Integer user_Id){}  </li>
+<li>@RequestParam,使用默认值时候，加上defaultValue属性  </li>
+<li>包装类型参数绑定，ex：<br>@RequestMapping（”/test”）<br>public void method(Model model，User user){ … model.addAttribute（”userlist”,userlist）;}    </li>
+<li>集合类型参数绑定，使用name相同的数组类型形参接收，ex：<br>1）数组类型：<br>@RequestMapping（”/test”）<br>public void method(Model model，int[] fids)<br>2）List类型请求参数：<br>使用集合名[下标].属性<br>3）Map类型请求参数：<br>Mao名[‘key值’]，String key=Map.keySet() ,  Map.get(key)    </li>
+</ol>
+<h2 id="第六部分Validation校验"><a href="#第六部分Validation校验" class="headerlink" title="第六部分Validation校验"></a>第六部分Validation校验</h2><h3 id="（一）Bean-Validation数据校验"><a href="#（一）Bean-Validation数据校验" class="headerlink" title="（一）Bean Validation数据校验"></a>（一）Bean Validation数据校验</h3><p>在核心配置文件中，添加Validator属性，指定validator值，并添加配置 ，ex： </p>
+<p>&lt;mvc:annotation-driven conversion-service=”conversionService” validator=”validator”&gt;  </p>
+<!-- 校验器 -->  
+<pre><code>&lt;bean id=&quot;validator&quot;  
+    class=&quot;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&quot;&gt;  
+    &lt;!-- 校验器--&gt;  
+    &lt;property name=&quot;providerClass&quot; value=&quot;org.hibernate.validator.HibernateValidator&quot; /&gt;  
+    &lt;!-- 指定校验使用的资源文件，在文件中配置校验的错误信息，如果不指定则默认使用classpath下的ValidationMessages.properties --&gt;   
+    &lt;property name=&quot;validationMessageSource&quot; ref=&quot;messageSource&quot; /&gt;  
+&lt;/bean&gt;  
+&lt;!-- 校验错误信息配置文件 --&gt;  
+&lt;bean id=&quot;messageSource&quot;  
+    class=&quot;org.springframework.context.support.ReloadableResourceBundleMessageSource&quot;&gt;  
+    &lt;!-- 资源文件名--&gt;  
+    &lt;property name=&quot;basenames&quot;&gt;     
+         &lt;list&gt;      
+           &lt;value&gt;classpath:ProductValidationMessages&lt;/value&gt;  
+         &lt;/list&gt;     
+    &lt;/property&gt;  
+    &lt;!-- 资源文件编码格式 --&gt;  
+    &lt;property name=&quot;fileEncodings&quot; value=&quot;utf-8&quot; /&gt;  
+    &lt;!-- 对资源文件内容缓存时间，单位秒 --&gt;  
+    &lt;property name=&quot;cacheSeconds&quot; value=&quot;120&quot; /&gt;  
+&lt;/bean&gt;</code></pre><p>1.providerClass，校验器提供类:org.hibernate.validator.HibernateValidator<br>2.validationMessageSource校验器使用的资源文件，在文件中配置校验的错误信息<br>3.bean id=”messageSource”自定义的校验资源文件，在springmvc中添加<br>4.校正类型@Size（min =，max=，message=”{报错信息}”）;@NotEmpty(message=”{报错信息}”)<br>ex：<br>@RequestMapping（”/test”）<br>public void method(Model model，@Validated User user，BindingResult bindingResult ){ }<br>@Validated 与 BindingResult 成对出现，顺序固定<br>5.将错误传到页面 model.addAttribute（”allErrors”,allErrors）</p>
+<h3 id="（二）分组校验"><a href="#（二）分组校验" class="headerlink" title="（二）分组校验"></a>（二）分组校验</h3><p>当javabean被不同的Controller调用的时候，有些需要Validation校验有些不用，这个时候就需要分组校验了<br>1.新建一个接口<br>public interface group1{}<br>2.在实体类中校验分配给不同的组<br>javabean:<br>public class User{<br>@Size（min =，max=，message=”{user.name.length.error}”，groups={group1.class}）;<br>private String name;<br>}  
+测试类中：<br>public void method(Model model，@Validated（value=”group1.class”） User user，BindingResult bindingResult ){ }<br>3.validator 接口实现<br>1）编写一个实现了validator接口的实现类；<br>2）测试类中，首先建立@initBinder 方法为DataBinder对象设置Validator校验对象，当调用下面方法形参中的有BindingResult参数时候，BindingResult对象将DataBinder中Validator的校验结果对象封装到自己的Errors对象集合中，BindingResult对象 Errors属性通过器getErrors（）方法获得校正错误信息，hasErrors（）方法获得是否有校正错误信息<br>补充：Errors集合对象，为一个List<objecterror>,使用getcode(),getDefaultMessage()获得相关属性（String）；可以使用@valid标准需要检验的参数，spring才会对其检验  </objecterror></p>
+<h2 id="第七部分异常处理和拦截器"><a href="#第七部分异常处理和拦截器" class="headerlink" title="第七部分异常处理和拦截器"></a>第七部分异常处理和拦截器</h2><h3 id="（一）全局异常处理器"><a href="#（一）全局异常处理器" class="headerlink" title="（一）全局异常处理器"></a>（一）全局异常处理器</h3><ol>
+<li>SpringMVC中有一个全局异常处理器，service，DAO，Controller层出现异常throws Exception的形式向上抛出，最后由前端控制器统一交给全局异常处理器处理  </li>
+<li>对于预期的异常，通常自定义异常类处理，将异常存储在自定义异常类中，如message属性，最后全局异常处理器处理该异常  </li>
+<li>自定义异常类UserException(继承Exception) -&gt; 全局异常类(UserExceptionResolver)实现HandlerExceptionResolver接口<br>接口实现了resolverException方法，输入参数(Object handler,Exception ex), 返回值为ModelAndView ,通过这个返回值来设置异常时显示的页面；在全局异常处理器中，如果没有UserException定义的错误，输出message信息”未知错误”，最后都需要ModelAndView.addObject（”message”,message）  </li>
+</ol>
+<h3 id="（二）拦截器"><a href="#（二）拦截器" class="headerlink" title="（二）拦截器"></a>（二）拦截器</h3><ol>
+<li><p>interceptor拦截器，用于请求的预处理和后处理  </p>
+</li>
+<li><p>继承或实现HandlerInterception接口<br>1）preHandler：决定程序是否执行，返回Boolean<br>2）postHandler：决定执行Handler之后，返回ModelAndView之前执行，统一返回视图<br>3）afterCompletion:在Controller执行完之后执行，进行统一的异常或日志操作<br>在spring的类加载配置文件中配置拦截器实现类，即处理器映射器中配置ref bean=“id”， 针对全局配置可以在spring类加载文件中红配置：  </p>
+<pre><code>&lt;mvc:interceptors&gt;  
+    &lt;!-- 多个拦截器，顺序执行 --&gt;  
+    &lt;mvc:interceptor&gt;  
+        &lt;!-- /**表示所有url包括子url路径 --&gt;  
+        &lt;mvc:mapping path=&quot;/**&quot;/&gt;  
+        &lt;bean class=&quot;cn.com.mvc.interceptor.LoginInterceptor&quot;/&gt;  
+    &lt;/mvc:interceptor&gt;  
+&lt;/mvc:interceptors&gt; </code></pre></li>
+<li><p>继承或实现WebRequestInterception接口<br>1）preHandler：返回值为void<br>2）postHandler：执行Handler之后，返回ModelAndView之前执行,返回ModelMap,来改变Model<br>3）afterCompletion：将WebRequest参数中不需要的准备资源释放掉<br>主要进行请求前及请求后拦截，该接口参数没有response，只有request ，参数含有WebRequest ，含有三个属性（SCOPE_REQUEST,SCOPE_SESSION,SCOPE_GLOBAL_SESSION）</p>
+</li>
+<li><p>拦截器链：拦截器按照spring中顺序，顺序执行    </p>
+</li>
+<li><p>拦截器可以作为登录拦截，判断session中user对象是否为空，判断为是否登录过  </p>
+</li>
+</ol>
+<h2 id="第八部分SpringMVC与前段页面常见的交互类型"><a href="#第八部分SpringMVC与前段页面常见的交互类型" class="headerlink" title="第八部分SpringMVC与前段页面常见的交互类型"></a>第八部分SpringMVC与前段页面常见的交互类型</h2><h3 id="（一）上传文件"><a href="#（一）上传文件" class="headerlink" title="（一）上传文件"></a>（一）上传文件</h3><ol>
+<li>servlet，使用multipart/form-data 属性传输，包装成HttpServletRequest对象，再由servlet处理  </li>
+<li>在springmvc.xml中配置multipart类型加载器 ，使用MultiPartFile类来接受request请求中的multipart文件数据；若为文件类型，使用UUID.randomUUID方法生成随机名称；将存储路径及图片文件合并，生成file对象，在执行transferTO方法，将内存中图片缓冲写入设置的路径中，大文件可用IO流进行读写，并且实时返回读写进度；回显图片时候，将图片名称放入Model对象即可</li>
+<li>如果把文件存储在服务器中，需要修改tomcat配置中的虚拟路径，对应对相应的绝对路径</li>
+<li>当传入多张图片时候，使用MultipartFile数组  <h3 id="（二）JSON交互"><a href="#（二）JSON交互" class="headerlink" title="（二）JSON交互"></a>（二）JSON交互</h3>JSON格式(int,boolean,null不需要加””)<br>普通：{“key”:”value”}<br>数组：{“key”:[{“key1”:”value”} ,{“key2”:”value”} ,{“key3”:”value”} ]} 使用方括号<br>对象：{“key”:{“key1”:”value”,”key2”:”value”,”key3”:”value”}}使用中括号  </li>
+</ol>
+<p>利用类型转换器（messageConverters），在相应的Controller方法中，输入参数或者返回参数之前添加<br>@RequestBody注解，根据contentType类型，如果为application/json 就将其转换为JSON<br>@ResponseBody该注解用于将Controller的方法返回的对象，通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。  当返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用；</p>
+<h3 id="（三）RESTful风格"><a href="#（三）RESTful风格" class="headerlink" title="（三）RESTful风格"></a>（三）RESTful风格</h3><p>RESTful:表现层状态转换；规范资源获取URL路径；<br>RESTful约束：<br>URL中不会出现动词，使用HTTP的动词（GET,POST,PUT,DELETE）;<br>充分利用HTTP方法：GET：获取资源,POST：新建资源,PUT：更新资源,DELETE：删除资源  </p>
+<p>使用RequestMapping（value=”/url/{id}”，method={RequestMethod.GET}）,在请求路径中获得动态数据{id}，使用@<br>PathVariable（”id”）注解，将id赋值给其他参数</p>
+<p>web框架不支持除了post跟get方法时候，在请求数据中添加 “_method”参数，然后再web.xml中配置hiddenHttpMethodFilter的过滤器</p>
+<p>web.xml规定了，url后缀为”.action”就交付给springmvc前端控制器，改为 / 所有路径请求都可以被springmvc处理，但是静态页面的访问也会带来错误，第一种解决方法：在springmvc.xml中使用&lt;mvc:resources location=”/js” mapping=”路径”/&gt;将需要加载的静态资源的URL路径配置在路径标签中；在springmvc.xml中<a href="mvc:default-servlet-handler/" target="_blank" rel="noopener">mvc:default-servlet-handler/</a> 使用默认的servlet处理器，对进入DispatchServlet前端控制器的请求进行筛选，没有经过映射的请求交由web应用默认的servlet处理  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhj1988.github.io/2019/07/10/Spring MVC入门介绍/" data-id="ck11j9uxp000hxwuvwxaf3iry" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="zhj1988.github.io/2019/07/13/maven学习与总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          maven学习与总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="zhj1988.github.io/2019/07/08/基础算法程序记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">算法程序记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/25/微信公众号网页授权与模板消息发送/">微信公众号网页授权与模板消息发送</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/09/Spring-Boot-缓存应用——ehcache/">Spring Boot 缓存应用——ehcache</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/07/html与js-学习笔记/">html与js 学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/06/bootstrap-学习记录/">bootstrap 学习记录</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/07/24/SpringBoot结构分层解析/">SpringBoot结构分层解析 </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ZHuanJ<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="zhj1988.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="zhj1988.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="zhj1988.github.io/fancybox/jquery.fancybox.css">
+  <script src="zhj1988.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="zhj1988.github.io/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

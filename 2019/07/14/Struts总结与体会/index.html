@@ -1,99 +1,302 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
 
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
+  
+  <title>Struts2总结与体会 | ZHuanJ——blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介：记录一些学习Struct2过程中的知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struts2总结与体会">
+<meta property="og:url" content="https://zhj1988.github.io/2019/07/14/Struts总结与体会/index.html">
+<meta property="og:site_name" content="ZHuanJ——blog">
+<meta property="og:description" content="简介：记录一些学习Struct2过程中的知识">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-27T02:44:04.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Struts2总结与体会">
+<meta name="twitter:description" content="简介：记录一些学习Struct2过程中的知识">
+  
+    <link rel="alternate" href="zhj1988.github.io/atom.xml" title="ZHuanJ——blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="zhj1988.github.io/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="zhj1988.github.io/" id="logo">ZHuanJ——blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="zhj1988.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhj1988.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Struts总结与体会" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="zhj1988.github.io/2019/07/14/Struts总结与体会/" class="article-date">
+  <time datetime="2019-07-14T12:30:19.000Z" itemprop="datePublished">2019-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Struts2总结与体会
+    </h1>
+  
 
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简介：记录一些学习Struct2过程中的知识</p>
+<a id="more"></a> 
+
+
+<p><strong>1.配置核心过滤器</strong><br>在web.xml中配置  </p>
+<pre><code>&lt;filter&gt;
+   &lt;filter-name&gt;abc&lt;/filter-name&gt;
+   &lt;filter-class&gt;&quot;过滤器类&quot;&lt;/filter-name&gt;
+&lt;/filter&gt;
+
+&lt;filter-mapping&gt;
+   &lt;filer-name&gt;abc&lt;/filer-name&gt;
+   &lt;url-pattern&gt;/*&lt;/url-pattern&gt;&lt;!--所有路径请求都可以被捕捉到--&gt;
+&lt;/filter-mapping&gt;</code></pre><p><strong>2.src/struct.xml（配置文件）</strong><br>管理Action ，通过包管理  </p>
+<pre><code>&lt;structs&gt;
+    &lt;package name=&quot;hello&quot; extends=&quot;structs-default&quot; namespace=&quot;/&quot;&gt;
+         &lt;action name=&quot;前端请求路径，ex：前端hello.action；此处hello&quot; class=&quot;类路径&quot;&gt;
+             &lt;!--配置页面跳转--&gt;
+             &lt;result name=&quot;sucesss&quot;&gt;/demo/demo.jsp&lt;/result&gt;
+         &lt;/action&gt;
+    &lt;/package&gt;
+&lt;/structs&gt;</code></pre><p><strong>3.struct2执行流程：</strong><br>1）前端过滤器<br>2）执行过滤器中的一组拦截器(拦截器实现部分功能)<br>3）找到struct.xml中的Action<br>4）执行目标的Action，根据Action的返回值进行页面挑战<br>定义方法Action :<br>public String execute（）{return “success”}//公有类，返回类型为String，无参数 </p>
+<p><strong>4.struts2配置文件</strong><br>1）package配置 ：管理Action配置<br>name:包的名称可以随便定，保证唯一<br>extends：通常继承引入jar包中的structs-default.xml<br>namespace：名称空间,与Action name 共同决定访问路径{带名称的名称空间：”/a”; 根名称空间：”/“; 默认名称空间:””}<br>abstract：抽象的，用于被其他包继承   </p>
+<p>2)Action配置：<br>name：与namespace共同决定访问路径<br>class：Action类的全路径<br>method：执行Action中的哪个方法，默认值为execute<br>converter：自定义类型转换器  </p>
+<p><strong>3）常量配置：（default-properties）</strong><br>修改方法：<br>struct.xml：<constant name value>;  
+struct.properties(src/,自定义，只能用于修改常量，不能用于配置)；<br>在web.xml中修改过滤器：  </constant></p>
+<pre><code> &lt;filter&gt;    
+    &lt;init-param&gt;   
+         &lt;param-name&gt;&lt;/param-name&gt;  
+         &lt;param-value&gt;&lt;/param-value&gt;  
+    &lt;/init-param&gt;  
+&lt;/filter&gt;   </code></pre><p>4）分模块开发include标签：<br>在java包中，自定义自己的struct_demo1.xml，在总的struct.xml中：<br>     <structs><br>         <include file="com/struct/demo1/struct_demo1.xml"><br>     </include></structs></p>
+<p><strong>5.Ation的写法</strong><br>1）Action类是POJO类：简单java类，没有继承类没有接口<br>2）Action实现一个Action的接口：提供五个常量（五个逻辑视图的名称） INPUT：表单校验的时候出错<br>3）Action类继承ActionSupport类：提供了一系列数据校验，国际化等一系列操作的方法   </p>
+<p><strong>6.Action的访问</strong><br>1）通过method设置<br>    <action name="前端请求路径" class="类路径" method="类中的方法"><br>2）通过配置符设置：<br>前端访问路径要统一格式，ex：User_find/User_update  </action></p>
+<pre><code>&lt;action name=&quot;User_*&quot; class=&quot;类路径&quot; method=&quot;{1}&quot;&gt;
+&lt;!--更抽象的方法--&gt;
+&lt;action name=&quot;*_*&quot; class=&quot;类路径.{1}&quot; method=&quot;{2}&quot;&gt;</code></pre><p>3)动态方法访问<br>开启动态方法访问：  </p>
+<pre><code>struct.xml：&lt;constant name=&quot;DynamicMethodInvocation&quot; value=&quot;true&quot;/&gt;;</code></pre><p>前端编写访问路径：User！find.Action / User！update.Action  </p>
+<p><strong>7.Struct的Servlet的API访问</strong><br>a）完全解耦合方式<br>使用ActionContext接收前端数据</p>
+<pre><code>ActionContext context = ActionContext.getContext（）；  
+Map&lt;String,Object&gt;map = context.getParameters();
+
+context.put(&quot;reqName&quot;,&quot;reqValue&quot;);//相当于request.setAttribute（）;
+context.getSession.put(&quot;reqName&quot;,&quot;reqValue&quot;);//相当于session.setAttribute（）;
+context.getApplication.put(&quot;reqName&quot;,&quot;reqValue&quot;);//相当于application.setAttribute（）;</code></pre><p>这种方式只能获得代表request、session、application的数据的Map集合，不能操作这些对象的本身的方法</p>
+<p>b)使用Servlet的原生方式</p>
+<pre><code>HttpServletRequest request = ServletActionContext.getRequest();  
+Map&lt;String,Object&gt;map = request.getParameters();  
+request.setAttribute(&quot;reqName&quot;,&quot;reqValue&quot;);//request.setAttribute（）;  
+request.getSession.setAttribute(&quot;sessName&quot;,&quot;sessValue&quot;);//session.setAttribute（）;  
+ServletActionContext().setAttribute(&quot;appName&quot;,&quot;appValue&quot;);//application.setAttribute（）;  </code></pre><p>可以操作域对象的数据，同时也可以获得对象的方法。</p>
+<p>c）接口注入的方式<br>      //添加接口<br>      extends ActionSupport implements ServletRequestAware,ServletContextAware<br>      //添加属性<br>      private HttpServletRequest request;<br>      private ServletContext context;<br>      //接口实现两个方法，赋值给对象属性<br>      public  void setServletRequest（HttpServletRequest request）{<br>      this.request = request；}</p>
+<p>Servlet是单例的，多个程序访问同一个Servlet只会创建一个Servlet的实例。Action是多例的，一次请求，创建一个Action的实例（不会出现线程安全的问题）</p>
+<p><strong>8.Struct的结果页面配置</strong><br>全局结果页面配置：<br>在包中配置一次，在这个包的所有action只要返回这个值，都能跳转这个页面  </p>
+<pre><code>&lt;global-results&gt;
+&lt;result name=&quot;success&quot;&gt;/demo.jsp&lt;/result&gt;
+&lt;/global-results&gt;</code></pre><p>局部结果页面配置：<br>针对当前的action有效,优先级大于全局  </p>
+<pre><code>&lt;action name=&quot;前端请求路径&quot; class=&quot;类路径&quot;&gt;
+         &lt;!--配置页面跳转--&gt;
+         &lt;result name=&quot;sucesss&quot;&gt;/demo/demo.jsp&lt;/result&gt;
+&lt;/action&gt;</code></pre><p><strong>9.result标签配置</strong><br>1）name：逻辑视图的名称，默认success<br>2）type：页面跳转的类型<br>a）dispatch：默认值，请求转发 （Action到jsp）<br>b）redirect：重定向（Action到jsp）<br>c）chain：转发（Action到Action）<br>d）redirectAction：重定向（Action到Action）<br>d）stream：struct2提供文件下载功能  </p>
+<p><strong>10.struct的数据封装</strong><br>1）属性驱动：提供属性set的方法<br>Action，添加user的属性（name，password），并提供相应的set，get方法，在execute方法中，new user，然后set赋值（用于属性较少的时候）  </p>
+<p>2）属性驱动：页面提供表达式的方法<br>Action中，添加user，提供相应的set，get方法；前端相应修改为user.name，user.password<br>（拦截器完成数据封装，需要有get方法，如果没有get方法，拦截器为每个一个属性创建对象，返回一个对象只包含一个属性值）可以同时向多个对象封装  </p>
+<p>3）模型驱动：采用模型驱动方法  </p>
+<pre><code>implements ModelDriver&lt;User&gt;{  
+private User user new User();
+public User getModel(){  
+return null;  
+}  
+}  </code></pre><p>只能同时向一个对象中封装数据  </p>
+<p><strong>11.关于INPUT逻辑视图的配置</strong><br>在某些拦截器中使用，输入数据出错</p>
+<pre><code>&lt;result name=&quot;INPUT&quot;&gt;/error.jsp&lt;/result&gt;  </code></pre><p><strong>12.复杂数据类型封装</strong><br>1）List 封装 :<br>2）map封装：  </p>
+<p><strong>13.OGNL</strong><br>对象图导航语言； 可以调用对象的方法，获得struct2的值栈的数据  </p>
+<p>1）使用要素：<br>a）表达式：做什么<br>b）根对象：对谁操作<br>c）Context：操作环境</p>
+<p>2）Ognl的使用<br>a）Ognl调用对象的方法    </p>
+<pre><code>OgnlContext context = new OgnlContext（）；  
+Object root= Context.getRoot（）；  
+Object obj =Ognl.getValue（&quot;&apos;hello&apos;.length&quot;,context,root）  </code></pre><p>b）Ognl访问对象的静态方法：@类名@方法名  </p>
+<pre><code>OgnlContext context = new OgnlContext（）；  
+Object root= Context.getRoot（）；  
+Object obj =Ognl.getValue（&quot;@java.lang.Math@random()&quot;,context,root）</code></pre><p>c)获取root对象中值  </p>
+<pre><code>OgnlContext context = new OgnlContext（）；    
+context.setRoot（new User(&quot;a&quot;,&quot;123&quot;));
+Object root= Context.getRoot（）；  
+Object username =Ognl.getValue(&quot;username&quot;,context,root); 
+Object username =Ognl.getValue(&quot;password&quot;,context,root);</code></pre><p>d)获取Context数据：  </p>
+<pre><code>OgnlContext context = new OgnlContext（）；    
+Object root= Context.getRoot（）；  
+context.put（&quot;name&quot;,&quot;张三&quot;）
+Object name =Ognl.getValue(&quot;#name&quot;,context,root);</code></pre><p>关键在#号  </p>
+<p>3）在jsp页面中，添加struct标签<br>&lt;s:property value=””/&gt;  </p>
+<p><strong>14.ValueStack值栈</strong><br>1）容器，structs的一个接口，OgnlValueStack的实现类，客户端发送请求之后，struct架构会创建一个Action实例，同时创建一个OgnlValueStack值栈的实例类，将请求Action的参数封装为对象存储到值栈中，通过Ognl表达式读取值栈中对象属性名<br>2)获取值栈对象：<br>ValueStack valuestack =ActionContext.getContext.getValueStack（）；<br>两个主要区域：root：ArrayList，放置对象Object ； context：map，web常用对象的引用，ex：root/request/session/application/parameters/attr<br>3)值栈与ActionContext的关系<br>ActionContext对象中有 valueStack的引用，所以能够访问Servlet的API<br>4)获得值栈ValueStack<br>通过ActionContext.getContext.getValueStack ；<br>通过request得到  ServletActionContext.getRequest（）.getAttribute（ServletActionContext.STRUTS_VALUESTACK_KEY）；<br>5)值栈操作<br>存入数据：<br>Action提供属性的get方法：<br>使用ValueStack本身的方法：<br>valueStack.push（user）；//入栈<br>valueStack.set（”key”,”value”）;//创建一个map，存入值栈中，如果没有设置get方法，无法显示，但是能够获取到数据<br>6）Ognl特殊字符<br><code>#</code> ： 获取context的数据；构建map集合<br>%：<br>$ ：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhj1988.github.io/2019/07/14/Struts总结与体会/" data-id="ck11j9uxb000cxwuvydz9oqn7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="zhj1988.github.io/2019/07/24/sql语句知识汇总/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          sql语句知识汇总
+        
+      </div>
+    </a>
+  
+  
+    <a href="zhj1988.github.io/2019/07/13/maven学习与总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">maven学习与总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/25/微信公众号网页授权与模板消息发送/">微信公众号网页授权与模板消息发送</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/09/Spring-Boot-缓存应用——ehcache/">Spring Boot 缓存应用——ehcache</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/07/html与js-学习笔记/">html与js 学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/06/bootstrap-学习记录/">bootstrap 学习记录</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/07/24/SpringBoot结构分层解析/">SpringBoot结构分层解析 </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ZHuanJ<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="zhj1988.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="zhj1988.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="zhj1988.github.io/fancybox/jquery.fancybox.css">
+  <script src="zhj1988.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="zhj1988.github.io/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

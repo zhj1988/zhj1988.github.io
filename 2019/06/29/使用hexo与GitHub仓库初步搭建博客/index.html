@@ -1,99 +1,242 @@
-extends includes/layout.pug
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
 
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
+  
+  <title>使用hexo与GitHub仓库初步搭建博客 | ZHuanJ——blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。（完善中） 本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用hexo与GitHub仓库初步搭建博客">
+<meta property="og:url" content="https://zhj1988.github.io/2019/06/29/使用hexo与GitHub仓库初步搭建博客/index.html">
+<meta property="og:site_name" content="ZHuanJ——blog">
+<meta property="og:description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。（完善中） 本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-11T17:49:29.285Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用hexo与GitHub仓库初步搭建博客">
+<meta name="twitter:description" content="简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。（完善中） 本次搭建过程可分为三部分 第一部分 环境配置   第二部分 hexo与github仓库连接   第三部分 更换博客主题">
+  
+    <link rel="alternate" href="zhj1988.github.io/atom.xml" title="ZHuanJ——blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="zhj1988.github.io/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="zhj1988.github.io/" id="logo">ZHuanJ——blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="zhj1988.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="zhj1988.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhj1988.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用hexo与GitHub仓库初步搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="zhj1988.github.io/2019/06/29/使用hexo与GitHub仓库初步搭建博客/" class="article-date">
+  <time datetime="2019-06-28T17:37:10.000Z" itemprop="datePublished">2019-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用hexo与GitHub仓库初步搭建博客
+    </h1>
+  
 
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简介：本人初学博客搭建，操作系统是window。在这些综合一下自己搭建博客过程遇到的问题，分享给有个我一样困惑的人。如果有错误欢迎指正。<strong>（完善中）</strong></p>
+<h1 id="本次搭建过程可分为三部分"><a href="#本次搭建过程可分为三部分" class="headerlink" title="本次搭建过程可分为三部分"></a>本次搭建过程可分为三部分</h1><ol>
+<li>第一部分 环境配置  </li>
+<li>第二部分 hexo与github仓库连接  </li>
+<li>第三部分 更换博客主题  </li>
+</ol>
+<a id="more"></a> 
+<h2 id="第一部分-环境配置"><a href="#第一部分-环境配置" class="headerlink" title="第一部分 环境配置"></a>第一部分 环境配置</h2><ol>
+<li>安装Git<br>windows：到git官网上下载,Download git,下载后会有一个Git Bash的命令行工具，以后就用这个工具来使用git。<br>linux：需要一行代码。<br><code>**sudo apt-get install git**</code><br>git –version 查看版本<ol start="2">
+<li>安装nodejs<br>Hexo是基于nodeJS编写的，所以需要安装一下nodeJs和里面的npm工具。<br>windows：nodejs选择LTS版本<br>linux：  </li>
+</ol>
+<strong>sudo apt-get install nodejs</strong><br><strong>sudo apt-get install npm</strong><br>使用node -v npm -v查看版本<ol start="3">
+<li>安装hexo<br>前面git和nodejs安装好后，就可以安装hexo了，先创建一个文件夹blog，在终端cd到这个文件夹下  。<br>输入命令：<br><code>**npm install -g hexo-cli**</code><br>依旧用hexo -v查看一下版本<br>接下来初始化一下hexo  </li>
+</ol>
+<strong>hexo init</strong><br>看到“Start blogging with Hexo！”即初始化成功<br>接下来 输入<strong>npm install</strong>，安装所需要的组件<br>输入<strong>hexo g</strong>，首次体验Hexo<br>输入<strong>hexo s</strong>，开启服务器，访问该网址localhost:4000，看到生成的博客了。第一部分到此结束整体没有什么问题，按着教程顺序，window只需安装软件跟在命令行输入命令即可。</li>
+</ol>
+<h2 id="第二部分-hexo与github仓库连接"><a href="#第二部分-hexo与github仓库连接" class="headerlink" title="第二部分 hexo与github仓库连接"></a>第二部分 hexo与github仓库连接</h2><ol>
+<li>在github自己GitHub账号中创建一个项目<br>项目必须要遵守格式：账户名.github.io（这个非常重要！！！）  </li>
+</ol>
+<ul>
+<li>生成ssh添加到github<br>回到你的git bash中，或者继续用命令行cd到blog的文件夹<br>  <strong>git config –global user.name “yourname”</strong><br>  <strong>git config –global user.email “youremail”</strong><br>这里的yourname输入你的GitHub用户名，youremail输入你GitHub的邮箱。这样GitHub才能知道你是不是对应它的账户。<br>可以用以下两条，检查一下你有没有输对<br>  <strong>git config user.name</strong><br>  <strong>git config user.email</strong><br>然后创建SSH,一路回车<br><code>**ssh-keygen -t rsa -C &quot;youremail&quot;**</code><br>这个时候它会告诉你已经生成了.ssh的文件夹。在你的电脑中找到这个文件夹.<br>而后在GitHub的setting中（鼠标移到右上角头像），找到SSH keys的设置选项，点击New SSH key<br>把你的id_rsa.pub里面的信息复制进去。<br>在gitbash中，查看是否成功<br>  <strong>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></strong></li>
+</ul>
+<ol start="3">
+<li>将hexo部署到GitHub<br>在你的blog文件夹中找到配置文件 _config.yml，翻到最后，修改为  </li>
+</ol>
+<p><strong>deploy:<br>  type: git<br>  repo: <a href="https://github.com/YourgithubName/YourgithubName.github.io.git" target="_blank" rel="noopener">https://github.com/YourgithubName/YourgithubName.github.io.git</a><br>  branch: master</strong><br>注意没有repo，brach可以直接复制，后边type / repo / branch，冒号后面一定要加一个空格，我使用的Notepad++修改，修改后记得保存。<br>然后安装deploy-git ，也就是部署的命令,这样你才能用命令部署到GitHub，在命令行中执行：<br>    <strong>npm install hexo-deployer-git –save</strong><br>安装完成后启动hexo：<br>    <strong>hexo clean<br>    hexo generate<br>    hexo deploy</strong><br>在浏览器打开 <a href="https://YourgithubName.github.io/" target="_blank" rel="noopener">https://YourgithubName.github.io/</a> 后看到hexo就代表成功了。<br>运行：<br>    <strong>hexo new “第一篇博客”<br>    hexo clean<br>    hexo g<br>    hexo d</strong><br>就可以看到更新的博客了，第二部分也到此结束。</p>
+<h2 id="第三部分-hexo-blog编写小技巧"><a href="#第三部分-hexo-blog编写小技巧" class="headerlink" title="第三部分 hexo blog编写小技巧"></a>第三部分 hexo blog编写小技巧</h2><p>layout（布局）：Hexo 有三种默认布局：post、page 和 draft，它们分别对应不同的路径，而您自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。  </p>
+<ol>
+<li>默认使用的是post这个布局，也就是在source文件夹下的_post里面。<br><code>hexo new [layout] &lt;title&gt;</code> </li>
+<li>使用page<br><code>hexo new page board</code><br>系统会自动给你在source文件夹下创建一个board文件夹，以及board文件夹中的index.md，这样你访问的board对应的链接就是<a href="http://xxx.xxx/board" target="_blank" rel="noopener">http://xxx.xxx/board</a>  </li>
+<li>使用draft（草稿）<br> <code>hexo new draft newpage</code><br>这样会在source/_draft中新建一个newpage.md文件，预览草稿，在本地端口中开启服务预览。<br> <code>hexo server --draft</code><br>如果你的草稿文件写完了，想要发表到post中，就会自动把newpage.md发送到post中<br> <code>hexo publish draft newpage</code>  </li>
+</ol>
+<h2 id="第四部分-hexo-blog-主题设置与布局"><a href="#第四部分-hexo-blog-主题设置与布局" class="headerlink" title="第四部分 hexo blog 主题设置与布局"></a>第四部分 hexo blog 主题设置与布局</h2><p>##参考博客来源：  </p>
+<ol>
+<li><a href="https://blog.csdn.net/sinat_37781304/article/details/82729029" target="_blank" rel="noopener">https://blog.csdn.net/sinat_37781304/article/details/82729029</a> </li>
+<li></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhj1988.github.io/2019/06/29/使用hexo与GitHub仓库初步搭建博客/" data-id="ck11j9uwr0009xwuv8t2rcqku" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="zhj1988.github.io/2019/06/30/程序经典排序算法个人体会与总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          经典排序算法概述&amp;&amp;个人体会总结
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="zhj1988.github.io/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/25/微信公众号网页授权与模板消息发送/">微信公众号网页授权与模板消息发送</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/09/09/Spring-Boot-缓存应用——ehcache/">Spring Boot 缓存应用——ehcache</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/07/html与js-学习笔记/">html与js 学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/08/06/bootstrap-学习记录/">bootstrap 学习记录</a>
+          </li>
+        
+          <li>
+            <a href="zhj1988.github.io/2019/07/24/SpringBoot结构分层解析/">SpringBoot结构分层解析 </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ZHuanJ<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="zhj1988.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="zhj1988.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="zhj1988.github.io/fancybox/jquery.fancybox.css">
+  <script src="zhj1988.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="zhj1988.github.io/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
